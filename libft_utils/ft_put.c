@@ -6,7 +6,7 @@
 /*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:10:02 by kadam             #+#    #+#             */
-/*   Updated: 2024/09/04 12:13:52 by kadam            ###   ########.fr       */
+/*   Updated: 2024/09/04 12:42:13 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@ void	ft_putstrn_fd(char *s, int fd)
 	if (s == NULL)
 		return ;
 	while (s[i] != '\0')
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
+		write(fd, &s[i++], 1);
 	write(fd, "\n", 1);
 }
