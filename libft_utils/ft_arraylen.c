@@ -6,7 +6,7 @@
 /*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:10:55 by kadam             #+#    #+#             */
-/*   Updated: 2024/09/04 12:13:45 by kadam            ###   ########.fr       */
+/*   Updated: 2024/09/04 12:40:32 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ int	ft_lenarray(char **array)
 	if (!array)
 		return (0);
 	while (array[i])
-	{
 		i++;
-	}
 	return (i);
 }

@@ -6,11 +6,29 @@
 /*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 21:48:05 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/09/04 12:13:54 by kadam            ###   ########.fr       */
+/*   Updated: 2024/09/04 12:43:21 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+static char	*ft_strchr(const char *s, int c)
+{
+	int		i;
+	char	x;
+
+	i = 0;
+	x = (char)c;
+	while (s[i] != '\0')
+	{
+		if (s[i] == x)
+			return ((char *)s + i);
+		i++;
+	}
+	if (s[i] == x)
+		return ((char *)s + i);
+	return (NULL);
+}
 
 static int	c_word(char const *s, char *c)
 {

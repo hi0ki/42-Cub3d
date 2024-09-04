@@ -1,85 +1,26 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include "MLX42/include/MLX42/MLX42.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/04 12:46:15 by kadam             #+#    #+#             */
+/*   Updated: 2024/09/04 16:56:44 by kadam            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "include/cub3d.h"
 
-
-#define WIDTH 512
-#define HEIGHT 512
-
-static mlx_image_t* image;
- 
-// -----------------------------------------------------------------------------
-// Helper functions
-int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
+int main(int ac, char **av)
 {
-    return (r << 24 | g << 16 | b << 8 | a);
-}
-//howa
-void ft_randomize(void* param)
-{
-	(void)param;
-	for (uint32_t i = 0; i < image->width; ++i)
-	{
-		for (uint32_t y = 0; y < image->height; ++y)
-		{
-			uint32_t color = ft_pixel(
-				rand() % 0xFF, // R
-				rand() % 0xFF, // G
-				rand() % 0xFF, // B
-				rand() % 0xFF  // A
-			);
-			mlx_put_pixel(image, i, y, color);
-		}
-	}
-}
+	static t_map map_struct;
 
-void ft_hook(void* param)
-{
-	mlx_t* mlx = param;
-
-	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(mlx);
-	if (mlx_is_key_down(mlx, MLX_KEY_UP))
-		image->instances[0].y -= 5;
-	if (mlx_is_key_down(mlx, MLX_KEY_DOWN))
-		image->instances[0].y += 5;
-	if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
-		image->instances[0].x -= 5;
-	if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
-		image->instances[0].x += 5;
-}
-
-// -----------------------------------------------------------------------------
-
-int32_t main(void)
-{
-	mlx_t* mlx;
-
-	// Gotta error check this stuff
-	if (!(mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true)))
-	{
-		puts(mlx_strerror(mlx_errno));
-		return(EXIT_FAILURE);
-	}
-	if (!(image = mlx_new_image(mlx, 128, 128)))
-	{
-		mlx_close_window(mlx);
-		puts(mlx_strerror(mlx_errno));
-		return(EXIT_FAILURE);
-	}
-	if (mlx_image_to_window(mlx, image, 0, 0) == -1)
-	{
-		mlx_close_window(mlx);
-		puts(mlx_strerror(mlx_errno));
-		return(EXIT_FAILURE);
-	}
-	
-	mlx_loop_hook(mlx, ft_randomize, mlx);
-	mlx_loop_hook(mlx, ft_hook, mlx);
-
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
-	return (EXIT_SUCCESS);
+	if (start_parsing(&map_struct, ac, av) == 1)
+		return (1);
+	printf("NO: %s\nSO: %s\nWE: %s\nEA: %s\n", map_struct.NO, map_struct.SO, map_struct.WE, map_struct.EA);
+	printf("F: %d, %d, %d\nC: %d, %d, %d\n", map_struct.F[0], map_struct.F[1], map_struct.F[2], map_struct.C[0], map_struct.C[1], map_struct.C[2]);
+	for (int i = 0; map_struct.map_array[i]; i++)
+		printf("%s\n", map_struct.map_array[i]);
+	return (0);
 }
