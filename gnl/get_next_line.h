@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 00:00:20 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/01/23 22:04:01 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/09/04 12:14:09 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+#include "../include/cub3d.h"
 
 char	*get_next_line(int fd);
 char	*ft_save(char *save);
