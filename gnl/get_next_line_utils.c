@@ -6,75 +6,71 @@
 /*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 00:00:32 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/09/04 11:56:47 by kadam            ###   ########.fr       */
+/*   Updated: 2024/09/04 16:25:47 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(char *str)
+size_t	ft_strlen(const char *s)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (str && str[i])
+	while (s[i] != '\0')
 		i++;
 	return (i);
 }
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t			i;
-	unsigned char	*dest;
-	unsigned char	*s;
+	size_t	i;
+	size_t	j;
+	char	*dest;
 
+	if (!s1)
+		return (ft_strdup(s2));
+	if (!s2)
+		return (ft_strdup(s1));
 	i = 0;
-	dest = (unsigned char *)dst;
-	s = (unsigned char *)src;
-	while (i < n)
+	j = 0;
+	dest = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!dest)
+		return (NULL);
+	while (s1[i] != '\0')
 	{
-		dest[i] = s[i];
+		dest[i] = s1[i];
 		i++;
 	}
-	return (dst);
-}
-
-char	*ft_strjoin(char *s1, char *s2)
-{
-	char	*str;
-	int		dlen;
-	int		slen;
-
-	if (!s2)
-		return (NULL);
-	if (ft_strlen(s2) == 1 && s2[0] == '\n')
+	while (s2[j] != '\0')
 	{
-		free(s2);
-		printf("Error: Invalid map >> khsni nbdl hadi\n");
-		return (NULL);
+		dest[ft_strlen(s1) + j] = s2[j];
+		j++;
 	}
-	dlen = ft_strlen(s1);
-	slen = ft_strlen(s2);
-	str = malloc((dlen + slen + 1) * sizeof(char));
-	if (!str)
-		return (free(s1), NULL);
-	ft_memcpy(str, s1, dlen);
-	ft_memcpy(str + dlen, s2, slen);
-	str[dlen + slen] = '\0';
-	free(s1);
-	return (str);
+	dest[ft_strlen(s1) + j] = '\0';
+	return (dest);
 }
 
-char	*ft_strdup(char *s1)
+char	*ft_strdup(const char *s1)
 {
-	char	*str;
+	size_t	len;
+	char	*dest;
+	size_t	i;
 
-	str = malloc(ft_strlen(s1) + 1 * sizeof(char));
-	if (!str)
+	if (s1 == NULL)
 		return (NULL);
-	ft_memcpy(str, s1, ft_strlen(s1));
-	str[ft_strlen(s1)] = '\0';
-	return (str);
+	len = ft_strlen(s1);
+	i = 0;
+	dest = (char *)malloc(len + 1);
+	if (dest == NULL)
+		return (NULL);
+	while (s1[i] != '\0')
+	{
+		dest[i] = s1[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }
 
 int	chr_n(char *str)
