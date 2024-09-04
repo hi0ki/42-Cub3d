@@ -1,24 +1,27 @@
-FILES=	gnl/get_next_line.c gnl/get_next_line_utils.c \
-		libft_utils/ft_arraylen.c libft_utils/ft_free_array.c libft_utils/ft_put.c libft_utils/ft_split.c libft_utils/ft_substr.c \
+CC		=	cc
+CFLAGS	=	-Wall -Wextra -Werror #-g -fsanitize=address
+RM		=	rm -f
+SRCS	=	gnl/get_next_line.c gnl/get_next_line_utils.c \
+			libft_utils/ft_arraylen.c libft_utils/ft_free_array.c libft_utils/ft_put.c libft_utils/ft_split.c libft_utils/ft_substr.c\
+			parsing/start_parsing.c \
+			main.c 
 
+MLX 	= 	MLX42/build/libmlx42.a -I"MLX42/include/MLX42/MLX42.h" -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+HEADER	= 	gnl/get_next_line.h include/cub3d.h 
+OBJS	=	$(SRCS:.c=.o)
 NAME= cub3d
 
-CC= cc -Werror -Wall -Wextra #-g -fsanitize=address
-HEADER= gnl/get_next_line.h include/cub3d.h
+all: $(NAME)
 
-MLX= MLX42/build/libmlx42.a -I"MLX42/include/MLX42/MLX42.h" -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
-
-RM= rm -rf
-Green=\033[0;32m
-
-.SILENT:
-
-all :$(NAME)
-
-$(NAME): $(FILES)
-	$(CC) $(FILES) $(MLX) -o $(NAME)
-	echo "$(Green)$(NAME) created"
+$(NAME): $(OBJS) $(HEADER)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX)
 
 clean:
+	$(RM) $(OBJS)
+
+fclean: clean
 	$(RM) $(NAME)
-	echo "$(Green)Object files removed"
+
+re: fclean all
+
+.PHONY: all clean fclean re
