@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 00:00:32 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/05/04 10:35:57 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/09/04 11:56:47 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	{
 		free(s2);
 		printf("Error: Invalid map >> khsni nbdl hadi\n");
+		return (NULL);
 	}
 	dlen = ft_strlen(s1);
 	slen = ft_strlen(s2);
