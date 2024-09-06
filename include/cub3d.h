@@ -6,7 +6,7 @@
 /*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:12:37 by kadam             #+#    #+#             */
-/*   Updated: 2024/09/06 12:55:39 by kadam            ###   ########.fr       */
+/*   Updated: 2024/09/06 16:58:26 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_player
 	int x;
 	int y;
 }t_player;
+
 typedef struct s_map
 {
 	//read the all map
@@ -43,6 +44,10 @@ typedef struct s_map
 	int     C[3];
 	//for player
 	t_player player;
+
+	mlx_t *mlx;
+	mlx_image_t *image;
+	int player_dir; // 0 = N, 1 = E, 2 = S, 3 = W
 }	t_map;
 
 int ft_lenarray(char **array);

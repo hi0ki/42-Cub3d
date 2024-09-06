@@ -246,7 +246,7 @@ int read_file_1(t_map *map_struct, int fd)
     }
     map_struct->map_array = ft_split(tmp, "\n");
     free(tmp);
-    print_struct(map_struct);
+    // print_struct(map_struct);
     return (0);
 }
 
