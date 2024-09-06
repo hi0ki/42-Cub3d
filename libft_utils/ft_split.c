@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 21:48:05 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/09/04 12:43:21 by kadam            ###   ########.fr       */
+/*   Updated: 2024/09/04 21:18:57 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static char	*ft_strchr(const char *s, int c)
+static char	*_strchr(const char *s, int c)
 {
 	int		i;
 	char	x;
@@ -81,10 +81,10 @@ static char	**ft_alloc(char *s, char *c, int c_word, char **str)
 	end = 0;
 	while (i < c_word)
 	{
-		while (ft_strchr(c, s[start]) && s[start])
+		while (_strchr(c, s[start]) && s[start])
 			start++;
 		end = start;
-		while (!ft_strchr(c, s[end]) && s[end])
+		while (!_strchr(c, s[end]) && s[end])
 			end++;
 		str[i] = ft_substr(s, start, end - start);
 		if (!str[i])

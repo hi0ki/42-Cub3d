@@ -6,7 +6,7 @@
 /*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 00:00:20 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/09/05 18:51:36 by kadam            ###   ########.fr       */
+/*   Updated: 2024/09/06 12:52:33 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char *get_next_line(int fd);
 char *ft_save(char *save);
 char *ft_line(char *save);
 char *ft_read(int fd, char *save);
-int ft_strlen(const char *str);
+size_t ft_strlen(const char *str);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strdup(const char *s1);
 int chr_n(char *str);
