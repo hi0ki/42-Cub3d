@@ -1,8 +1,8 @@
 CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS	=	#-g -fsanitize=address
 RM		=	rm -f
 SRCS	=	gnl/get_next_line.c gnl/get_next_line_utils.c \
-			libft_utils/ft_arraylen.c libft_utils/ft_free_array.c libft_utils/ft_put.c libft_utils/ft_split.c libft_utils/ft_substr.c\
+			libft_utils/ft_arraylen.c libft_utils/ft_free_array.c libft_utils/ft_put.c libft_utils/ft_split.c libft_utils/ft_substr.c libft_utils/ft_strtrim.c libft_utils/ft_atoi.c libft_utils/ft_strcmp.c libft_utils/_strjoin.c\
 			parsing/start_parsing.c \
 			main.c 
 

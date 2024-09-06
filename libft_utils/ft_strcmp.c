@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/04 12:46:15 by kadam             #+#    #+#             */
-/*   Updated: 2024/09/06 10:56:00 by kadam            ###   ########.fr       */
+/*   Created: 2024/09/04 19:23:11 by kadam             #+#    #+#             */
+/*   Updated: 2024/09/04 19:28:20 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/cub3d.h"
+#include "../include/cub3d.h"
 
-int main(int ac, char **av)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	t_map map_struct;
-	int fd = open(av[1], O_RDONLY);
-	if (fd < 0)
-		return (ft_putstrn_fd("Error: Unable to open file", 2), 1);
-	if (check_all(ac, av, &map_struct, fd))
-		return (close(fd), 1);
-	close(fd);
-	system("leaks cub3d");
-	return (0);
+    if (!s1 || !s2)
+        return (0);
+    int i = 0;
+    while (s1[i] && s2[i] && s1[i] == s2[i])
+        i++;
+    return (s1[i] - s2[i]);
 }
