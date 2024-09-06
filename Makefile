@@ -1,9 +1,10 @@
 CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address
 RM		=	rm -f
 SRCS	=	gnl/get_next_line.c gnl/get_next_line_utils.c \
-			libft_utils/ft_arraylen.c libft_utils/ft_free_array.c libft_utils/ft_put.c libft_utils/ft_split.c libft_utils/ft_substr.c\
-			parsing/start_parsing.c \
+			libft_utils/ft_arraylen.c libft_utils/ft_free_array.c libft_utils/ft_put.c libft_utils/ft_split.c \
+			libft_utils/ft_substr.c libft_utils/ft_strchr.c libft_utils/_strlen.c \
+			parsing/start_parsing.c parsing/check_map.c parsing/che_map_utils.c parsing/utils.c\
 			main.c 
 
 MLX 	= 	MLX42/build/libmlx42.a -I"MLX42/include/MLX42/MLX42.h" -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
