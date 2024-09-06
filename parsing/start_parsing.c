@@ -196,7 +196,7 @@ void print_struct(t_map *map_struct)
     for (int i = 0; map_struct->map_array[i]; i++)
         printf("%s\n", map_struct->map_array[i]);
 }
-int read_file_1(char **av, t_map *map_struct, int fd)
+int read_file_1(t_map *map_struct, int fd)
 {
     char *line = get_next_line(fd);
     if (!line)
@@ -255,7 +255,7 @@ int check_all(int ac, char **av, t_map *map_struct, int fd)
     if (ac != 2 || (ac == 2 && av[1] && !check_av(av[1], ft_strlen(av[1]))))
         return (ft_putstrn_fd("Error: Invalid arg", 2), 1);
     init_struct(map_struct);
-    if (read_file_1(av, map_struct, fd))
+    if (read_file_1(map_struct, fd))
         return (1);
     int i = 0;
     while (i < 3)

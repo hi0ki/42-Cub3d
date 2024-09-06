@@ -1,5 +1,5 @@
 CC		=	cc
-CFLAGS	=	#-g -fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror
 RM		=	rm -f
 SRCS	=	gnl/get_next_line.c gnl/get_next_line_utils.c \
 			libft_utils/ft_arraylen.c libft_utils/ft_free_array.c libft_utils/ft_put.c libft_utils/ft_split.c libft_utils/ft_substr.c libft_utils/ft_strtrim.c libft_utils/ft_atoi.c libft_utils/ft_strcmp.c libft_utils/_strjoin.c\
