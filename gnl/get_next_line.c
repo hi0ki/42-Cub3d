@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 00:00:13 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/01/23 19:33:32 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/09/06 10:54:49 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ft_read(int fd, char *save)
 			return (buffer);
 		}
 		buffer[byte] = '\0';
-		save = ft_strjoin(save, buffer);
+		save = _strjoin(save, buffer);
 	}
 	free(buffer);
 	buffer = NULL;
