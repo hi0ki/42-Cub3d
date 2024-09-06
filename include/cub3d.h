@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:12:37 by kadam             #+#    #+#             */
-/*   Updated: 2024/09/06 12:44:33 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/09/06 12:51:58 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int ft_lenarray(char **array);
 void free_2d_array(char **array);
 void	ft_putstrn_fd(char *s, int fd);
 char	**ft_split(char *s, char *c);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_substr(char const *s, size_t start, size_t len);
 char	*ft_strchr(char *s, int c);
 char *ft_strtrim(char const *s1, char const *set);
 int ft_strcmp(const char *s1, const char *s2);

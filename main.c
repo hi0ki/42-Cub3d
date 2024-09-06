@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:46:15 by kadam             #+#    #+#             */
-/*   Updated: 2024/09/06 12:24:20 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/09/06 12:50:44 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,5 @@ int main(int ac, char **av)
 		return (close(fd), 1);
 	close(fd);
 	check_map(&map_struct);
-	system("leaks cub3d");
 	return (0);
 }

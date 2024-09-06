@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:54:47 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/09/06 12:13:32 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/09/06 12:50:06 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,6 @@ void check_map(t_map *s_map)
 			free_2d_array(cpy_arr);
 		}
 	}
-	print_array(cpy_arr);
+	// print_array(cpy_arr);
 	free_2d_array(cpy_arr);
 }

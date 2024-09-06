@@ -6,13 +6,13 @@
 /*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:35:57 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/09/06 10:16:55 by kadam            ###   ########.fr       */
+/*   Updated: 2024/09/06 12:52:10 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, size_t start, size_t len)
 {
 	char	*dest;
 	size_t	i;
