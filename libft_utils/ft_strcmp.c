@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 12:35:57 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/09/06 10:16:55 by kadam            ###   ########.fr       */
+/*   Created: 2024/09/04 19:23:11 by kadam             #+#    #+#             */
+/*   Updated: 2024/09/04 19:28:20 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	char	*dest;
-	size_t	i;
-
-	if (s == NULL)
-		return (NULL);
-	i = 0;
-	if (start >= ft_strlen(s))
-		return (dest = ft_strdup(""), dest);
-	if (len > ft_strlen(s) - start)
-		len = ft_strlen(s) - start;
-	dest = malloc((len + 1) * sizeof(char));
-	if (dest == NULL)
-		return (NULL);
-	while (i < len)
-		dest[i++] = s[start++];
-	dest[len] = '\0';
-	return (dest);
+    if (!s1 || !s2)
+        return (0);
+    int i = 0;
+    while (s1[i] && s2[i] && s1[i] == s2[i])
+        i++;
+    return (s1[i] - s2[i]);
 }

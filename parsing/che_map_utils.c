@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 17:57:59 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/09/06 12:19:05 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/09/06 12:44:48 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ int valid_path(char **map, int y, int x)
 		return (-1);
 	if (!ft_strchr("1WESN0", map[y][x - 1]))
 		return (-1);
-	if (y > 0 && (x > _strlen(map[y - 1]) || !ft_strchr("1WESN0", map[y - 1][x])))
+	if (y > 0 && (x >= _strlen(map[y - 1]) || !ft_strchr("1WESN0", map[y - 1][x])))
 	{
 		printf(">>>>%s\n", map[y]);
-								printf("%d|%d\n", y ,x);
+		printf("%d|%d\n", y ,x);
 		return (-1);
 	}
 	if (y != ft_lenarray(map) - 1 && (x >= _strlen(map[y + 1]) ||!ft_strchr("1WESN0", map[y + 1][x])))
@@ -79,32 +79,4 @@ int valid_char(char **arr, t_map *s_map)
 	if (is_exist == true)
 		return (-1);
 	return (0);
-}
-
-bool find_player(t_map *s_map)
-{
-	int x;
-	int y;
-	bool error;
-
-	error = true;
-	y = 0;
-	while (s_map->map_array[y])
-	{
-		x = 0;
-		while (s_map->map_array[y][x])
-		{
-			if (s_map->map_array[y][x] == 'P' && error == true)
-			{
-				s_map->player.x = x;
-				s_map->player.y = y;
-				error = false;
-			}
-			else if (s_map->map_array[y][x] == 'P')
-				put_err("Error: Duplicate player.", s_map);
-			x++;
-		}
-		y++;
-	}
-	return (error);
 }
