@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:54:47 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/09/06 10:25:36 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/09/06 12:13:32 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ int floodfill(char **map, int y, int x)
 	if (map[y][x] != '1')
 	{
 		if (valid_path(map, y, x) == -1)
+		{
 			return (-1);
+		}
 	}
 	if (map[y][x] != '1')
 		map[y][x] = '1';
@@ -51,8 +53,6 @@ void check_map(t_map *s_map)
 
 	if (valid_char(s_map->map_array, s_map) == -1)
 		put_err("Error: No direction in the map.", s_map);
-	if (find_player(s_map) == true)
-		put_err("Error: No player in the map.", s_map);
 	cpy_arr = copy_arr(s_map->map_array);
 	while (found_zero_index(cpy_arr, s_map))
 	{
