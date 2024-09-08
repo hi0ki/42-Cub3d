@@ -6,7 +6,7 @@
 /*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:12:37 by kadam             #+#    #+#             */
-/*   Updated: 2024/09/08 17:10:56 by kadam            ###   ########.fr       */
+/*   Updated: 2024/09/08 17:52:11 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,8 @@ void put_err(char *str, t_map *s_map);
 int valid_char(char **arr, t_map *s_map);
 int found_zero_index(char **arr, t_map *s_map);
 int valid_path(char **map, int y, int x);
+void draw_line(void *image, int x, int y, int size, int color, float angle);
+void key_hook(mlx_key_data_t keydata, void *param);
+void draw_map(t_map *map);
 
 #endif
