@@ -6,7 +6,7 @@
 /*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:46:15 by kadam             #+#    #+#             */
-/*   Updated: 2024/09/08 17:51:08 by kadam            ###   ########.fr       */
+/*   Updated: 2024/09/11 14:49:10 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ int main(int ac, char **av)
             if (ft_strchr("WESN", map_struct.map_array[y][x]))
             {
                 if (map_struct.map_array[y][x] == 'N')
-                    map_struct.player.angle = 270 * (M_PI / 180);
+                    map_struct.player.angle = 3 * M_PI_2;
                 else if (map_struct.map_array[y][x] == 'E')
-                    map_struct.player.angle = 0;
+                    map_struct.player.angle = M_PI;
                 else if (map_struct.map_array[y][x] == 'S')
-                    map_struct.player.angle = 90 * (M_PI / 180);
+                    map_struct.player.angle = M_PI_2;
                 else if (map_struct.map_array[y][x] == 'W')
-                    map_struct.player.angle = 180 * (M_PI / 180);
+                    map_struct.player.angle = 0;
                 map_struct.player.px = x * Size;
                 map_struct.player.py = y * Size;
                 break;
