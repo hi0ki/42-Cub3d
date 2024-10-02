@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   _strjoin.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 18:49:39 by kadam             #+#    #+#             */
-/*   Updated: 2024/09/05 21:44:26 by kadam            ###   ########.fr       */
+/*   Updated: 2024/09/13 11:35:26 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*_strjoin(char *s1, char *s2)
 	if (ft_strlen(s2) == 1 && s2[0] == '\n')
 	{
 		free(s2);
-		printf("Error: Invalid map\n");
+    	printf("Error: Invalid map\n");
 		exit(1);
 	}
 	dlen = ft_strlen(s1);

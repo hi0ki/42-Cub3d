@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:12:37 by kadam             #+#    #+#             */
-/*   Updated: 2024/09/08 17:52:11 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/01 17:17:58 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,28 @@
 #include "../gnl/get_next_line.h"
 #include "../MLX42/include/MLX42/MLX42.h"
 
-#define ROTATION_SPEED 0.5
+#define RED 0xFF0000FF
+#define GREEN 0x00FF00FF
+#define ROTATION_SPEED 0.1
 #define MOVE_SPEED 10.0
 #define Size 32
+#define WIDTH 1200
+#define HEIGHT 600
+
+typedef struct s_ray
+{
+	double angle;
+	double x;
+	double y;
+} t_ray;
 typedef struct s_player
 {
 	int x;
 	int y;
-	float px; // Player's x position
-	float py; // Player's y position
-	int player_dir; // 0 = N, 1 = E, 2 = S, 3 = W
+	double px; // Player's x position
+	double py; // Player's y position
+	double angle;
 	mlx_image_t *image_player;
-	float angle;
 } t_player;
 
 typedef struct s_map
@@ -55,6 +65,7 @@ typedef struct s_map
 	t_player player;
 	mlx_t *mlx;
 	mlx_image_t *image;
+	t_ray ray;
 } t_map;
 
 int ft_lenarray(char **array);
@@ -78,8 +89,11 @@ void put_err(char *str, t_map *s_map);
 int valid_char(char **arr, t_map *s_map);
 int found_zero_index(char **arr, t_map *s_map);
 int valid_path(char **map, int y, int x);
-void draw_line(void *image, int x, int y, int size, int color, float angle);
+void draw_line(void *image, int x, int y, double size, int color, double angle);
 void key_hook(mlx_key_data_t keydata, void *param);
 void draw_map(t_map *map);
+void draw_player(void *image, int x, int y, int size, int color);
+double counte_distance(double x1, double y1, double x2, double y2);
+
 
 #endif

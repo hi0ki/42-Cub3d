@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   che_map_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 17:57:59 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/09/06 14:44:56 by kadam            ###   ########.fr       */
+/*   Updated: 2024/09/13 11:33:23 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,20 @@
 
 int valid_path(char **map, int y, int x)
 {
+	if (!ft_strchr("1 ",map[y][x]) && (y == 0 || y == ft_lenarray(map) - 1))
+		return (-1);
 	if (!map[y][x + 1] || !ft_strchr("1WESN0", map[y][x + 1]))
 		return (-1);
 	if (!ft_strchr("1WESN0", map[y][x - 1]))
 		return (-1);
 	if (y > 0 && (x >= _strlen(map[y - 1]) || !ft_strchr("1WESN0", map[y - 1][x])))
+		return (-1);
+	if (y != ft_lenarray(map) - 1 && (x >= _strlen(map[y + 1]) ||!ft_strchr("1WESN0", map[y + 1][x])))
 	{
 		printf(">>>>%s\n", map[y]);
 		printf("%d|%d\n", y ,x);
 		return (-1);
 	}
-	if (y != ft_lenarray(map) - 1 && (x >= _strlen(map[y + 1]) ||!ft_strchr("1WESN0", map[y + 1][x])))
-		return (-1);
 	if (map[y][x] == '0' && (y == 0 || y == ft_lenarray(map) - 1))
 		return (-1);
 	return (0);
