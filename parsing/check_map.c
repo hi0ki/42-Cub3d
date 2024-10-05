@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:54:47 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/09/23 13:38:30 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/10/05 12:29:34 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int floodfill(char **map, int row, int col)
 	{
 		if (valid_path(map, row, col) == -1)
 		{
+			printf("wach hna\n");
 			return (-1);
 		}
 	}
@@ -47,7 +48,7 @@ void check_map(t_map *s_map)
 	{
 		if (floodfill(cpy_arr, s_map->player.y, s_map->player.x))
 		{
-			put_err("Error: Invalid map.", s_map);
+			put_err("Error: Invalid map.10", s_map);
 			free_2d_array(cpy_arr);
 		}
 	}
