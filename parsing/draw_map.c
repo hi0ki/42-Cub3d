@@ -6,7 +6,7 @@
 /*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:48:43 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/06 12:58:15 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/06 13:11:14 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,5 +158,5 @@ void start_drawing(void *ptr)
         map->player.angle += 2 * M_PI;
     start_raycasting(map);
     mlx_image_to_window(map->mlx, map->image, 0, 0);
-    draw_minimap(map);
+    // draw_minimap(map);
 }

@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./blue_left.png
+SO ./blue_left.png
+WE ./blue_left.png
+EA ./blue_left.png
 
 F 135,206,235
 C 211,211,211
