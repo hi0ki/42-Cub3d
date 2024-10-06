@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 12:58:48 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/10/04 17:37:18 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/10/06 12:02:29 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #define GREEN 0x00FF00FF
 #define ROTATION_SPEED 0.1
 #define MOVE_SPEED 10.0
-#define Size 32
+#define Size 20
 #define WIDTH 1650
 #define HEIGHT	1050
 

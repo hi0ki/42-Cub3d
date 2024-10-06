@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 13:42:02 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/10/05 11:16:07 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/10/06 12:02:45 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,9 @@ void start_raycasting(t_map *map)
         rayangle = fmod(rayangle, 2 * M_PI);
         if (rayangle < 0)
             rayangle += 2 * M_PI;
-        dis = cal_distance(map, rayangle);
-        line_height = (32 / dis) * (WIDTH / 2) / tan(fov / 2);
-        draw_line(map->player.image_player, map->player.px, map->player.py, dis, GREEN, rayangle);
+        dis = cal_distance(map, rayangle) * cos(map->player.angle - rayangle);
+        line_height = (Size / dis) * (WIDTH / 2) / tan(fov / 2);
+        // draw_line(map->image, map->player.px, map->player.py, dis, GREEN, rayangle);
         draw_3d(map, dis, line_height, i);
         rayangle += angle;
         i++;
