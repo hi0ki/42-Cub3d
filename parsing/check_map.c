@@ -3,48 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:54:47 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/09/06 14:45:00 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/05 12:29:34 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int floodfill(char **map, int y, int x)
+int floodfill(char **map, int row, int col)
 {
-	if (!map[y][x] || map[y][x] == '1')
+	if (!map[row][col] || map[row][col] == '1')
 		return (0);
-	if (map[y][x] != '1')
+	if (map[row][col] != '1')
 	{
-		if (valid_path(map, y, x) == -1)
+		if (valid_path(map, row, col) == -1)
 		{
+			printf("wach hna\n");
 			return (-1);
 		}
 	}
-	if (map[y][x] != '1')
-		map[y][x] = '1';
-	if (floodfill(map, y + 1, x) == -1)
+	if (map[row][col] != '1')
+		map[row][col] = '1';
+	if (floodfill(map, row + 1, col) == -1)
         return (-1);
-    if (floodfill(map, y - 1, x) == -1)
+    if (floodfill(map, row - 1, col) == -1)
         return (-1);
-    if (floodfill(map, y, x + 1) == -1)
+    if (floodfill(map, row, col + 1) == -1)
         return (-1);
-    if (floodfill(map, y, x - 1) == -1)
+    if (floodfill(map, row, col - 1) == -1)
         return (-1);
 	return (0);
-}
-
-
-void print_array(char **arr)
-{
-    int i = 0;
-    while (arr[i])
-    {
-        printf("%s\n", arr[i]);
-        i++;
-    }
 }
 
 void check_map(t_map *s_map)
@@ -58,7 +48,7 @@ void check_map(t_map *s_map)
 	{
 		if (floodfill(cpy_arr, s_map->player.y, s_map->player.x))
 		{
-			put_err("Error: Invalid map.", s_map);
+			put_err("Error: Invalid map.10", s_map);
 			free_2d_array(cpy_arr);
 		}
 	}
