@@ -6,7 +6,7 @@
 /*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 12:58:48 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/10/06 12:58:46 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/08 19:15:49 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #define RED 0xFF0000FF
 #define GREEN 0x00FF00FF
 #define BLUE 0x0000FFFF
+#define YELLOW 0xFFFF00FF
 #define ROTATION_SPEED 0.1
 #define MOVE_SPEED 10.0
 #define Size 20
@@ -40,6 +41,13 @@ typedef struct s_player
 	mlx_image_t *image_player;
 } t_player;
 
+typedef struct s_dis
+{
+	double x;
+	double y; 
+	char inter_type;
+} t_dis;
+
 typedef struct s_map
 {
 	// read the all map
@@ -59,6 +67,7 @@ typedef struct s_map
 	mlx_t *mlx;
 	mlx_image_t *image;
 	t_ray ray;
+	mlx_texture_t *textur;
 } t_map;
 
 # endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:12:37 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/06 11:43:30 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/10/08 17:09:28 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,6 @@ void start_raycasting(t_map *map);
 int check_ray(t_map *map, double y, double x);
 double cal_dis(double xp, double yp, double x, double y);
 int check_pos(t_map *map, double py, double px, double num_pix);
-void draw_3d(t_map *map, double dis, double line_height, int i);
+void draw_3d(t_map *map, double dis, double line_height, int i, t_dis *dis_arr);
 void start_drawing(void *ptr);
 #endif
