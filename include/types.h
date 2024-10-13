@@ -6,7 +6,7 @@
 /*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 12:58:48 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/10/08 19:15:49 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/10 16:44:33 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,19 @@ typedef struct s_player
 	mlx_image_t *image_player;
 } t_player;
 
-typedef struct s_dis
+typedef struct s_dis_H
 {
-	double x;
-	double y; 
-	char inter_type;
-} t_dis;
+	double x_H;
+	double y_H; 
+	char inter_type_H;
+} t_dis_H;
+
+typedef struct s_dis_V
+{
+	double x_V;
+	double y_V; 
+	char inter_type_V;
+} t_dis_V;
 
 typedef struct s_map
 {
@@ -67,7 +74,7 @@ typedef struct s_map
 	mlx_t *mlx;
 	mlx_image_t *image;
 	t_ray ray;
-	mlx_texture_t *textur;
+	mlx_texture_t *textur[4];
 } t_map;
 
 # endif

@@ -6,7 +6,7 @@
 /*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:46:15 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/08 13:14:10 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/13 13:35:47 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,11 @@ int main(int ac, char **av)
         }
         y++;
     }
-    map_struct.textur = mlx_load_png(map_struct.NO);
-    if (!map_struct.textur)
+    map_struct.textur[0] = mlx_load_png(map_struct.NO);
+    map_struct.textur[1] = mlx_load_png(map_struct.SO);
+    map_struct.textur[2] = mlx_load_png(map_struct.WE);
+    map_struct.textur[3] = mlx_load_png(map_struct.EA);
+    if (!map_struct.textur[0] || !map_struct.textur[1] || !map_struct.textur[2] || !map_struct.textur[3])
         return (ft_putstrn_fd("Error: Unable to load texture", 2), 1);
     map_struct.mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", 0);
     mlx_loop_hook(map_struct.mlx, &start_drawing, &map_struct);

@@ -6,7 +6,7 @@
 /*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 12:57:13 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/10/08 19:42:23 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/13 13:35:34 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,36 +63,35 @@ int get_color_pixel(uint8_t *arr)
     return ((arr[0] << 24) | (arr[1] << 16) | (arr[2] << 8) | 0xFF);
 }
 
-int get_color(t_map *map, t_dis ray, int tex_y)
+int get_color(t_map *map, t_dis_H dis_H, t_dis_V dis_V, int tex_y, int texture_index)
 {
     int tex_x = 0;
-    if (ray.inter_type == 'H')
-        tex_x = ((ray.y / Size) - floor(ray.y / Size)) * map->textur->width; 
-    else
-        tex_x = ((ray.x / Size) - floor(ray.x / Size)) * map->textur->width; 
-    if (tex_x < 0 || tex_y < 0 || tex_x >= map->textur->width || tex_y >= map->textur->height)
+    if (dis_H.inter_type_H == 'H')
+        tex_x = ((dis_H.x_H / Size) - floor(dis_H.x_H / Size)) * map->textur[texture_index]->width;
+    else if (dis_V.inter_type_V == 'V')
+        tex_x = ((dis_V.y_V / Size) - floor(dis_V.y_V / Size)) * map->textur[texture_index]->width;
+    if (tex_x < 0 || tex_y < 0 || (uint32_t)tex_x >= map->textur[texture_index]->width || (uint32_t)tex_y >= map->textur[texture_index]->height)
         return (0);
-    int index = (tex_y * map->textur->width * map->textur->bytes_per_pixel) + (tex_x * map->textur->bytes_per_pixel);
-    return get_color_pixel(&map->textur->pixels[index]);
+    int index = (tex_y * map->textur[texture_index]->width * map->textur[texture_index]->bytes_per_pixel) + (tex_x * map->textur[texture_index]->bytes_per_pixel);
+    return get_color_pixel(&map->textur[texture_index]->pixels[index]);
 }
 
-void draw_3d(t_map *map, double dis, double line_height, int i, t_dis *dis_arr)
+void draw_3d(t_map *map, double line_height, int i, t_dis_H *dis_H, t_dis_V *dis_V, int texture_index)
 {
     double top;
     double bot;
-    (void)dis;
     int tex_y;
     top = (HEIGHT / 2) - (line_height / 2);
     bot = (HEIGHT / 2) + (line_height / 2);
+    int j = top;
     if (top < 0)
         top = 0;
     if (bot > HEIGHT)
         bot = HEIGHT;
-    int j = top;
     while (top < bot)
-    {   
-        tex_y = ((top - j) / line_height) * map->textur->height;
-        mlx_put_pixel(map->image, i, top, get_color(map,dis_arr[i], tex_y));
+    {
+        tex_y = ((top - j) / line_height) * map->textur[texture_index]->height;
+        mlx_put_pixel(map->image, i, top, get_color(map, dis_H[i], dis_V[i], tex_y, texture_index));
         top++;
     }
 }
