@@ -6,7 +6,7 @@
 /*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:46:15 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/13 14:53:13 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/14 13:34:10 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int main(int ac, char **av)
                     map_struct.player.angle = M_PI_2;
                 else if (map_struct.map_array[y][x] == 'W')
                     map_struct.player.angle = 0;
-                map_struct.player.px = x * Size;
-                map_struct.player.py = y * Size;
+                map_struct.player.px = x * Size + Size / 2;
+                map_struct.player.py = y * Size + Size / 2;
                 break;
             }
             x++;
