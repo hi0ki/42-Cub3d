@@ -6,11 +6,24 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:50:58 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/05 12:22:32 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/10/12 20:18:39 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void mouse_hook(mouse_key_t button, action_t action, modifier_key_t mods, void* param)
+{
+    t_map *map = (t_map *)param;
+    // (void)button;
+    // (void)action;
+    (void)mods;
+    (void)map;
+    if (button == MLX_MOUSE_BUTTON_LEFT && action)
+        printf("shot\n");
+    if (mods  )
+    exit(1);
+}
 
 void key_hook(mlx_key_data_t keydata, void *param)
 {

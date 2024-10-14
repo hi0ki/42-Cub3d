@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:48:43 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/06 12:28:15 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:26:18 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,111 +57,29 @@ void draw_line(void *image, int x, int y, double size, int color, double angle)
     }
 }
 
-void draw_player(void *image, int x, int y, int size, int color)
+void draw_cros(t_map *map)
 {
-    int i = 0, j = 0;
-    while (i < size)
-    {
-        j = 0;
-        while (j < size)
-        {
-            mlx_put_pixel(image, x + i, y + j, color);
-            j++;
-        }
-        i++;
-    }
-    i = 0;
-    j = 0;
-    while (i < size)
-    {
-        j = 0;
-        while (j < size)
-        {
-            mlx_put_pixel(image, x - i, y + j, color);
-            j++;
-        }
-        i++;
-    }
-}
-
-void draw_map(t_map *map)
-{
-    int x = 0, y = 0;
-    
-    map->image = mlx_new_image(map->mlx, WIDTH, HEIGHT);
-    map->image = mlx_new_image(map->mlx, WIDTH, HEIGHT);
-    while (map->map_array[y])
-    {
-        x = 0;
-        while (map->map_array[y][x])
-        {
-            if (ft_strchr("WESN10", map->map_array[y][x]))
-            {
-                draw_square(map->image, x * Size, y * Size, Size, 0xFFFFFFFF);
-                // draw_border(map->image, x * Size, y * Size, Size, 0x000000FF);
-            }
-            x++;
-        }
-        y++;
-    }
-    x = 0;
-    y = 0;
-    while (map->map_array[y])
-    {
-        x = 0;
-        while (map->map_array[y][x])
-        {
-            if (map->map_array[y][x] == '1')
-                draw_square(map->image, x * Size, y * Size, Size, 0x000000FF);
-            else if (ft_strchr("WESN", map->map_array[y][x]))
-            {
-                mlx_put_pixel(map->image, x * Size, y * Size, 0xFF0000FF);
-                draw_line(map->image, x * Size, y * Size, 16, 0xFF0000FF, map->player.angle);
-            }
-            x++;
-        }
-        y++;
-    }
-    mlx_image_to_window(map->mlx, map->image, 0, 0);
-    mlx_image_to_window(map->mlx, map->image, 0, 0);
-}
-
-void draw_minimap(t_map *map)
-{
-    if (map->player.image_player)
-    {
-        mlx_delete_image(map->mlx, map->player.image_player);
-    }
-    map->player.image_player = mlx_new_image(map->mlx, 100, 100);
-    int x = 0, y = 0;
-    while (map->map_array[y])
-    {
-        x = 0;
-        while (map->map_array[y][x])
-        {
-            if (ft_strchr("WESN10", map->map_array[y][x]))
-                draw_square(map->image, x * Size, y * Size, Size, 0xFFFFFFFF);
-            x++;
-        }
-        y++;
-    }
-    x = 0, y = 0;
-    mlx_image_to_window(map->mlx, map->player.image_player, 0, 0);
+    double x = WIDTH / 2;
+    double y = HEIGHT / 2;
+    draw_line(map->image, x - 3, y, 6, GREEN, M_PI); // lift
+    draw_line(map->image, x, y - 3, 6, GREEN, M_PI_2 * 3); // top
+    draw_line(map->image, x, y + 3, 6, GREEN, M_PI_2); // bot
+    draw_line(map->image, x + 3, y, 6, GREEN, 0); // right
 }
 
 void start_drawing(void *ptr)
 {
     t_map *map = (t_map *)ptr;
 
-    // if (map->image == NULL)
-    //     draw_map(map);
     mlx_delete_image(map->mlx, map->image);
     map->image = mlx_new_image(map->mlx, WIDTH, HEIGHT);
-    mlx_put_pixel(map->image, map->player.px, map->player.py, RED);
+    // mlx_put_pixel(map->image, map->player.px, map->player.py, RED);
     map->player.angle = fmod(map->player.angle, 2 * M_PI);
     if (map->player.angle < 0)
         map->player.angle += 2 * M_PI;
     start_raycasting(map);
+    draw_cros(map);
+    // draw_background(map);
+    // draw_minimap(map);
     mlx_image_to_window(map->mlx, map->image, 0, 0);
-    draw_minimap(map);
 }

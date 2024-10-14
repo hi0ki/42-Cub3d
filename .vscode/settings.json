@@ -9,7 +9,8 @@
         "math.h": "c",
         "struct.h": "c",
         "raycasting.h": "c",
-        "types.h": "c"
+        "types.h": "c",
+        "__node_handle": "c"
     },
     "cmake.ignoreCMakeListsMissing": true,
     "C_Cpp.errorSquiggles": "disabled"
