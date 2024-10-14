@@ -6,7 +6,7 @@
 /*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 13:42:02 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/10/13 13:43:54 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/14 13:05:50 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ double distance_hrz(t_map *map, t_dis_H *dis_H, double angle)
 
     if (angle >= M_PI)
     {
-        dis_H->y_H = floor(map->player.py / Size) * Size - 0.001;
+        dis_H->y_H = floor(map->player.py / Size) * Size - 0.000001;
         ya = -Size;
     }
     else
@@ -46,7 +46,7 @@ double distance_vrt(t_map *map, t_dis_V *dis_V, double angle)
 
     if (angle > M_PI_2 && angle < M_PI_2 * 3)
     {
-        dis_V->x_V = floor(map->player.px / Size) * Size - 0.001;
+        dis_V->x_V = floor(map->player.px / Size) * Size - 0.000001;
         xa = -Size;
     }
     else

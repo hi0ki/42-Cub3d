@@ -6,7 +6,7 @@
 /*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 12:57:13 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/10/13 13:35:34 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/14 13:05:55 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int check_ray(t_map *map, double y, double x)
     if (ay < 0 || ay >= ft_lenarray(map->map_array) ||
         ax >= _strlen(map->map_array[ay]) || ax < 0)
         return (-1);
-    if (check_pos(map, y, x, 0.001) == -1)
+    if (check_pos(map, y, x, 0.000001) == -1)
         return (-1);
     if (map->map_array[ay][ax] && map->map_array[ay][ax] == '1')
         return (-1);
