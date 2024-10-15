@@ -6,7 +6,7 @@
 /*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:12:37 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/12 22:57:41 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/15 16:52:45 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,5 @@ double cal_dis(double xp, double yp, double x, double y);
 int check_pos(t_map *map, double py, double px, double num_pix);
 void draw_3d(t_map *map, double line_height, int i, t_dis_H *dis_H, t_dis_V *dis_V, int index);
 void start_drawing(void *ptr);
+void draw_gun(t_map* map, int in);
 #endif

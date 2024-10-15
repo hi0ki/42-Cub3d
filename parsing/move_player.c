@@ -6,7 +6,7 @@
 /*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:50:58 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/06 12:50:15 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/15 17:04:00 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void key_hook(mlx_key_data_t keydata, void *param)
     t_map *map = (t_map *)param;
     double new_px = map->player.px;
     double new_py = map->player.py;
-
-    // printf("angle = %f\n", map->player.angle);
     if (keydata.key == MLX_KEY_W && keydata.action)
     {
         new_px += cos(map->player.angle) * MOVE_SPEED;
@@ -38,6 +36,11 @@ void key_hook(mlx_key_data_t keydata, void *param)
     {
         new_px -= sin(map->player.angle) * MOVE_SPEED;
         new_py += cos(map->player.angle) * MOVE_SPEED;
+    }
+    else if (keydata.key == MLX_KEY_B && keydata.action)
+    {
+        if(map->index == 0 || map->index == 2)
+            map->index = 1;
     }
     if (keydata.key == MLX_KEY_LEFT && keydata.action)
         map->player.angle -= ROTATION_SPEED;

@@ -6,7 +6,7 @@
 /*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 12:58:48 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/10/14 14:28:44 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/15 16:52:17 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,11 @@ typedef struct s_map
 	mlx_image_t *image;
 	t_ray ray;
 	mlx_texture_t *textur[4];
+	mlx_texture_t *gun[7];
+	int index;
+	 int gun_frame;     // Current frame of the gun animation
+    int gun_delay;     // Delay counter for controlling animation speed
+    int gun_max_frame;
 } t_map;
 
 # endif
