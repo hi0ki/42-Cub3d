@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 12:58:48 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/10/15 16:52:17 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/15 19:54:15 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,33 @@
 
 #define RED 0xFF0000FF
 #define GREEN 0x00FF00FF
-#define BLUE 0x0000FFFF
-#define YELLOW 0xFFFF00FF
+#define WHITE 0xFFFFFFFF
+#define BLACK 0x000000FF
+#define GREY 0x808080FF
+#define NEW 0xE0E0E0FF
 #define ROTATION_SPEED 0.1
-#define MOVE_SPEED 10.0
-#define Size 20
+#define MOVE_SPEED 5.0
+#define Size 30
 #define WIDTH 1650
 #define HEIGHT	1050
+
+typedef struct s_lines
+{
+	int s_x;
+	int e_x;
+	int y;
+	int x_pos;
+	struct s_lines *next;
+	struct s_lines *prv;
+}t_lines;
+
+typedef struct s_minimap
+{
+	int sx;
+	int sy;
+	int ex;
+	int ey;
+}t_minimap;
 
 typedef struct s_ray
 {

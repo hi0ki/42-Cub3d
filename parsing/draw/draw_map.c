@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:48:43 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/15 18:04:00 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/15 20:08:41 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 void draw_square(void *image, int x, int y, int size, int color)
 {
@@ -40,56 +40,6 @@ void draw_line(void *image, int x, int y, double size, int color, double angle)
     }
 }
 
-void draw_player(void *image, int x, int y, int size, int color)
-{
-    int i = 0, j = 0;
-    while (i < size)
-    {
-        j = 0;
-        while (j < size)
-        {
-            mlx_put_pixel(image, x + i, y + j, color);
-            j++;
-        }
-        i++;
-    }
-    i = 0;
-    j = 0;
-    while (i < size)
-    {
-        j = 0;
-        while (j < size)
-        {
-            mlx_put_pixel(image, x - i, y + j, color);
-            j++;
-        }
-        i++;
-    }
-}
-
-void draw_minimap(t_map *map)
-{
-    if (map->player.image_player)
-    {
-        mlx_delete_image(map->mlx, map->player.image_player);
-    }
-    map->player.image_player = mlx_new_image(map->mlx, 100, 100);
-    int x = 0, y = 0;
-    while (map->map_array[y])
-    {
-        x = 0;
-        while (map->map_array[y][x])
-        {
-            if (ft_strchr("WESN10", map->map_array[y][x]))
-                draw_square(map->image, x * Size, y * Size, Size, 0xFFFFFFFF);
-            x++;
-        }
-        y++;
-    }
-    x = 0, y = 0;
-    mlx_image_to_window(map->mlx, map->player.image_player, 0, 0);
-}
-
 static int color_pixel(int *arr, int index)
 {
     if (index == 0)
@@ -102,10 +52,10 @@ void draw_cros(t_map *map)
 {
     double x = WIDTH / 2;
     double y = HEIGHT / 2;
-    draw_line(map->image, x - 3, y, 6, RED, M_PI);       // lift
-    draw_line(map->image, x, y - 3, 6, RED, M_PI_2 * 3); // top
-    draw_line(map->image, x, y + 3, 6, RED, M_PI_2);     // bot
-    draw_line(map->image, x + 3, y, 6, RED, 0);          // right
+    draw_line(map->image, x - 3, y, 6, GREEN, M_PI);       // lift
+    draw_line(map->image, x, y - 3, 6, GREEN, M_PI_2 * 3); // top
+    draw_line(map->image, x, y + 3, 6, GREEN, M_PI_2);     // bot
+    draw_line(map->image, x + 3, y, 6, GREEN, 0);          // right
 }
 
 void draw_gun(t_map *map, int in)
@@ -174,8 +124,9 @@ void start_drawing(void *ptr)
     if (map->player.angle < 0)
         map->player.angle += 2 * M_PI;
     start_raycasting(map);
-    mlx_image_to_window(map->mlx, map->image, 0, 0);
     draw_cros(map);
+    draw_background(map);
+    draw_minimap(map);
     static int frame ;
     static int counter;
     if (map->index == 1 && frame <= 6)
@@ -193,4 +144,5 @@ void start_drawing(void *ptr)
         frame = 0;
         counter = 0;
     }
+    mlx_image_to_window(map->mlx, map->image, 0, 0);
 }
