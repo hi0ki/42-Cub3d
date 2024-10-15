@@ -32,7 +32,7 @@ int process_path(char **str, int i, char *name, char **path)
 {
     char **split = ft_split(str[i], " \t\v\f\r");
     if (ft_lenarray(split) != 2 || (split[0] && ft_strcmp(split[0], name) != 0))
-        return (free_2d_array(split), ft_putstrn_fd("Error: Invalid map", 2), 1);
+        return (free_2d_array(split), ft_putstrn_fd("Error: Invalid map7", 2), 1);
     // if (check_path(split[1]) == 1)
     // 	return 1;
     free(*path);
@@ -45,7 +45,7 @@ int process_color(int *map_color, char *str, char *name)
 {
     char **split = ft_split(str, "  \t\v\f\r");
     if (ft_lenarray(split) < 2 || (split[0] && ft_strcmp(split[0], name) != 0))
-        return (free_2d_array(split), ft_putstrn_fd("Error: Invalid map", 2), 1);
+        return (free_2d_array(split), ft_putstrn_fd("Error: Invalid map6", 2), 1);
     char *tmp = NULL;
     char *ptr = NULL;
     int i = 1;
@@ -64,16 +64,16 @@ int process_color(int *map_color, char *str, char *name)
         if (ptr[i] == ',' && ptr[i + 1] != ',' && ptr[i + 1] != '\0' && ptr[i - 1] && ptr[i - 1] != ',')
             commas++;
         else if (ptr[i] == ',' && (ptr[i + 1] == ',' || ptr[i + 1] == '\0' || (ptr[i - 1] && ptr[i - 1] == ',')))
-            return (free(ptr), ft_putstrn_fd("Error: Invalid map", 2), 1);
+            return (free(ptr), ft_putstrn_fd("Error: Invalid map5", 2), 1);
         i++;
     }
     if (commas != 2)
-        return (free(ptr), ft_putstrn_fd("Error: Invalid map", 2), 1);
+        return (free(ptr), ft_putstrn_fd("Error: Invalid map4", 2), 1);
     i = 0;
     while (ptr[i])
     {
         if (ptr[i] != ',' && (ptr[i] < '0' || ptr[i] > '9'))
-            return (free(ptr), ft_putstrn_fd("Error: Invalid map", 2), 1);
+            return (free(ptr), ft_putstrn_fd("Error: Invalid map3", 2), 1);
         i++;
     }
     split = ft_split(ptr, ",");
@@ -246,7 +246,7 @@ int read_file_1(t_map *map_struct, int fd)
     }
     map_struct->map_array = ft_split(tmp, "\n");
     free(tmp);
-    print_struct(map_struct);
+    // print_struct(map_struct);
     return (0);
 }
 
@@ -261,10 +261,10 @@ int check_all(int ac, char **av, t_map *map_struct, int fd)
     while (i < 3)
     {
         if (map_struct->F[i] < 0 || map_struct->F[i] > 255 || map_struct->C[i] < 0 || map_struct->C[i] > 255)
-            return (ft_putstrn_fd("Error: Invalid map", 2), 1);
+            return (ft_putstrn_fd("Error: Invalid map1", 2), 1);
         i++;
     }
     if (map_struct->map_array == NULL)
-        return (ft_putstrn_fd("Error: Invalid map", 2), 1);
+        return (ft_putstrn_fd("Error: Invalid map2", 2), 1);
     return (0);
 }
