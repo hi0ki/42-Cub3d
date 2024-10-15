@@ -2,22 +2,35 @@
 
 void draw_top(t_map *map, t_lines *lines)
 {
-    double xsize = 20;
     double ysize = 90 + 20;
+    double xsize = 120;
+    int i;
     t_lines *tmp;
 
     tmp = lines;
     while (ysize >= 0 && tmp)
     {
-        xsize = 20;
-        while (map->map_array[tmp->y][tmp->s_x] && tmp->s_x <= tmp->e_x)
+        i = 0;
+        xsize = 90 + 20;
+        while (tmp->x_pos - i >= tmp->s_x)
         {
-            if (map->map_array[tmp->y][tmp->s_x] == '1')   
+            if (map->map_array[tmp->y][tmp->x_pos - i] == '1')   
                 draw_square(map->image, xsize, ysize, Size, BLACK);
-            else if (ft_strchr("NWSE0", map->map_array[tmp->y][tmp->s_x]))
+            else if (ft_strchr("NWSE0", map->map_array[tmp->y][tmp->x_pos - i]) && tmp->x_pos - i < _strlen(map->map_array[tmp->y]))
+                draw_square(map->image, xsize, ysize, Size, WHITE);
+            xsize -= Size;
+            i++;
+        }
+        i = 0;
+        xsize = 90 + 20;
+        while (tmp->x_pos + i < _strlen(map->map_array[tmp->y]) && tmp->x_pos + i <= tmp->e_x)
+        {
+            if (map->map_array[tmp->y][tmp->x_pos + i] == '1')   
+                draw_square(map->image, xsize, ysize, Size, BLACK);
+            else if (ft_strchr("NWSE0", map->map_array[tmp->y][tmp->x_pos + i]))
                 draw_square(map->image, xsize, ysize, Size, WHITE);
             xsize += Size;
-            tmp->s_x++;
+            i++;
         }
         ysize -= Size;
         tmp = tmp->prv;
@@ -26,22 +39,35 @@ void draw_top(t_map *map, t_lines *lines)
 
 void draw_bot(t_map *map, t_lines *lines)
 {
-    double xsize = 20;
     double ysize = 120 + 20;
+    double xsize = 20;
+    int i;
     t_lines *tmp;
 
     tmp = lines->next;
     while (ysize < 230 && tmp)
     {
-        xsize = 20;
-        while (map->map_array[tmp->y][tmp->s_x] && tmp->s_x <= tmp->e_x)
+        i = 0;
+        xsize = 90 + 20;
+        while (tmp->x_pos - i >= tmp->s_x)
         {
-            if (map->map_array[tmp->y][tmp->s_x] == '1')   
+            if (map->map_array[tmp->y][tmp->x_pos - i] == '1')   
                 draw_square(map->image, xsize, ysize, Size, BLACK);
-            else if (map->map_array[tmp->y][tmp->s_x] == '0' || ft_strchr("NWSE", map->map_array[tmp->y][tmp->s_x]))
+            else if (ft_strchr("NWSE0", map->map_array[tmp->y][tmp->x_pos - i]) && tmp->x_pos - i < _strlen(map->map_array[tmp->y]))
+                draw_square(map->image, xsize, ysize, Size, WHITE);
+            xsize -= Size;
+            i++;
+        }
+        i = 0;
+        xsize = 90 + 20;
+        while (tmp->x_pos + i < _strlen(map->map_array[tmp->y]) && tmp->x_pos + i <= tmp->e_x)
+        {
+            if (map->map_array[tmp->y][tmp->x_pos + i] == '1')   
+                draw_square(map->image, xsize, ysize, Size, BLACK);
+            else if (ft_strchr("NWSE0", map->map_array[tmp->y][tmp->x_pos + i]))
                 draw_square(map->image, xsize, ysize, Size, WHITE);
             xsize += Size;
-            tmp->s_x++;
+            i++;
         }
         ysize += Size;
         tmp = tmp->next;

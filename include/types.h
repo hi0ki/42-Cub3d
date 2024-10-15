@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 12:58:48 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/10/14 14:12:28 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/10/14 16:52:56 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@
 typedef struct s_lines
 {
 	int s_x;
-	int y;
 	int e_x;
+	int y;
+	int x_pos;
 	struct s_lines *next;
 	struct s_lines *prv;
 }t_lines;

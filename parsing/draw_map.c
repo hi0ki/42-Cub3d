@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:48:43 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/14 15:26:18 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:58:54 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void start_drawing(void *ptr)
         map->player.angle += 2 * M_PI;
     start_raycasting(map);
     draw_cros(map);
-    // draw_background(map);
-    // draw_minimap(map);
+    draw_background(map);
+    draw_minimap(map);
     mlx_image_to_window(map->mlx, map->image, 0, 0);
 }

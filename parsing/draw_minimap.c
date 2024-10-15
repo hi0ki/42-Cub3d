@@ -17,6 +17,7 @@ static void minimap_top(t_map *map, t_lines **lines, int len)
     {
         node = ft_lstnew();
         node->y = y;
+        node->x_pos = x;
         start_x(node, x, len);
         end_x(map, node, x, len);
         ft_lstadd_back(lines, node);
@@ -37,6 +38,7 @@ static void minimap_bot(t_map *map, t_lines **lines, int len)
     {
         node = ft_lstnew();
         node->y = y;
+        node->x_pos = x;
         start_x(node, x, len);
         end_x(map, node, x, len);
         ft_lstadd_back(lines, node);
@@ -69,7 +71,6 @@ void draw_minimap(t_map *map)
     minimap_top(map, &lines, 3);
     minimap_bot(map, &lines, 3);
     drawing_mini(map, lines);
-	
     draw_square(map->image, 105 + 20, 105 + 20, 4, RED);
     draw_line(map->image, 105 + 20, 105 + 20, 7, GREEN, map->player.angle);
 }
