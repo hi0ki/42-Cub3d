@@ -6,7 +6,7 @@
 /*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:46:15 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/15 17:54:59 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/15 18:56:58 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int main(int ac, char **av)
     map_struct.gun[4] = mlx_load_png("./gun/shoo4.png");
     map_struct.gun[5] = mlx_load_png("./gun/shoo5.png");
     map_struct.gun[6] = mlx_load_png("./gun/shoo6.png");
-    
     if (!map_struct.textur[0] || !map_struct.textur[1] || !map_struct.textur[2] || !map_struct.textur[3])
         return (ft_putstrn_fd("Error: Unable to load texture", 2), 1);
     if (!map_struct.gun[0] || !map_struct.gun[1] || !map_struct.gun[2] || !map_struct.gun[3] || !map_struct.gun[4] || !map_struct.gun[5] || !map_struct.gun[6])
