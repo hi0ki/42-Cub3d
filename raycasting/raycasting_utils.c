@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 12:57:13 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/10/14 13:33:39 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/15 19:45:08 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ int check_pos(t_map *map, double py, double px, double num_pix)
     if (map->map_array[y] && map->map_array[y][x] == '1')
         return (-1);
     y = (py - num_pix) / Size;
-    if (y > 0 && map->map_array[y][x] == '1')
+    if (y >= 0 && map->map_array[y][x] == '1')
         return (-1);
     y = py / Size;
     x = (px + num_pix) / Size;
     if (map->map_array[y][x] && map->map_array[y][x] == '1')
         return (-1);
     x = (px - num_pix) / Size;
-    if (x > 0 && map->map_array[y][x] == '1')
+    if (x >= 0 && map->map_array[y][x] == '1')
         return (-1);
     return (0);
 }

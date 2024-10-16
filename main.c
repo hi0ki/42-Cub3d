@@ -6,11 +6,13 @@
 /*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:46:15 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/15 18:56:58 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/16 14:33:45 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/cub3d.h"
+
+
 
 int main(int ac, char **av)
 {
@@ -42,8 +44,8 @@ int main(int ac, char **av)
                     map_struct.player.angle = M_PI_2;
                 else if (map_struct.map_array[y][x] == 'W')
                     map_struct.player.angle = 0;
-                map_struct.player.px = x * Size + Size / 2;
-                map_struct.player.py = y * Size + Size / 2;
+                map_struct.player.px = (x * Size) + Size / 2;
+                map_struct.player.py = (y * Size) + Size / 2;
                 break;
             }
             x++;
@@ -68,6 +70,7 @@ int main(int ac, char **av)
     map_struct.mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", 0);
     mlx_loop_hook(map_struct.mlx, &start_drawing, &map_struct);
     mlx_key_hook(map_struct.mlx, &key_hook, &map_struct);
+    mlx_mouse_hook(map_struct.mlx, &mouse_hook, &map_struct);
     mlx_loop(map_struct.mlx);
     return (0);
 }

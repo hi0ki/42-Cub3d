@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:50:58 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/15 17:04:00 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/15 20:06:14 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void mouse_hook(mouse_key_t button, action_t action, modifier_key_t mods, void* param)
+{
+    t_map *map = (t_map *)param;
+    // (void)button;
+    // (void)action;
+    (void)mods;
+    // (void)map;
+    if (button == MLX_MOUSE_BUTTON_LEFT && action == MLX_PRESS)
+    {
+        if(map->index == 0 || map->index == 2)
+            map->index = 1;
+    }
+    if (mods  )
+    exit(1);
+}
 
 void key_hook(mlx_key_data_t keydata, void *param)
 {
@@ -36,11 +52,6 @@ void key_hook(mlx_key_data_t keydata, void *param)
     {
         new_px -= sin(map->player.angle) * MOVE_SPEED;
         new_py += cos(map->player.angle) * MOVE_SPEED;
-    }
-    else if (keydata.key == MLX_KEY_B && keydata.action)
-    {
-        if(map->index == 0 || map->index == 2)
-            map->index = 1;
     }
     if (keydata.key == MLX_KEY_LEFT && keydata.action)
         map->player.angle -= ROTATION_SPEED;

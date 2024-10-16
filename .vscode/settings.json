@@ -10,6 +10,7 @@
         "struct.h": "c",
         "raycasting.h": "c",
         "types.h": "c",
+<<<<<<< HEAD
         "array": "c",
         "string": "c",
         "string_view": "c",
@@ -17,6 +18,9 @@
         "ios": "c",
         "istream": "c",
         "locale": "c"
+=======
+        "__node_handle": "c"
+>>>>>>> hiki
     },
     "cmake.ignoreCMakeListsMissing": true,
     "C_Cpp.errorSquiggles": "disabled"
