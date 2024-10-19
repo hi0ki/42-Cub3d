@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 20:07:02 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/10/15 20:07:06 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/10/19 13:51:08 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void draw_top(t_map *map, t_lines *lines)
         xsize = 90 + 20;
         while (tmp->x_pos - i >= tmp->s_x)
         {
-            if (map->map_array[tmp->y][tmp->x_pos - i] == '1')   
+            if (map->map_array[tmp->y][tmp->x_pos - i] == '1' && tmp->x_pos - i < _strlen(map->map_array[tmp->y])) 
                 draw_square(map->image, xsize, ysize, Size, BLACK);
             else if (ft_strchr("NWSE0", map->map_array[tmp->y][tmp->x_pos - i]) && tmp->x_pos - i < _strlen(map->map_array[tmp->y]))
                 draw_square(map->image, xsize, ysize, Size, WHITE);
@@ -63,7 +63,7 @@ void draw_bot(t_map *map, t_lines *lines)
         xsize = 90 + 20;
         while (tmp->x_pos - i >= tmp->s_x)
         {
-            if (map->map_array[tmp->y][tmp->x_pos - i] == '1')   
+            if (map->map_array[tmp->y][tmp->x_pos - i] == '1' && tmp->x_pos - i < _strlen(map->map_array[tmp->y]))   
                 draw_square(map->image, xsize, ysize, Size, BLACK);
             else if (ft_strchr("NWSE0", map->map_array[tmp->y][tmp->x_pos - i]) && tmp->x_pos - i < _strlen(map->map_array[tmp->y]))
                 draw_square(map->image, xsize, ysize, Size, WHITE);

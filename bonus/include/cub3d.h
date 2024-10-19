@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:12:37 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/15 19:28:46 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/10/19 19:32:14 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	ft_lstadd_back(t_lines **lst, t_lines *new);
 
 /*                    parsing                      */
 int check_all(int ac, char **av, t_map *map_struct, int fd);
+void start_key_hook(void *param);
 
 /*						drawing						*/
 void draw_minimap(t_map *map);
@@ -60,7 +61,7 @@ int valid_char(char **arr, t_map *s_map);
 int found_zero_index(char **arr, t_map *s_map);
 int valid_path(char **map, int y, int x);
 void draw_line(void *image, int x, int y, double size, int color, double angle);
-void key_hook(mlx_key_data_t keydata, void *param);
+// void key_hook(mlx_key_data_t keydata, void *param);
 void mouse_hook(mouse_key_t button, action_t action, modifier_key_t mods, void* param);
 
 /*					raycasting					*/
