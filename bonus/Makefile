@@ -12,7 +12,7 @@ SRCS	=	gnl/get_next_line.c gnl/get_next_line_utils.c \
 			texturing.c \
 			main.c 
 
-MLX 	= 	mlx/build/libmlx42.a -I"MLX42/include/MLX42/MLX42.h" mlx/build/libglfw3.a -Iinclude -lm -framework Cocoa -framework OpenGL -framework IOKit
+MLX 	= 	MLX42/build/libmlx42.a -I"MLX42/include/MLX42/MLX42.h" -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 HEADER	= 	gnl/get_next_line.h include/types.h include/cub3d.h  
 OBJS	=	$(SRCS:.c=.o)
 NAME= cub3d
