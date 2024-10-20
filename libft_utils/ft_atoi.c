@@ -12,7 +12,7 @@
 
 #include "../include/cub3d.h"
 
- int	ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int	result;
 	int	old;
@@ -24,13 +24,13 @@
 	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
 		i++;
 	if (str[i] == '-')
-        return (-1);
-    if (str[i] == '+')
-    {
-        if (str[i + 1] && (str[i + 1] == '-' || str[i + 1] == '+'))
-            return (-1);
-        i++;
-    }
+		return (-1);
+	if (str[i] == '+')
+	{
+		if (str[i + 1] && (str[i + 1] == '-' || str[i + 1] == '+'))
+			return (-1);
+		i++;
+	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		old = result;

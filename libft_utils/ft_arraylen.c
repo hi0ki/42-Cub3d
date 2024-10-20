@@ -14,7 +14,7 @@
 
 int	ft_lenarray(char **array)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	if (!array)

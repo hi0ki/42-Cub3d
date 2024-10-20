@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:54:47 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/10/15 20:07:12 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/10/19 15:51:10 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int floodfill(char **map, int row, int col)
+int	floodfill(char **map, int row, int col)
 {
 	if (!map[row][col] || map[row][col] == '1')
 		return (0);
@@ -27,19 +27,19 @@ int floodfill(char **map, int row, int col)
 	if (map[row][col] != '1')
 		map[row][col] = '1';
 	if (floodfill(map, row + 1, col) == -1)
-        return (-1);
-    if (floodfill(map, row - 1, col) == -1)
-        return (-1);
-    if (floodfill(map, row, col + 1) == -1)
-        return (-1);
-    if (floodfill(map, row, col - 1) == -1)
-        return (-1);
+		return (-1);
+	if (floodfill(map, row - 1, col) == -1)
+		return (-1);
+	if (floodfill(map, row, col + 1) == -1)
+		return (-1);
+	if (floodfill(map, row, col - 1) == -1)
+		return (-1);
 	return (0);
 }
 
-void check_map(t_map *s_map)
+void	check_map(t_map *s_map)
 {
-	char **cpy_arr;
+	char	**cpy_arr;
 
 	if (valid_char(s_map->map_array, s_map) == -1)
 		put_err("Error: No direction in the map.", s_map);
@@ -52,6 +52,5 @@ void check_map(t_map *s_map)
 			free_2d_array(cpy_arr);
 		}
 	}
-	// print_array(cpy_arr);
 	free_2d_array(cpy_arr);
 }

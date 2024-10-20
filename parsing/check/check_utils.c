@@ -30,7 +30,7 @@ char	**copy_arr(char **array)
 	return (arr);
 }
 
-void put_err(char *str, t_map *s_map)
+void	put_err(char *str, t_map *s_map)
 {
 	ft_putstrn_fd(str, 2);
 	(void)s_map;

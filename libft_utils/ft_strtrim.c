@@ -12,7 +12,6 @@
 
 #include "../include/cub3d.h"
 
-
 static size_t	check_rep(char s1, char const *set)
 {
 	size_t	i;

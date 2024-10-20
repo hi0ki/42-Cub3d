@@ -3,36 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   che_map_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 17:57:59 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/10/15 20:07:09 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/10/19 15:56:38 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int valid_path(char **map, int y, int x)
+int	valid_path(char **map, int y, int x)
 {
-	if (!ft_strchr("1 ",map[y][x]) && (y == 0 || y == ft_lenarray(map) - 1))
+	if (!ft_strchr("1 ", map[y][x]) && (y == 0 || y == ft_lenarray(map) - 1))
 		return (-1);
 	if (!map[y][x + 1] || !ft_strchr("1WESN0", map[y][x + 1]))
 		return (-1);
 	if (!ft_strchr("1WESN0", map[y][x - 1]))
 		return (-1);
-	if (y > 0 && (x >= _strlen(map[y - 1]) || !ft_strchr("1WESN0", map[y - 1][x])))
+	if (y > 0 && (x >= _strlen(map[y - 1]) || !ft_strchr("1WESN0", map[y
+					- 1][x])))
 		return (-1);
-	if (y != ft_lenarray(map) - 1 && (x >= _strlen(map[y + 1]) ||!ft_strchr("1WESN0", map[y + 1][x])))
+	if (y != ft_lenarray(map) - 1 && (x >= _strlen(map[y + 1])
+			|| !ft_strchr("1WESN0", map[y + 1][x])))
 		return (-1);
 	if (map[y][x] == '0' && (y == 0 || y == ft_lenarray(map) - 1))
 		return (-1);
 	return (0);
 }
 
-int found_zero_index(char **arr, t_map *s_map)
+int	found_zero_index(char **arr, t_map *s_map)
 {
-	int y;
-	int x;
+	int	x;
+	int	y;
 
 	y = 0;
 	while (arr[y])
@@ -53,11 +55,11 @@ int found_zero_index(char **arr, t_map *s_map)
 	return (0);
 }
 
-int valid_char(char **arr, t_map *s_map)
+int	valid_char(char **arr, t_map *s_map)
 {
-	int y;
-	int x;
-	bool is_exist;
+	int		y;
+	int		x;
+	bool	is_exist;
 
 	y = 0;
 	is_exist = true;

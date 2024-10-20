@@ -98,8 +98,8 @@ static char	**ft_alloc(char *s, char *c, int c_word, char **str)
 
 char	**ft_split(char *s, char *c)
 {
-	char	**str;
-	int		len_w;
+	char **str;
+	int len_w;
 
 	if (!s)
 		return (NULL);
