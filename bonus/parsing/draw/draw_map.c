@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:48:43 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/20 12:25:19 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/31 13:01:26 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,24 +48,24 @@ static int color_pixel(int *arr, int index)
         return ((arr[0] << 24) | (arr[1] << 16) | (arr[2] << 8) | 0xFF);
 }
 
-void draw_cros(t_map *map)
+void draw_cros(t_data *data)
 {
     double x = WIDTH / 2;
     double y = HEIGHT / 2;
-    draw_line(map->image, x - 3, y, 6, GREEN, M_PI);       // lift
-    draw_line(map->image, x, y - 3, 6, GREEN, M_PI_2 * 3); // top
-    draw_line(map->image, x, y + 3, 6, GREEN, M_PI_2);     // bot
-    draw_line(map->image, x + 3, y, 6, GREEN, 0);          // right
+    draw_line(data->image, x - 3, y, 6, GREEN, M_PI);       // lift
+    draw_line(data->image, x, y - 3, 6, GREEN, M_PI_2 * 3); // top
+    draw_line(data->image, x, y + 3, 6, GREEN, M_PI_2);     // bot
+    draw_line(data->image, x + 3, y, 6, GREEN, 0);          // right
 }
 
-void draw_gun(t_map *map, int in)
+void draw_gun(t_data *data, int in)
 {
     int arr[4];
     int i = 0;
     int j = 0;
     int index = 0;
-    int height = map->gun[in]->height;
-    int width = map->gun[in]->width;
+    int height = data->gun[in]->height;
+    int width = data->gun[in]->width;
     int scale_factor = 4;
     int x_c = WIDTH / 2 - (width * scale_factor) / 2;
     int y_c = HEIGHT - (height * scale_factor);
@@ -79,10 +79,10 @@ void draw_gun(t_map *map, int in)
         j = 0;
         while (j < width)
         {
-            arr[0] = map->gun[in]->pixels[index];
-            arr[1] = map->gun[in]->pixels[index + 1];
-            arr[2] = map->gun[in]->pixels[index + 2];
-            arr[3] = map->gun[in]->pixels[index + 3];
+            arr[0] = data->gun[in]->pixels[index];
+            arr[1] = data->gun[in]->pixels[index + 1];
+            arr[2] = data->gun[in]->pixels[index + 2];
+            arr[3] = data->gun[in]->pixels[index + 3];
             if (arr[0] || arr[1] || arr[2] || arr[3])
             {
                 int k = 0;
@@ -91,7 +91,7 @@ void draw_gun(t_map *map, int in)
                     int l = 0;
                     while (l < scale_factor)
                     {
-                        mlx_put_pixel(map->image, x_c + (j * scale_factor) + l, y_c + (i * scale_factor) + k, color_pixel(arr, 0));
+                        mlx_put_pixel(data->image, x_c + (j * scale_factor) + l, y_c + (i * scale_factor) + k, color_pixel(arr, 0));
                         l++;
                     }
                     k++;
@@ -106,35 +106,35 @@ void draw_gun(t_map *map, int in)
 
 void start_drawing(void *ptr)
 {
-    t_map	*map;
-
-	map = (t_map *)ptr;
-	mlx_delete_image(map->mlx, map->image);
-	map->image = mlx_new_image(map->mlx, WIDTH, HEIGHT);
-	draw_f_c(map);
-	map->player.angle = fmod(map->player.angle, 2 * M_PI);
-	if (map->player.angle < 0)
-		map->player.angle += 2 * M_PI;
-	start_raycasting(map);
-    draw_cros(map);
-    draw_background(map);
-    draw_minimap(map);
+    t_data	*data;
     static int frame ;
     static int counter;
-    if (map->index == 1 && frame <= 6)
+
+	data = (t_data *)ptr;
+	mlx_delete_image(data->mlx, data->image);
+	data->image = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	draw_f_c(data);
+	data->player.angle = fmod(data->player.angle, 2 * M_PI);
+	if (data->player.angle < 0)
+		data->player.angle += 2 * M_PI;
+	start_raycasting(data);
+    draw_cros(data);
+    draw_background(data);
+    draw_minimap(data);
+    if (data->index == 1 && frame <= 6)
     {
-        draw_gun(map, frame % 7);
+        draw_gun(data, frame % 7);
         if (counter % 4 == 0)
             frame++;
         counter++;
         if (frame == 7)
-            map->index = 2;
+            data->index = 2;
     }
     else
     {
-        draw_gun(map, 0);
+        draw_gun(data, 0);
         frame = 0;
         counter = 0;
     }
-    mlx_image_to_window(map->mlx, map->image, 0, 0);
+    mlx_image_to_window(data->mlx, data->image, 0, 0);
 }

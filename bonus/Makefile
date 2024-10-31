@@ -13,7 +13,7 @@ SRCS	=	gnl/get_next_line.c gnl/get_next_line_utils.c \
 			main.c 
 
 MLX 	= 	MLX42/build/libmlx42.a -I"MLX42/include/MLX42/MLX42.h" -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
-HEADER	= 	gnl/get_next_line.h include/types.h include/cub3d.h  
+HEADER	= 	gnl/get_next_line.h include/types.h include/cub3d.h  include/types.h  
 OBJS	=	$(SRCS:.c=.o)
 NAME= cub3d
 

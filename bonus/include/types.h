@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 12:58:48 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/10/20 12:28:12 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/31 12:52:29 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # define GREY 0x808080FF
 # define NEW 0xE0E0E0FF
 # define ROTATION_SPEED 0.1
-# define MOVE_SPEED 10.0
-# define SIZE 30
+# define MOVE_SPEED 5.0
+# define SIZE 20
 # define WIDTH 1650
 # define HEIGHT 1050
 
@@ -36,7 +36,6 @@ typedef struct s_helper
 	char			*trim_line;
 }					t_helper;
 
-
 typedef struct s_lines
 {
 	int s_x;
@@ -47,13 +46,6 @@ typedef struct s_lines
 	struct s_lines *prv;
 }t_lines;
 
-typedef struct s_minimap
-{
-	int sx;
-	int sy;
-	int ex;
-	int ey;
-}t_minimap;
 
 typedef struct s_player
 {
@@ -89,7 +81,7 @@ typedef struct s_rays
 typedef struct s_map
 {
 	char			**str;
-	char			**map_array;
+	char			**map;
 	char			*no;
 	char			*so;
 	char			*we;
@@ -102,6 +94,6 @@ typedef struct s_map
 	mlx_texture_t	*textur[4];
 	mlx_texture_t   *gun[7];
 	int index;
-}					t_map;
+}					t_data;
 
 #endif

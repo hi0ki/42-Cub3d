@@ -3,83 +3,84 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:50:58 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/20 12:41:22 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/31 12:56:08 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
 
-void  mouse_hook(mouse_key_t button, action_t action, modifier_key_t mods, void* param)
-{
-    t_map *map = (t_map *)param;
-    // (void)button;
-    // (void)action;
-    (void)mods;
-    // (void)map;
-    if (button == MLX_MOUSE_BUTTON_LEFT && action == MLX_PRESS)
-    {
-        if(map->index == 0 || map->index == 2)
-            map->index = 1;
-    }
-    if (mods  )
-    exit(1);
-}
+// void  mouse_hook(t_data *data)
+// {
+    // static int32_t	old_x;
+    // static int32_t	old_y;
+    // int32_t	new_x;
+    // int32_t	new_y;
 
-static void	handle_movement(t_map *map, double *new_px,
+	// new_x = 0;
+	// new_y = 0;
+    // mlx_get_mouse_pos(datamlx, &x, &y);
+	// if () // hna mnin ankml
+    // // Print the mouse position
+    // printf("Mouse position: %d, %d\n", x, y);
+
+// }
+
+static void	handle_movement(t_data *data, double *new_px,
 		double *new_py)
 {
-	if (mlx_is_key_down(map->mlx, MLX_KEY_W))
+	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
 	{
-		*new_px += cos(map->player.angle) * MOVE_SPEED;
-		*new_py += sin(map->player.angle) * MOVE_SPEED;
+		*new_px += cos(data->player.angle) * MOVE_SPEED;
+		*new_py += sin(data->player.angle) * MOVE_SPEED;
 	}
-	else if (mlx_is_key_down(map->mlx, MLX_KEY_S))
+	if (mlx_is_key_down(data->mlx, MLX_KEY_S))
 	{
-		*new_px -= cos(map->player.angle) * MOVE_SPEED;
-		*new_py -= sin(map->player.angle) * MOVE_SPEED;
+		*new_px -= cos(data->player.angle) * MOVE_SPEED;
+		*new_py -= sin(data->player.angle) * MOVE_SPEED;
 	}
-	else if (mlx_is_key_down(map->mlx, MLX_KEY_A))
+	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
 	{
-		*new_px += sin(map->player.angle) * MOVE_SPEED;
-		*new_py -= cos(map->player.angle) * MOVE_SPEED;
+		*new_px += sin(data->player.angle) * MOVE_SPEED;
+		*new_py -= cos(data->player.angle) * MOVE_SPEED;
 	}
-	else if (mlx_is_key_down(map->mlx, MLX_KEY_D))
+	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
 	{
-		*new_px -= sin(map->player.angle) * MOVE_SPEED;
-		*new_py += cos(map->player.angle) * MOVE_SPEED;
+		*new_px -= sin(data->player.angle) * MOVE_SPEED;
+		*new_py += cos(data->player.angle) * MOVE_SPEED;
 	}
 }
 
-void key_hook(t_map *map)
+void key_hook(t_data *data)
 {
 	double	new_px;
 	double	new_py;
 
-	new_px = map->player.px;
-	new_py = map->player.py;
-	handle_movement(map, &new_px, &new_py);
-	if (mlx_is_key_down(map->mlx, MLX_KEY_LEFT))
-		map->player.angle -= ROTATION_SPEED;
-	else if (mlx_is_key_down(map->mlx, MLX_KEY_RIGHT))
-		map->player.angle += ROTATION_SPEED;
-	else if (mlx_is_key_down(map->mlx, MLX_KEY_ESCAPE))
+	new_px = data->player.px;
+	new_py = data->player.py;
+	handle_movement(data, &new_px, &new_py);
+	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
+		data->player.angle -= ROTATION_SPEED;
+	else if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
+		data->player.angle += ROTATION_SPEED;
+	else if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		exit(1);
-	map->player.angle = fmod(map->player.angle, 2 * M_PI);
-	if (map->player.angle < 0)
-		map->player.angle += 2 * M_PI;
-	if (check_pos(map, new_py, new_px, 4) == 0)
+	data->player.angle = fmod(data->player.angle, 2 * M_PI);
+	if (data->player.angle < 0)
+		data->player.angle += 2 * M_PI;
+	if (check_pos(data, new_py, new_px, 4) == 0)
 	{
-		map->player.px = new_px;
-		map->player.py = new_py;
+		data->player.px = new_px;
+		data->player.py = new_py;
 	}
 }
 
 void start_key_hook(void *param)
 {
-    t_map *map = (t_map *)param;
-    key_hook(map);
+    t_data *data = (t_data *)param;
+    key_hook(data);
+	// mouse_hook(map);
 }

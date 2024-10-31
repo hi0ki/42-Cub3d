@@ -3,35 +3,66 @@
 /*                                                        :::      ::::::::   */
 /*   che_map_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 17:57:59 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/10/19 15:56:38 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/31 12:59:13 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
+int door_helper(char **data, int y, int x)
+{
+    if ((data[y][x - 1] == '1' && data[y][x + 1] == '1') || 
+        (data[y - 1][x] == '1' && data[y + 1][x] == '1'))
+        return 1;
+    return 0;
+}
+
+int check_door(t_data *data)
+{
+	int y;
+	int x;
+
+	y = 0;
+	while (data->map[y])
+	{
+		x = 0;
+		while (data->map[y][x])
+		{
+			if (data->map[y][x] == 'D')
+			{
+				if (!door_helper(data->map, y, x))
+					return (-1);
+			}
+			x++;
+		}
+		y++;
+	}
+	return (0);
+}
+
 int	valid_path(char **map, int y, int x)
 {
 	if (!ft_strchr("1 ", map[y][x]) && (y == 0 || y == ft_lenarray(map) - 1))
 		return (-1);
-	if (!map[y][x + 1] || !ft_strchr("1WESN0", map[y][x + 1]))
+	if (!map[y][x + 1] || !ft_strchr("1WESN0D", map[y][x + 1]))
 		return (-1);
-	if (!ft_strchr("1WESN0", map[y][x - 1]))
+	if (!ft_strchr("1WESN0D", map[y][x - 1]))
 		return (-1);
-	if (y > 0 && (x >= _strlen(map[y - 1]) || !ft_strchr("1WESN0", map[y
-					- 1][x])))
+	if (y > 0 && (x >= _strlen(map[y - 1]) || 
+		!ft_strchr("1WESN0D", map[y - 1][x])))
 		return (-1);
 	if (y != ft_lenarray(map) - 1 && (x >= _strlen(map[y + 1])
-			|| !ft_strchr("1WESN0", map[y + 1][x])))
+			|| !ft_strchr("1WESN0D", map[y + 1][x])))
 		return (-1);
 	if (map[y][x] == '0' && (y == 0 || y == ft_lenarray(map) - 1))
 		return (-1);
 	return (0);
 }
 
-int	found_zero_index(char **arr, t_map *s_map)
+int	found_zero_index(char **arr, t_data *data)
 {
 	int	x;
 	int	y;
@@ -42,10 +73,10 @@ int	found_zero_index(char **arr, t_map *s_map)
 		x = 0;
 		while (arr[y][x])
 		{
-			if (arr[y][x] == '0' || ft_strchr("WESN", arr[y][x]))
+			if (ft_strchr("WESN0D", arr[y][x]))
 			{
-				s_map->player.x = x;
-				s_map->player.y = y;
+				data->player.x = x;
+				data->player.y = y;
 				return (1);
 			}
 			x++;
@@ -55,7 +86,7 @@ int	found_zero_index(char **arr, t_map *s_map)
 	return (0);
 }
 
-int	valid_char(char **arr, t_map *s_map)
+int	valid_char(char **arr, t_data *data)
 {
 	int		y;
 	int		x;
@@ -71,7 +102,7 @@ int	valid_char(char **arr, t_map *s_map)
 			if (ft_strchr("WESN", arr[y][x]) && is_exist == true)
 				is_exist = false;
 			else if (ft_strchr("WESN", arr[y][x]) && is_exist == false)
-				put_err("Error: Multiple directions.", s_map);
+				put_err("Error: Multiple directions.", data);
 			x++;
 		}
 		y++;

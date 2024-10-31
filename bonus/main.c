@@ -3,34 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:46:15 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/20 12:31:52 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/31 13:07:14 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/cub3d.h"
 
-static void	player_position(t_map *map, int x, int y)
+static void	player_position(t_data *data, int x, int y)
 {
-	while (map->map_array[y])
+	while (data->map[y])
 	{
 		x = 0;
-		while (map->map_array[y][x])
+		while (data->map[y][x])
 		{
-			if (ft_strchr("WESN", map->map_array[y][x]))
+			if (ft_strchr("WESN", data->map[y][x]))
 			{
-				if (map->map_array[y][x] == 'N')
-					map->player.angle = 3 * M_PI_2;
-				else if (map->map_array[y][x] == 'E')
-					map->player.angle = M_PI;
-				else if (map->map_array[y][x] == 'S')
-					map->player.angle = M_PI_2;
-				else if (map->map_array[y][x] == 'W')
-					map->player.angle = 0;
-				map->player.px = (x * SIZE) + SIZE / 2;
-				map->player.py = (y * SIZE) + SIZE / 2;
+				if (data->map[y][x] == 'N')
+					data->player.angle = 3 * M_PI_2;
+				else if (data->map[y][x] == 'E')
+					data->player.angle = M_PI;
+				else if (data->map[y][x] == 'S')
+					data->player.angle = M_PI_2;
+				else if (data->map[y][x] == 'W')
+					data->player.angle = 0;
+				data->player.px = (x * SIZE) + SIZE / 2;
+				data->player.py = (y * SIZE) + SIZE / 2;
 				break ;
 			}
 			x++;
@@ -41,7 +41,7 @@ static void	player_position(t_map *map, int x, int y)
 
 int	main(int ac, char **av)
 {
-	t_map	map_struct;
+	t_data	map_struct;
 	int		fd;
 
 	fd = open(av[1], O_RDONLY);
@@ -55,7 +55,6 @@ int	main(int ac, char **av)
 	map_struct.mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", 0);
 	mlx_loop_hook(map_struct.mlx, &start_drawing, &map_struct);
     mlx_loop_hook(map_struct.mlx, &start_key_hook, &map_struct);
-    mlx_mouse_hook(map_struct.mlx, &mouse_hook, &map_struct);
 	mlx_loop(map_struct.mlx);
 	return (0);
 }
