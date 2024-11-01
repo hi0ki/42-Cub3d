@@ -3,34 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:46:15 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/20 12:42:31 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/31 12:49:09 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/cub3d.h"
 
-static void	player_position(t_map *map, int x, int y)
+static void	player_position(t_data *data, int x, int y)
 {
-	while (map->map_array[y])
+	while (datamap[y])
 	{
 		x = 0;
-		while (map->map_array[y][x])
+		while (datamap[y][x])
 		{
-			if (ft_strchr("WESN", map->map_array[y][x]))
+			if (ft_strchr("WESN", datamap[y][x]))
 			{
-				if (map->map_array[y][x] == 'N')
-					map->player.angle = 3 * M_PI_2;
-				else if (map->map_array[y][x] == 'E')
-					map->player.angle = M_PI;
-				else if (map->map_array[y][x] == 'S')
-					map->player.angle = M_PI_2;
-				else if (map->map_array[y][x] == 'W')
-					map->player.angle = 0;
-				map->player.px = (x * SIZE) + SIZE / 2;
-				map->player.py = (y * SIZE) + SIZE / 2;
+				if (datamap[y][x] == 'N')
+					dataplayer.angle = 3 * M_PI_2;
+				else if (datamap[y][x] == 'E')
+					dataplayer.angle = M_PI;
+				else if (datamap[y][x] == 'S')
+					dataplayer.angle = M_PI_2;
+				else if (datamap[y][x] == 'W')
+					dataplayer.angle = 0;
+				dataplayer.px = (x * SIZE) + SIZE / 2;
+				dataplayer.py = (y * SIZE) + SIZE / 2;
 				break ;
 			}
 			x++;
@@ -41,7 +41,7 @@ static void	player_position(t_map *map, int x, int y)
 
 int	main(int ac, char **av)
 {
-	t_map	map_struct;
+	t_data	map_struct;
 	int		fd;
 
 	fd = open(av[1], O_RDONLY);

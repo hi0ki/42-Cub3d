@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:48:43 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/31 13:01:26 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/01 17:14:02 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,10 @@ void start_drawing(void *ptr)
 	data = (t_data *)ptr;
 	mlx_delete_image(data->mlx, data->image);
 	data->image = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	draw_f_c(data);
 	data->player.angle = fmod(data->player.angle, 2 * M_PI);
 	if (data->player.angle < 0)
 		data->player.angle += 2 * M_PI;
+	draw_f_c(data);
 	start_raycasting(data);
     draw_cros(data);
     draw_background(data);

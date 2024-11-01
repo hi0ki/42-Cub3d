@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 18:00:58 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/10/15 20:07:17 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/10/31 12:48:28 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	**copy_arr(char **array)
 	return (arr);
 }
 
-void	put_err(char *str, t_map *s_map)
+void	put_err(char *str, t_data *s_map)
 {
 	ft_putstrn_fd(str, 2);
 	(void)s_map;

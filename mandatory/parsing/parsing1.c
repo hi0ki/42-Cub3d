@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 13:20:39 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/19 18:11:03 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/31 12:49:09 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	process_path(char **str, int i, char *name, char **path)
 	return (0);
 }
 
-static int	init_struct(t_map *map_struct, t_helper *helper, int fd, int i)
+static int	init_struct(t_data *data_struct, t_helper *helper, int fd, int i)
 {
 	map_struct->no = NULL;
 	map_struct->so = NULL;
@@ -73,19 +73,19 @@ static int	init_struct(t_map *map_struct, t_helper *helper, int fd, int i)
 	return (0);
 }
 
-static int	load_img(t_map *map)
+static int	load_img(t_data *data)
 {
-	map->textur[0] = mlx_load_png(map->no);
-	map->textur[1] = mlx_load_png(map->so);
-	map->textur[2] = mlx_load_png(map->we);
-	map->textur[3] = mlx_load_png(map->ea);
-	if (!map->textur[0] || !map->textur[1] || !map->textur[2]
-		|| !map->textur[3])
+	datatextur[0] = mlx_load_png(datano);
+	datatextur[1] = mlx_load_png(dataso);
+	datatextur[2] = mlx_load_png(datawe);
+	datatextur[3] = mlx_load_png(dataea);
+	if (!datatextur[0] || !datatextur[1] || !datatextur[2]
+		|| !datatextur[3])
 		return (ft_putstrn_fd("Error\nUnable to load texture\n", 2), 1);
 	return (0);
 }
 
-int	check_all(int ac, char **av, t_map *map_struct, int fd)
+int	check_all(int ac, char **av, t_data *data_struct, int fd)
 {
 	t_helper	helper;
 
@@ -107,7 +107,7 @@ int	check_all(int ac, char **av, t_map *map_struct, int fd)
 			return (ft_putstrn_fd("Error\nInvalid color\n", 2), 1);
 		ac++;
 	}
-	if (map_struct->map_array == NULL)
+	if (map_struct->map == NULL)
 		return (ft_putstrn_fd("Error\n: The map is empty", 2), 1);
 	if (load_img(map_struct))
 		return (1);

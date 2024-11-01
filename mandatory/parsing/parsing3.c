@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 16:23:08 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/19 17:10:04 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/31 12:49:09 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static int	validate_commas(char *ptr)
 	return (0);
 }
 
-int	process_color(int *map_color, char *str, char *name)
+int	process_color(int *data_color, char *str, char *name)
 {
 	char	*ptr;
 	int		i;

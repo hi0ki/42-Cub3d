@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:54:47 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/10/31 12:57:37 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/10/31 18:47:01 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ void	check_map(t_data *data)
 		}
 	}
 	free_2d_array(cpy_arr);
-	if (check_door(data))
+	if (check_door(data)) 
 		put_err("Error: Invalid map.11", data);
 }

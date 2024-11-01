@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 12:57:13 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/10/31 13:05:00 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/01 17:17:38 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int check_ray(t_data *data, double y, double x)
         return (-1);
     if (check_pos(data, y, x, 0.000001) == -1)
         return (-1);
-    if (data->map[ay][ax] && data->map[ay][ax] == '1')
+    if (data->map[ay][ax] && (data->map[ay][ax] == '1' || data->map[ay][ax] == 'D'))
         return (-1);
     return (0);
 }

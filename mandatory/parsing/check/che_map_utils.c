@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   che_map_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 17:57:59 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/10/19 15:56:38 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/31 12:49:09 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int	valid_path(char **map, int y, int x)
+int	valid_path(char **data, int y, int x)
 {
 	if (!ft_strchr("1 ", map[y][x]) && (y == 0 || y == ft_lenarray(map) - 1))
 		return (-1);
@@ -31,7 +31,7 @@ int	valid_path(char **map, int y, int x)
 	return (0);
 }
 
-int	found_zero_index(char **arr, t_map *s_map)
+int	found_zero_index(char **arr, t_data *s_map)
 {
 	int	x;
 	int	y;
@@ -44,8 +44,8 @@ int	found_zero_index(char **arr, t_map *s_map)
 		{
 			if (arr[y][x] == '0' || ft_strchr("WESN", arr[y][x]))
 			{
-				s_map->player.x = x;
-				s_map->player.y = y;
+				s_dataplayer.x = x;
+				s_dataplayer.y = y;
 				return (1);
 			}
 			x++;
@@ -55,7 +55,7 @@ int	found_zero_index(char **arr, t_map *s_map)
 	return (0);
 }
 
-int	valid_char(char **arr, t_map *s_map)
+int	valid_char(char **arr, t_data *s_map)
 {
 	int		y;
 	int		x;

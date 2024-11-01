@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texturing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 13:34:32 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/20 11:55:27 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/31 12:49:09 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	color_pixel(void *arr, int is_uint8)
 	}
 }
 
-void	draw_f_c(t_map *map)
+void	draw_f_c(t_data *data)
 {
 	int	x;
 	int	y;
@@ -39,7 +39,7 @@ void	draw_f_c(t_map *map)
 	{
 		x = 0;
 		while (x < WIDTH)
-			mlx_put_pixel(map->image, x++, y, color_pixel(map->c, 0));
+			mlx_put_pixel(dataimage, x++, y, color_pixel(datac, 0));
 		y++;
 	}
 	y = HEIGHT / 2;
@@ -47,7 +47,7 @@ void	draw_f_c(t_map *map)
 	{
 		x = 0;
 		while (x < WIDTH)
-			mlx_put_pixel(map->image, x++, y, color_pixel(map->f, 0));
+			mlx_put_pixel(dataimage, x++, y, color_pixel(dataf, 0));
 		y++;
 	}
 }
@@ -71,7 +71,7 @@ int	tex_index(t_dis_H dis_H, t_dis_V dis_V, double rayangle)
 	return (-1);
 }
 
-int	get_color(t_map *map, t_rays rays, int tex_y,
+int	get_color(t_data *data, t_rays rays, int tex_y,
 		int texture_index)
 {
 	int	tex_x;
@@ -80,16 +80,16 @@ int	get_color(t_map *map, t_rays rays, int tex_y,
 	tex_x = 0;
 	if (rays.dis_H.inter_type_h == 'H')
 		tex_x = ((rays.dis_H.x_h / SIZE) - floor(rays.dis_H.x_h / SIZE))
-			* map->textur[texture_index]->width;
+			* datatextur[texture_index]->width;
 	else if (rays.dis_V.inter_type_v == 'V')
 		tex_x = ((rays.dis_V.y_v / SIZE) - floor(rays.dis_V.y_v / SIZE))
-			* map->textur[texture_index]->width;
+			* datatextur[texture_index]->width;
 	if (tex_x < 0 || tex_y < 0
-		|| (uint32_t)tex_x >= map->textur[texture_index]->width
-		|| (uint32_t)tex_y >= map->textur[texture_index]->height)
+		|| (uint32_t)tex_x >= datatextur[texture_index]->width
+		|| (uint32_t)tex_y >= datatextur[texture_index]->height)
 		return (0);
-	index = (tex_y * map->textur[texture_index]->width
-			* map->textur[texture_index]->bytes_per_pixel) + (tex_x
-			* map->textur[texture_index]->bytes_per_pixel);
-	return (color_pixel(&map->textur[texture_index]->pixels[index], 1));
+	index = (tex_y * datatextur[texture_index]->width
+			* datatextur[texture_index]->bytes_per_pixel) + (tex_x
+			* datatextur[texture_index]->bytes_per_pixel);
+	return (color_pixel(&datatextur[texture_index]->pixels[index], 1));
 }

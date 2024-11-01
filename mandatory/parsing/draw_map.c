@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:48:43 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/19 14:09:25 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/31 12:49:09 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	start_drawing(void *ptr)
 {
-	t_map	*map;
+	t_data	*data;
 
-	map = (t_map *)ptr;
-	mlx_delete_image(map->mlx, map->image);
-	map->image = mlx_new_image(map->mlx, WIDTH, HEIGHT);
+	map = (t_data *)ptr;
+	mlx_delete_image(datamlx, dataimage);
+	dataimage = mlx_new_image(datamlx, WIDTH, HEIGHT);
 	draw_f_c(map);
-	map->player.angle = fmod(map->player.angle, 2 * M_PI);
-	if (map->player.angle < 0)
-		map->player.angle += 2 * M_PI;
+	dataplayer.angle = fmod(dataplayer.angle, 2 * M_PI);
+	if (dataplayer.angle < 0)
+		dataplayer.angle += 2 * M_PI;
 	start_raycasting(map);
-	mlx_image_to_window(map->mlx, map->image, 0, 0);
+	mlx_image_to_window(datamlx, dataimage, 0, 0);
 }

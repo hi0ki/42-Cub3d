@@ -3,66 +3,66 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:50:58 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/20 12:41:50 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/31 12:49:09 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static void	handle_movement(t_map *map, double *new_px,
+static void	handle_movement(t_data *data, double *new_px,
 		double *new_py)
 {
-	if (mlx_is_key_down(map->mlx, MLX_KEY_W))
+	if (mlx_is_key_down(datamlx, MLX_KEY_W))
 	{
-		*new_px += cos(map->player.angle) * MOVE_SPEED;
-		*new_py += sin(map->player.angle) * MOVE_SPEED;
+		*new_px += cos(dataplayer.angle) * MOVE_SPEED;
+		*new_py += sin(dataplayer.angle) * MOVE_SPEED;
 	}
-	else if (mlx_is_key_down(map->mlx, MLX_KEY_S))
+	else if (mlx_is_key_down(datamlx, MLX_KEY_S))
 	{
-		*new_px -= cos(map->player.angle) * MOVE_SPEED;
-		*new_py -= sin(map->player.angle) * MOVE_SPEED;
+		*new_px -= cos(dataplayer.angle) * MOVE_SPEED;
+		*new_py -= sin(dataplayer.angle) * MOVE_SPEED;
 	}
-	else if (mlx_is_key_down(map->mlx, MLX_KEY_A))
+	else if (mlx_is_key_down(datamlx, MLX_KEY_A))
 	{
-		*new_px += sin(map->player.angle) * MOVE_SPEED;
-		*new_py -= cos(map->player.angle) * MOVE_SPEED;
+		*new_px += sin(dataplayer.angle) * MOVE_SPEED;
+		*new_py -= cos(dataplayer.angle) * MOVE_SPEED;
 	}
-	else if (mlx_is_key_down(map->mlx, MLX_KEY_D))
+	else if (mlx_is_key_down(datamlx, MLX_KEY_D))
 	{
-		*new_px -= sin(map->player.angle) * MOVE_SPEED;
-		*new_py += cos(map->player.angle) * MOVE_SPEED;
+		*new_px -= sin(dataplayer.angle) * MOVE_SPEED;
+		*new_py += cos(dataplayer.angle) * MOVE_SPEED;
 	}
 }
 
-void key_hook(t_map *map)
+void key_hook(t_data *data)
 {
 	double	new_px;
 	double	new_py;
 
-	new_px = map->player.px;
-	new_py = map->player.py;
+	new_px = dataplayer.px;
+	new_py = dataplayer.py;
 	handle_movement(map, &new_px, &new_py);
-	if (mlx_is_key_down(map->mlx, MLX_KEY_LEFT))
-		map->player.angle -= ROTATION_SPEED;
-	else if (mlx_is_key_down(map->mlx, MLX_KEY_RIGHT))
-		map->player.angle += ROTATION_SPEED;
-	else if (mlx_is_key_down(map->mlx, MLX_KEY_ESCAPE))
+	if (mlx_is_key_down(datamlx, MLX_KEY_LEFT))
+		dataplayer.angle -= ROTATION_SPEED;
+	else if (mlx_is_key_down(datamlx, MLX_KEY_RIGHT))
+		dataplayer.angle += ROTATION_SPEED;
+	else if (mlx_is_key_down(datamlx, MLX_KEY_ESCAPE))
 		exit(1);
-	map->player.angle = fmod(map->player.angle, 2 * M_PI);
-	if (map->player.angle < 0)
-		map->player.angle += 2 * M_PI;
+	dataplayer.angle = fmod(dataplayer.angle, 2 * M_PI);
+	if (dataplayer.angle < 0)
+		dataplayer.angle += 2 * M_PI;
 	if (check_pos(map, new_py, new_px, 4) == 0)
 	{
-		map->player.px = new_px;
-		map->player.py = new_py;
+		dataplayer.px = new_px;
+		dataplayer.py = new_py;
 	}
 }
 
 void start_key_hook(void *param)
 {
-    t_map *map = (t_map *)param;
+    t_data *data = (t_data *)param;
     key_hook(map);
 }

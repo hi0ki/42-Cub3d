@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 12:58:48 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/10/20 12:05:26 by kadam            ###   ########.fr       */
+/*   Updated: 2024/10/31 12:49:09 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct s_rays
 typedef struct s_map
 {
 	char			**str;
-	char			**map_array;
+	char			**data;
 	char			*no;
 	char			*so;
 	char			*we;
@@ -82,6 +82,6 @@ typedef struct s_map
 	mlx_t			*mlx;
 	mlx_image_t		*image;
 	mlx_texture_t	*textur[4];
-}					t_map;
+}					t_data;
 
 #endif
