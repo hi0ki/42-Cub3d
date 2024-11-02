@@ -16,13 +16,13 @@ void	start_drawing(void *ptr)
 {
 	t_data	*data;
 
-	map = (t_data *)ptr;
-	mlx_delete_image(datamlx, dataimage);
-	dataimage = mlx_new_image(datamlx, WIDTH, HEIGHT);
-	draw_f_c(map);
-	dataplayer.angle = fmod(dataplayer.angle, 2 * M_PI);
-	if (dataplayer.angle < 0)
-		dataplayer.angle += 2 * M_PI;
-	start_raycasting(map);
-	mlx_image_to_window(datamlx, dataimage, 0, 0);
+	data = (t_data *)ptr;
+	mlx_delete_image(data->mlx, data->image);
+	data->image = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	draw_f_c(data);
+	data->player.angle = fmod(data->player.angle, 2 * M_PI);
+	if (data->player.angle < 0)
+		data->player.angle += 2 * M_PI;
+	start_raycasting(data);
+	mlx_image_to_window(data->mlx, data->image, 0, 0);
 }

@@ -19,17 +19,17 @@ int check_pos(t_data *data, double py, double px, double num_pix)
 
     x = px / SIZE;
     y = (py + num_pix) / SIZE;
-    if (datamap[y] && datamap[y][x] == '1')
+    if (data->map[y] && data->map[y][x] == '1')
         return (-1);
     y = (py - num_pix) / SIZE;
-    if (y >= 0 && datamap[y][x] == '1')
+    if (y >= 0 && data->map[y][x] == '1')
         return (-1);
     y = py / SIZE;
     x = (px + num_pix) / SIZE;
-    if (datamap[y][x] && datamap[y][x] == '1')
+    if (data->map[y][x] && data->map[y][x] == '1')
         return (-1);
     x = (px - num_pix) / SIZE;
-    if (x >= 0 && datamap[y][x] == '1')
+    if (x >= 0 && data->map[y][x] == '1')
         return (-1);
     return (0);
 }
@@ -48,12 +48,12 @@ int check_ray(t_data *data, double y, double x)
 
     ay = y / SIZE;
     ax = x / SIZE;
-    if (ay < 0 || ay >= ft_lenarray(datamap) ||
-        ax >= _strlen(datamap[ay]) || ax < 0)
+    if (ay < 0 || ay >= ft_lenarray(data->map) ||
+        ax >= _strlen(data->map[ay]) || ax < 0)
         return (-1);
-    if (check_pos(map, y, x, 0.000001) == -1)
+    if (check_pos(data, y, x, 0.000001) == -1)
         return (-1);
-    if (datamap[ay][ax] && datamap[ay][ax] == '1')
+    if (data->map[ay][ax] && data->map[ay][ax] == '1')
         return (-1);
     return (0);
 }
@@ -74,8 +74,8 @@ void draw_3d(t_data *data, double line_height, int i, t_rays rays)
         bot = HEIGHT;
     while (top < bot)
     {
-        tex_y = ((top - j) / line_height) * datatextur[tex_indexx]->height;
-        mlx_put_pixel(dataimage, i, top, get_color(map, rays, tex_y, tex_indexx));
+        tex_y = ((top - j) / line_height) * data->textur[tex_indexx]->height;
+        mlx_put_pixel(data->image, i, top, get_color(data, rays, tex_y, tex_indexx));
         top++;
     }
 }

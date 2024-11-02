@@ -50,15 +50,15 @@ int	process_path(char **str, int i, char *name, char **path)
 
 static int	init_struct(t_data *data_struct, t_helper *helper, int fd, int i)
 {
-	map_struct->no = NULL;
-	map_struct->so = NULL;
-	map_struct->we = NULL;
-	map_struct->ea = NULL;
+	data_struct->no = NULL;
+	data_struct->so = NULL;
+	data_struct->we = NULL;
+	data_struct->ea = NULL;
 	i = 0;
 	while (i < 3)
 	{
-		map_struct->f[i] = -1;
-		map_struct->c[i] = -1;
+		data_struct->f[i] = -1;
+		data_struct->c[i] = -1;
 		i++;
 	}
 	helper->res = 0;
@@ -75,12 +75,12 @@ static int	init_struct(t_data *data_struct, t_helper *helper, int fd, int i)
 
 static int	load_img(t_data *data)
 {
-	datatextur[0] = mlx_load_png(datano);
-	datatextur[1] = mlx_load_png(dataso);
-	datatextur[2] = mlx_load_png(datawe);
-	datatextur[3] = mlx_load_png(dataea);
-	if (!datatextur[0] || !datatextur[1] || !datatextur[2]
-		|| !datatextur[3])
+	data->textur[0] = mlx_load_png(data->no);
+	data->textur[1] = mlx_load_png(data->so);
+	data->textur[2] = mlx_load_png(data->we);
+	data->textur[3] = mlx_load_png(data->ea);
+	if (!data->textur[0] || !data->textur[1] || !data->textur[2]
+		|| !data->textur[3])
 		return (ft_putstrn_fd("Error\nUnable to load texture\n", 2), 1);
 	return (0);
 }
@@ -92,24 +92,24 @@ int	check_all(int ac, char **av, t_data *data_struct, int fd)
 	if (ac != 2 || (ac == 2 && av[1] && !check_av_path(av[1], ft_strlen(av[1]),
 				0)))
 		return (ft_putstrn_fd("Error\nInvalid arg\n", 2), 1);
-	if (init_struct(map_struct, &helper, fd, 0))
+	if (init_struct(data_struct, &helper, fd, 0))
 		return (1);
 	if (read_file(fd, &helper))
 		return (1);
-	if (read_map(helper.line, fd, map_struct, helper.ptr_line))
+	if (read_map(helper.line, fd, data_struct, helper.ptr_line))
 		return (free(helper.ptr_line), 1);
 	free(helper.ptr_line);
 	ac = 0;
 	while (ac < 3)
 	{
-		if (map_struct->f[ac] < 0 || map_struct->f[ac] > 255
-			|| map_struct->c[ac] < 0 || map_struct->c[ac] > 255)
+		if (data_struct->f[ac] < 0 || data_struct->f[ac] > 255
+			|| data_struct->c[ac] < 0 || data_struct->c[ac] > 255)
 			return (ft_putstrn_fd("Error\nInvalid color\n", 2), 1);
 		ac++;
 	}
-	if (map_struct->map == NULL)
+	if (data_struct->map == NULL)
 		return (ft_putstrn_fd("Error\n: The map is empty", 2), 1);
-	if (load_img(map_struct))
+	if (load_img(data_struct))
 		return (1);
 	return (0);
 }

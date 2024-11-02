@@ -14,23 +14,23 @@
 
 static void	player_position(t_data *data, int x, int y)
 {
-	while (datamap[y])
+	while (data->map[y])
 	{
 		x = 0;
-		while (datamap[y][x])
+		while (data->map[y][x])
 		{
-			if (ft_strchr("WESN", datamap[y][x]))
+			if (ft_strchr("WESN", data->map[y][x]))
 			{
-				if (datamap[y][x] == 'N')
-					dataplayer.angle = 3 * M_PI_2;
-				else if (datamap[y][x] == 'E')
-					dataplayer.angle = M_PI;
-				else if (datamap[y][x] == 'S')
-					dataplayer.angle = M_PI_2;
-				else if (datamap[y][x] == 'W')
-					dataplayer.angle = 0;
-				dataplayer.px = (x * SIZE) + SIZE / 2;
-				dataplayer.py = (y * SIZE) + SIZE / 2;
+				if (data->map[y][x] == 'N')
+					data->player.angle = 3 * M_PI_2;
+				else if (data->map[y][x] == 'E')
+					data->player.angle = M_PI;
+				else if (data->map[y][x] == 'S')
+					data->player.angle = M_PI_2;
+				else if (data->map[y][x] == 'W')
+					data->player.angle = 0;
+				data->player.px = (x * SIZE) + SIZE / 2;
+				data->player.py = (y * SIZE) + SIZE / 2;
 				break ;
 			}
 			x++;

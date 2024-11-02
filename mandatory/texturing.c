@@ -39,7 +39,7 @@ void	draw_f_c(t_data *data)
 	{
 		x = 0;
 		while (x < WIDTH)
-			mlx_put_pixel(dataimage, x++, y, color_pixel(datac, 0));
+			mlx_put_pixel(data->image, x++, y, color_pixel(data->c, 0));
 		y++;
 	}
 	y = HEIGHT / 2;
@@ -47,7 +47,7 @@ void	draw_f_c(t_data *data)
 	{
 		x = 0;
 		while (x < WIDTH)
-			mlx_put_pixel(dataimage, x++, y, color_pixel(dataf, 0));
+			mlx_put_pixel(data->image, x++, y, color_pixel(data->f, 0));
 		y++;
 	}
 }
@@ -80,16 +80,16 @@ int	get_color(t_data *data, t_rays rays, int tex_y,
 	tex_x = 0;
 	if (rays.dis_H.inter_type_h == 'H')
 		tex_x = ((rays.dis_H.x_h / SIZE) - floor(rays.dis_H.x_h / SIZE))
-			* datatextur[texture_index]->width;
+			* data->textur[texture_index]->width;
 	else if (rays.dis_V.inter_type_v == 'V')
 		tex_x = ((rays.dis_V.y_v / SIZE) - floor(rays.dis_V.y_v / SIZE))
-			* datatextur[texture_index]->width;
+			* data->textur[texture_index]->width;
 	if (tex_x < 0 || tex_y < 0
-		|| (uint32_t)tex_x >= datatextur[texture_index]->width
-		|| (uint32_t)tex_y >= datatextur[texture_index]->height)
+		|| (uint32_t)tex_x >= data->textur[texture_index]->width
+		|| (uint32_t)tex_y >= data->textur[texture_index]->height)
 		return (0);
-	index = (tex_y * datatextur[texture_index]->width
-			* datatextur[texture_index]->bytes_per_pixel) + (tex_x
-			* datatextur[texture_index]->bytes_per_pixel);
-	return (color_pixel(&datatextur[texture_index]->pixels[index], 1));
+	index = (tex_y * data->textur[texture_index]->width
+			* data->textur[texture_index]->bytes_per_pixel) + (tex_x
+			* data->textur[texture_index]->bytes_per_pixel);
+	return (color_pixel(&data->textur[texture_index]->pixels[index], 1));
 }

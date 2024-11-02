@@ -12,7 +12,7 @@
 
 #include "../../include/cub3d.h"
 
-int	valid_path(char **data, int y, int x)
+int	valid_path(char **map, int y, int x)
 {
 	if (!ft_strchr("1 ", map[y][x]) && (y == 0 || y == ft_lenarray(map) - 1))
 		return (-1);
@@ -31,7 +31,7 @@ int	valid_path(char **data, int y, int x)
 	return (0);
 }
 
-int	found_zero_index(char **arr, t_data *s_map)
+int	found_zero_index(char **arr, t_data *data)
 {
 	int	x;
 	int	y;
@@ -44,8 +44,8 @@ int	found_zero_index(char **arr, t_data *s_map)
 		{
 			if (arr[y][x] == '0' || ft_strchr("WESN", arr[y][x]))
 			{
-				s_dataplayer.x = x;
-				s_dataplayer.y = y;
+				data->player.x = x;
+				data->player.y = y;
 				return (1);
 			}
 			x++;
@@ -55,7 +55,7 @@ int	found_zero_index(char **arr, t_data *s_map)
 	return (0);
 }
 
-int	valid_char(char **arr, t_data *s_map)
+int	valid_char(char **arr, t_data *data)
 {
 	int		y;
 	int		x;
@@ -71,7 +71,7 @@ int	valid_char(char **arr, t_data *s_map)
 			if (ft_strchr("WESN", arr[y][x]) && is_exist == true)
 				is_exist = false;
 			else if (ft_strchr("WESN", arr[y][x]) && is_exist == false)
-				put_err("Error: Multiple directions.", s_map);
+				put_err("Error: Multiple directions.", data);
 			x++;
 		}
 		y++;

@@ -82,7 +82,7 @@ int	process_color(int *data_color, char *str, char *name)
 	i = 0;
 	while (i < 3)
 	{
-		map_color[i] = ft_atoi(split[i]);
+		data_color[i] = ft_atoi(split[i]);
 		i++;
 	}
 	return (free_2d_array(split), 0);

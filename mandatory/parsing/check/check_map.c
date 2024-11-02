@@ -12,7 +12,7 @@
 
 #include "../../include/cub3d.h"
 
-int	floodfill(char **data, int row, int col)
+int	floodfill(char **map, int row, int col)
 {
 	if (!map[row][col] || map[row][col] == '1')
 		return (0);
@@ -37,19 +37,19 @@ int	floodfill(char **data, int row, int col)
 	return (0);
 }
 
-void	check_map(t_data *s_map)
+void	check_map(t_data *data)
 {
 	char	**cpy_arr;
 
-	if (valid_char(s_datamap, s_map) == -1)
-		put_err("Error: No direction in the map.", s_map);
-	cpy_arr = copy_arr(s_datamap);
-	while (found_zero_index(cpy_arr, s_map))
+	if (valid_char(data->map, data) == -1)
+		put_err("Error: No direction in the map.", data);
+	cpy_arr = copy_arr(data->map);
+	while (found_zero_index(cpy_arr, data))
 	{
-		if (floodfill(cpy_arr, s_dataplayer.y, s_dataplayer.x))
+		if (floodfill(cpy_arr, data->player.y, data->player.x))
 		{
-			put_err("Error: Invalid map.10", s_map);
 			free_2d_array(cpy_arr);
+			put_err("Error: Invalid map.10", data);
 		}
 	}
 	free_2d_array(cpy_arr);

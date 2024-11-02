@@ -15,25 +15,25 @@
 static void	handle_movement(t_data *data, double *new_px,
 		double *new_py)
 {
-	if (mlx_is_key_down(datamlx, MLX_KEY_W))
+	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
 	{
-		*new_px += cos(dataplayer.angle) * MOVE_SPEED;
-		*new_py += sin(dataplayer.angle) * MOVE_SPEED;
+		*new_px += cos(data->player.angle) * MOVE_SPEED;
+		*new_py += sin(data->player.angle) * MOVE_SPEED;
 	}
-	else if (mlx_is_key_down(datamlx, MLX_KEY_S))
+	else if (mlx_is_key_down(data->mlx, MLX_KEY_S))
 	{
-		*new_px -= cos(dataplayer.angle) * MOVE_SPEED;
-		*new_py -= sin(dataplayer.angle) * MOVE_SPEED;
+		*new_px -= cos(data->player.angle) * MOVE_SPEED;
+		*new_py -= sin(data->player.angle) * MOVE_SPEED;
 	}
-	else if (mlx_is_key_down(datamlx, MLX_KEY_A))
+	else if (mlx_is_key_down(data->mlx, MLX_KEY_A))
 	{
-		*new_px += sin(dataplayer.angle) * MOVE_SPEED;
-		*new_py -= cos(dataplayer.angle) * MOVE_SPEED;
+		*new_px += sin(data->player.angle) * MOVE_SPEED;
+		*new_py -= cos(data->player.angle) * MOVE_SPEED;
 	}
-	else if (mlx_is_key_down(datamlx, MLX_KEY_D))
+	else if (mlx_is_key_down(data->mlx, MLX_KEY_D))
 	{
-		*new_px -= sin(dataplayer.angle) * MOVE_SPEED;
-		*new_py += cos(dataplayer.angle) * MOVE_SPEED;
+		*new_px -= sin(data->player.angle) * MOVE_SPEED;
+		*new_py += cos(data->player.angle) * MOVE_SPEED;
 	}
 }
 
@@ -42,27 +42,27 @@ void key_hook(t_data *data)
 	double	new_px;
 	double	new_py;
 
-	new_px = dataplayer.px;
-	new_py = dataplayer.py;
-	handle_movement(map, &new_px, &new_py);
-	if (mlx_is_key_down(datamlx, MLX_KEY_LEFT))
-		dataplayer.angle -= ROTATION_SPEED;
-	else if (mlx_is_key_down(datamlx, MLX_KEY_RIGHT))
-		dataplayer.angle += ROTATION_SPEED;
-	else if (mlx_is_key_down(datamlx, MLX_KEY_ESCAPE))
+	new_px = data->player.px;
+	new_py = data->player.py;
+	handle_movement(data, &new_px, &new_py);
+	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
+		data->player.angle -= ROTATION_SPEED;
+	else if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
+		data->player.angle += ROTATION_SPEED;
+	else if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		exit(1);
-	dataplayer.angle = fmod(dataplayer.angle, 2 * M_PI);
-	if (dataplayer.angle < 0)
-		dataplayer.angle += 2 * M_PI;
-	if (check_pos(map, new_py, new_px, 4) == 0)
+	data->player.angle = fmod(data->player.angle, 2 * M_PI);
+	if (data->player.angle < 0)
+		data->player.angle += 2 * M_PI;
+	if (check_pos(data, new_py, new_px, 4) == 0)
 	{
-		dataplayer.px = new_px;
-		dataplayer.py = new_py;
+		data->player.px = new_px;
+		data->player.py = new_py;
 	}
 }
 
 void start_key_hook(void *param)
 {
     t_data *data = (t_data *)param;
-    key_hook(map);
+    key_hook(data);
 }
