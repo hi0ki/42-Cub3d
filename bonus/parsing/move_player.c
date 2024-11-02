@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:50:58 by kadam             #+#    #+#             */
-/*   Updated: 2024/11/02 14:18:32 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/02 20:31:32 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ int open_door(t_data *data)
 	ya = 0;
 	ray.dis_H.open_door = false;
 	ray.dis_V.open_door = false;
+	ray.dis_H.is_door = false;
+	ray.dis_V.is_door = false;
 	cal_distance(data, &ray.dis_H, &ray.dis_V, data->player.angle);
-	if (ray.dis_H.inter_type_h == 'H' && (ray.dis_H.is_door == true || ray.dis_H.open_door == true))
+	if (ray.dis_H.is_door == true || ray.dis_H.open_door == true)
 	{
-		printf("aaaa\n");
 		if (ray.dis_H.is_door == true)
 		{
 			xa = ray.dis_H.x_h / SIZE;
@@ -36,9 +37,8 @@ int open_door(t_data *data)
 			data->map[ray.dis_H.y_o][ray.dis_H.x_o] = 'D';
 
 	}
-	else if (ray.dis_V.inter_type_v == 'V' && (ray.dis_V.is_door == true || ray.dis_V.open_door == true))
+	else if (ray.dis_V.is_door == true || ray.dis_V.open_door == true)
 	{
-		printf("aaabbbbbba\n");
 		if (ray.dis_V.is_door == true)
 		{
 			xa = ray.dis_V.x_v / SIZE;
@@ -74,10 +74,6 @@ static void	handle_movement(t_data *data, double *new_px,
 		*new_px -= sin(data->player.angle) * MOVE_SPEED;
 		*new_py += cos(data->player.angle) * MOVE_SPEED;
 	}
-	// if (mlx_is_key_down(data->mlx, MLX_KEY_E))
-	// {
-	// 	open_door(data);
-	// }
 }
 
 void door_keyhook(mlx_key_data_t keydata, void *param)
