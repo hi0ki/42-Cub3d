@@ -54,7 +54,9 @@ void	draw_f_c(t_data *data)
 
 int	tex_index(t_dis_H dis_H, t_dis_V dis_V, double rayangle)
 {
-	if (dis_V.inter_type_v == 'V')
+	if(dis_V.is_door || dis_H.is_door)
+		return 4;
+	else if (dis_V.inter_type_v == 'V')
 	{
 		if (rayangle > M_PI_2 && rayangle < 3 * M_PI_2)
 			return (2);

@@ -112,24 +112,22 @@ double cal_distance(t_data *data, t_dis_H *dis_H, t_dis_V *dis_V, double rayangl
 
     hdis = distance_hrz(data, dis_H, rayangle);
     vdis = distance_vrt(data, dis_V, rayangle);
+    dis_V->is_door = false;
+    dis_H->is_door  = false;
+    dis_H->inter_type_h = 'N';
+    dis_V->inter_type_v = 'N';
     if (vdis < hdis && vdis > 0)
     {
-        dis_H->inter_type_h = 'N';
         dis_V->inter_type_v = 'V';
         if (is_door(data->map, dis_V->y_v, dis_V->x_v))
             dis_V->is_door = true;
-        else
-            dis_V->is_door  = false;
         return (vdis);
     }
     else
     {
-        dis_V->inter_type_v = 'N';
         dis_H->inter_type_h = 'H';
         if (is_door(data->map, dis_H->y_h, dis_H->x_h))
             dis_H->is_door  = true;
-        else
-            dis_H->is_door  = false;
         return (hdis);
     }
 }

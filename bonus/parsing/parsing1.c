@@ -79,8 +79,9 @@ static int	load_img(t_data *map)
 	map->textur[1] = mlx_load_png(map->so);
 	map->textur[2] = mlx_load_png(map->we);
 	map->textur[3] = mlx_load_png(map->ea);
+	map->textur[4] = mlx_load_png("./texturs/download.png");
 	if (!map->textur[0] || !map->textur[1] || !map->textur[2]
-		|| !map->textur[3])
+		|| !map->textur[3] || !map->textur[4])
 		return (ft_putstrn_fd("Error\nUnable to load texture\n", 2), 1);
 	map->gun[0] = mlx_load_png("./gun/shoo0.png");
     map->gun[1] = mlx_load_png("./gun/shoo1.png");

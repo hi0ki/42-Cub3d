@@ -99,8 +99,8 @@ typedef struct s_map
 	t_player		player;
 	mlx_t			*mlx;
 	mlx_image_t		*image;
-	mlx_texture_t	*textur[4];
-	mlx_texture_t   *gun[7];
+	mlx_texture_t	*textur[5];
+	mlx_texture_t   *gun[8];
 	int index;
 }					t_data;
 
