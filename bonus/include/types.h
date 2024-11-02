@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 12:58:48 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/11/01 19:40:18 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/02 13:32:04 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,9 @@ typedef struct s_dis_H
 	double			x_h;
 	double			y_h;
 	char			inter_type_h;
+	int				x_o;
+	int				y_o;
+	bool			open_door;
 	bool			is_door;
 }					t_dis_H;
 
@@ -70,6 +73,9 @@ typedef struct s_dis_V
 	double			x_v;
 	double			y_v;
 	char			inter_type_v;
+	int				x_o;
+	int				y_o;
+	bool			open_door;
 	bool			is_door;
 }					t_dis_V;
 

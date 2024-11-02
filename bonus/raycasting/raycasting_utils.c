@@ -6,11 +6,30 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 12:57:13 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/11/01 17:17:38 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/02 13:44:45 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+double cal_dis(double xp, double yp, double x, double y)
+{
+    double dx = x - xp;
+    double dy = y - yp;
+    return (sqrt(dx * dx + dy * dy));
+}
+
+int is_door(char **map, double y, double x)
+{
+    int xa;
+    int ya;
+
+    xa = x / SIZE;
+    ya = y / SIZE;
+    if (map[ya][xa] && map[ya][xa] == 'D')
+        return (1);
+    return (0);
+}
 
 int check_pos(t_data *data, double py, double px, double num_pix)
 {
@@ -19,26 +38,19 @@ int check_pos(t_data *data, double py, double px, double num_pix)
 
     x = px / SIZE;
     y = (py + num_pix) / SIZE;
-    if (data->map[y] && data->map[y][x] == '1')
+    if (data->map[y] && (data->map[y][x] == '1' || data->map[y][x] == 'D'))
         return (-1);
     y = (py - num_pix) / SIZE;
-    if (y >= 0 && data->map[y][x] == '1')
+    if (y >= 0 && (data->map[y][x] == '1' || data->map[y][x] == 'D'))
         return (-1);
     y = py / SIZE;
     x = (px + num_pix) / SIZE;
-    if (data->map[y][x] && data->map[y][x] == '1')
+    if (data->map[y][x] && (data->map[y][x] == '1' || data->map[y][x] == 'D'))
         return (-1);
     x = (px - num_pix) / SIZE;
-    if (x >= 0 && data->map[y][x] == '1')
+    if (x >= 0 && (data->map[y][x] == '1' || data->map[y][x] == 'D'))
         return (-1);
     return (0);
-}
-
-double cal_dis(double xp, double yp, double x, double y)
-{
-    double dx = x - xp;
-    double dy = y - yp;
-    return (sqrt(dx * dx + dy * dy));
 }
 
 int check_ray(t_data *data, double y, double x)

@@ -6,28 +6,50 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:50:58 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/31 12:56:08 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/02 14:18:32 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
+int open_door(t_data *data)
+{
+	t_rays ray;
+	int xa;
+	int ya;
 
-// void  mouse_hook(t_data *data)
-// {
-    // static int32_t	old_x;
-    // static int32_t	old_y;
-    // int32_t	new_x;
-    // int32_t	new_y;
+	xa = 0;
+	ya = 0;
+	ray.dis_H.open_door = false;
+	ray.dis_V.open_door = false;
+	cal_distance(data, &ray.dis_H, &ray.dis_V, data->player.angle);
+	if (ray.dis_H.inter_type_h == 'H' && (ray.dis_H.is_door == true || ray.dis_H.open_door == true))
+	{
+		printf("aaaa\n");
+		if (ray.dis_H.is_door == true)
+		{
+			xa = ray.dis_H.x_h / SIZE;
+			ya = ray.dis_H.y_h / SIZE;
+			data->map[ya][xa] = 'O';
+		}
+		else if (ray.dis_H.open_door == true)
+			data->map[ray.dis_H.y_o][ray.dis_H.x_o] = 'D';
 
-	// new_x = 0;
-	// new_y = 0;
-    // mlx_get_mouse_pos(datamlx, &x, &y);
-	// if () // hna mnin ankml
-    // // Print the mouse position
-    // printf("Mouse position: %d, %d\n", x, y);
-
-// }
+	}
+	else if (ray.dis_V.inter_type_v == 'V' && (ray.dis_V.is_door == true || ray.dis_V.open_door == true))
+	{
+		printf("aaabbbbbba\n");
+		if (ray.dis_V.is_door == true)
+		{
+			xa = ray.dis_V.x_v / SIZE;
+			ya = ray.dis_V.y_v / SIZE;
+			data->map[ya][xa] = 'O';
+		}
+		else if (ray.dis_V.open_door == true)
+			data->map[ray.dis_V.y_o][ray.dis_V.x_o] = 'D';
+	}
+	return (0);
+}
 
 static void	handle_movement(t_data *data, double *new_px,
 		double *new_py)
@@ -52,6 +74,17 @@ static void	handle_movement(t_data *data, double *new_px,
 		*new_px -= sin(data->player.angle) * MOVE_SPEED;
 		*new_py += cos(data->player.angle) * MOVE_SPEED;
 	}
+	// if (mlx_is_key_down(data->mlx, MLX_KEY_E))
+	// {
+	// 	open_door(data);
+	// }
+}
+
+void door_keyhook(mlx_key_data_t keydata, void *param)
+{
+	t_data *data = (t_data *)param;
+	if (keydata.key == MLX_KEY_E && keydata.action == MLX_PRESS)
+		open_door(data);
 }
 
 void key_hook(t_data *data)
@@ -82,5 +115,6 @@ void start_key_hook(void *param)
 {
     t_data *data = (t_data *)param;
     key_hook(data);
+	mlx_key_hook(data->mlx, door_keyhook, data);
 	// mouse_hook(map);
 }

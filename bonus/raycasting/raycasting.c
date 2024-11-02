@@ -6,21 +6,48 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 13:42:02 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/11/01 19:47:08 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/02 14:02:21 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int is_door(char **map, double y, double x)
+int h_open_door(t_data *data, t_dis_H *dis_H)
 {
     int xa;
     int ya;
 
-    xa = x / SIZE;
-    ya = y / SIZE;
-    if (map[ya][xa] && map[ya][xa] == 'D')
-        return (1);
+    xa = dis_H->x_h / SIZE;
+    ya = dis_H->y_h / SIZE;
+    if (ya < 0 || ya >= ft_lenarray(data->map) ||
+    xa >= _strlen(data->map[ya]) || xa < 0)
+        return (0);
+    if (data->map[ya][xa] && data->map[ya][xa] == 'O' && dis_H->open_door == false)
+    {
+        dis_H->x_o = xa;
+        dis_H->y_o = ya;
+        dis_H->open_door = true;
+        printf("dkhlllll\n");
+    }
+    return (0);
+}
+int v_open_door(t_data *data, t_dis_V *dis_V)
+{
+    int xa;
+    int ya;
+
+    xa = dis_V->x_v / SIZE;
+    ya = dis_V->y_v / SIZE;
+    if (ya < 0 || ya >= ft_lenarray(data->map) ||
+    xa >= _strlen(data->map[ya]) || xa < 0)
+        return (0);
+    if (data->map[ya][xa] && data->map[ya][xa] == 'O' && dis_V->open_door == false)
+    {
+        dis_V->x_o = xa;
+        dis_V->y_o = ya;
+        dis_V->open_door = true;
+        printf("dkhlllllzzzzz\n");
+    }
     return (0);
 }
 
@@ -42,7 +69,7 @@ double distance_hrz(t_data *data, t_dis_H *dis_H, double angle)
     dis_H->x_h = ((dis_H->y_h - data->player.py) / tan(angle)) + data->player.px;
     while (1)
     {
-        if (check_ray(data, dis_H->y_h, dis_H->x_h) == -1)
+        if (!h_open_door(data, dis_H) && check_ray(data, dis_H->y_h, dis_H->x_h) == -1)
             break;
         dis_H->y_h += ya;
         dis_H->x_h += ya / tan(angle);
@@ -69,7 +96,7 @@ double distance_vrt(t_data *data, t_dis_V *dis_V, double angle)
     dis_V->y_v = data->player.py + (dis_V->x_v - data->player.px) * tan(angle);
     while (1)
     {
-        if (check_ray(data, dis_V->y_v, dis_V->x_v) == -1)
+        if (!v_open_door(data, dis_V) && check_ray(data, dis_V->y_v, dis_V->x_v) == -1)
             break;
         dis_V->x_v += xa;
         dis_V->y_v += xa * tan(angle);

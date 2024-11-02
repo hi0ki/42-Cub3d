@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:46:15 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/31 13:07:14 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/02 12:58:30 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	main(int ac, char **av)
 	check_map(&map_struct);
 	player_position(&map_struct, 0, 0);
 	map_struct.mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", 0);
-	mlx_loop_hook(map_struct.mlx, &start_drawing, &map_struct);
+	mlx_loop_hook(map_struct.mlx, &start_drawing, &map_struct);;
     mlx_loop_hook(map_struct.mlx, &start_key_hook, &map_struct);
 	mlx_loop(map_struct.mlx);
 	return (0);

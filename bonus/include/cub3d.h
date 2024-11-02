@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:12:37 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/31 12:49:09 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/02 11:33:40 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,12 @@ void start_key_hook(void *param);
 
 
 /*					raycasting					*/
+double cal_distance(t_data *data, t_dis_H *dis_H, t_dis_V *dis_V, double rayangle);
 void	start_raycasting(t_data *data);
 int		check_ray(t_data *data, double y, double x);
 double	cal_dis(double xp, double yp, double x, double y);
 int		check_pos(t_data *data, double py, double px, double num_pix);
 void draw_3d(t_data *data, double line_height, int i, t_rays rays);
 void	start_drawing(void *ptr);
+int is_door(char **map, double y, double x);
 #endif
