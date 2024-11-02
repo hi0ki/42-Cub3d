@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 13:42:02 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/11/02 14:02:21 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/02 20:34:02 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int h_open_door(t_data *data, t_dis_H *dis_H)
         dis_H->x_o = xa;
         dis_H->y_o = ya;
         dis_H->open_door = true;
-        printf("dkhlllll\n");
     }
     return (0);
 }
@@ -46,7 +45,6 @@ int v_open_door(t_data *data, t_dis_V *dis_V)
         dis_V->x_o = xa;
         dis_V->y_o = ya;
         dis_V->open_door = true;
-        printf("dkhlllllzzzzz\n");
     }
     return (0);
 }
@@ -69,7 +67,9 @@ double distance_hrz(t_data *data, t_dis_H *dis_H, double angle)
     dis_H->x_h = ((dis_H->y_h - data->player.py) / tan(angle)) + data->player.px;
     while (1)
     {
-        if (!h_open_door(data, dis_H) && check_ray(data, dis_H->y_h, dis_H->x_h) == -1)
+        if (angle == data->player.angle)
+            h_open_door(data, dis_H);
+        if (check_ray(data, dis_H->y_h, dis_H->x_h) == -1)
             break;
         dis_H->y_h += ya;
         dis_H->x_h += ya / tan(angle);
@@ -96,7 +96,9 @@ double distance_vrt(t_data *data, t_dis_V *dis_V, double angle)
     dis_V->y_v = data->player.py + (dis_V->x_v - data->player.px) * tan(angle);
     while (1)
     {
-        if (!v_open_door(data, dis_V) && check_ray(data, dis_V->y_v, dis_V->x_v) == -1)
+        if (angle == data->player.angle)
+            v_open_door(data, dis_V);
+        if (check_ray(data, dis_V->y_v, dis_V->x_v) == -1)
             break;
         dis_V->x_v += xa;
         dis_V->y_v += xa * tan(angle);
