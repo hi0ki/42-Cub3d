@@ -12,21 +12,14 @@
 
 #include "include/cub3d.h"
 
-static int	color_pixel(void *arr, int is_uint8)
+static int	color_pixel(int *arr)
 {
-	uint8_t	*i;
-	int		*j;
+	return ((arr[0] << 24) | (arr[1] << 16) | (arr[2] << 8) | 0xFF);
+}
 
-	if (is_uint8)
-	{
-		i = (uint8_t *)arr;
-		return ((i[0] << 24) | (i[1] << 16) | (i[2] << 8) | 0xFF);
-	}
-	else
-	{
-		j = (int *)arr;
-		return ((j[0] << 24) | (j[1] << 16) | (j[2] << 8) | 0xFF);
-	}
+static uint32_t colorr(uint8_t *arr)
+{
+	return ((arr[0]<< 24) | (arr[ 1] << 16) | (arr[ 2] << 8) | arr[3]);
 }
 
 void	draw_f_c(t_data *data)
@@ -39,7 +32,7 @@ void	draw_f_c(t_data *data)
 	{
 		x = 0;
 		while (x < WIDTH)
-			mlx_put_pixel(data->image, x++, y, color_pixel(data->c, 0));
+			mlx_put_pixel(data->image, x++, y, color_pixel(data->c));
 		y++;
 	}
 	y = HEIGHT / 2;
@@ -47,7 +40,7 @@ void	draw_f_c(t_data *data)
 	{
 		x = 0;
 		while (x < WIDTH)
-			mlx_put_pixel(data->image, x++, y, color_pixel(data->f, 0));
+			mlx_put_pixel(data->image, x++, y, color_pixel(data->f));
 		y++;
 	}
 }
@@ -73,10 +66,10 @@ int	tex_index(t_dis_H dis_H, t_dis_V dis_V, double rayangle)
 	return (-1);
 }
 
-int	get_color(t_data *data, t_rays rays, int tex_y,
+uint32_t	get_color(t_data *data, t_rays rays, double tex_y,
 		int texture_index)
 {
-	int	tex_x;
+	double	tex_x;
 	int	index;
 
 	tex_x = 0;
@@ -90,8 +83,8 @@ int	get_color(t_data *data, t_rays rays, int tex_y,
 		|| (uint32_t)tex_x >= data->textur[texture_index]->width
 		|| (uint32_t)tex_y >= data->textur[texture_index]->height)
 		return (0);
-	index = (tex_y * data->textur[texture_index]->width
-			* data->textur[texture_index]->bytes_per_pixel) + (tex_x
+	index = ((int)tex_y * data->textur[texture_index]->width
+			* data->textur[texture_index]->bytes_per_pixel) + ((int)tex_x
 			* data->textur[texture_index]->bytes_per_pixel);
-	return (color_pixel(&data->textur[texture_index]->pixels[index], 1));
+	return (colorr(&data->textur[texture_index]->pixels[index]));
 }
