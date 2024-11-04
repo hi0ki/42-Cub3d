@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:12:37 by kadam             #+#    #+#             */
-/*   Updated: 2024/11/02 11:33:40 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/04 11:23:26 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,5 @@ int		check_pos(t_data *data, double py, double px, double num_pix);
 void draw_3d(t_data *data, double line_height, double i, t_rays rays);
 void	start_drawing(void *ptr);
 int is_door(char **map, double y, double x);
+double ft_normalize(double angle);
 #endif

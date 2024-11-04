@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:50:58 by kadam             #+#    #+#             */
-/*   Updated: 2024/11/02 20:31:32 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/04 12:09:54 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,29 +25,22 @@ int open_door(t_data *data)
 	ray.dis_H.is_door = false;
 	ray.dis_V.is_door = false;
 	cal_distance(data, &ray.dis_H, &ray.dis_V, data->player.angle);
-	if (ray.dis_H.is_door == true || ray.dis_H.open_door == true)
+	if (ray.dis_H.is_door == true)
 	{
-		if (ray.dis_H.is_door == true)
-		{
-			xa = ray.dis_H.x_h / SIZE;
-			ya = ray.dis_H.y_h / SIZE;
-			data->map[ya][xa] = 'O';
-		}
-		else if (ray.dis_H.open_door == true)
-			data->map[ray.dis_H.y_o][ray.dis_H.x_o] = 'D';
-
+		xa = ray.dis_H.x_h / SIZE;
+		ya = ray.dis_H.y_h / SIZE;
+		data->map[ya][xa] = 'O';
 	}
-	else if (ray.dis_V.is_door == true || ray.dis_V.open_door == true)
+	else if (ray.dis_H.open_door == true)
+		data->map[ray.dis_H.y_o][ray.dis_H.x_o] = 'D';
+	if (ray.dis_V.is_door == true)
 	{
-		if (ray.dis_V.is_door == true)
-		{
-			xa = ray.dis_V.x_v / SIZE;
-			ya = ray.dis_V.y_v / SIZE;
-			data->map[ya][xa] = 'O';
-		}
-		else if (ray.dis_V.open_door == true)
-			data->map[ray.dis_V.y_o][ray.dis_V.x_o] = 'D';
+		xa = ray.dis_V.x_v / SIZE;
+		ya = ray.dis_V.y_v / SIZE;
+		data->map[ya][xa] = 'O';
 	}
+	else if (ray.dis_V.open_door == true)
+		data->map[ray.dis_V.y_o][ray.dis_V.x_o] = 'D';
 	return (0);
 }
 
@@ -97,9 +90,7 @@ void key_hook(t_data *data)
 		data->player.angle += ROTATION_SPEED;
 	else if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		exit(1);
-	data->player.angle = fmod(data->player.angle, 2 * M_PI);
-	if (data->player.angle < 0)
-		data->player.angle += 2 * M_PI;
+	data->player.angle = ft_normalize(data->player.angle);
 	if (check_pos(data, new_py, new_px, 4) == 0)
 	{
 		data->player.px = new_px;
@@ -107,10 +98,11 @@ void key_hook(t_data *data)
 	}
 }
 
+
 void start_key_hook(void *param)
 {
     t_data *data = (t_data *)param;
+
     key_hook(data);
 	mlx_key_hook(data->mlx, door_keyhook, data);
-	// mouse_hook(map);
 }

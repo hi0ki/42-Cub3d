@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 13:42:02 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/10/31 12:49:09 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/04 11:27:46 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,7 @@ void start_raycasting(t_data *data)
 
     while (i < WIDTH)
     {
-        rayangle = fmod(rayangle, 2 * M_PI);
-        if (rayangle < 0)
-            rayangle += 2 * M_PI;
+        rayangle = ft_normalize(rayangle);
         dis = cal_distance(data, &rays[i].dis_H, &rays[i].dis_V, rayangle);
         dis = dis * cos(data->player.angle - rayangle);
         line_height = (SIZE / dis) * (WIDTH / 2) / tan(fov / 2);

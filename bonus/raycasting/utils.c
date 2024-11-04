@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_map.c                                         :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/08 17:48:43 by kadam             #+#    #+#             */
-/*   Updated: 2024/11/04 11:27:06 by eel-ansa         ###   ########.fr       */
+/*   Created: 2024/11/04 11:21:55 by eel-ansa          #+#    #+#             */
+/*   Updated: 2024/11/04 11:23:13 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	start_drawing(void *ptr)
+double ft_normalize(double angle)
 {
-	t_data	*data;
-
-	data = (t_data *)ptr;
-	mlx_delete_image(data->mlx, data->image);
-	data->image = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	draw_f_c(data);
-	data->player.angle = ft_normalize(data->player.angle);
-	start_raycasting(data);
-	mlx_image_to_window(data->mlx, data->image, 0, 0);
+	angle = fmod(angle, 2 * M_PI);
+	if (angle < 0)
+		angle += 2 * M_PI;
+	return (angle);
 }

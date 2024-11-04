@@ -1,5 +1,5 @@
 CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror -O3
+CFLAGS	=	-Wall -Wextra -Werror
 RM		=	rm -f
 SRCS	=	gnl/get_next_line.c gnl/get_next_line_utils.c \
 			libft_utils/ft_arraylen.c libft_utils/ft_free_array.c libft_utils/ft_put.c libft_utils/ft_split.c libft_utils/ft_strtrim.c\
@@ -8,7 +8,7 @@ SRCS	=	gnl/get_next_line.c gnl/get_next_line_utils.c \
 			parsing/parsing1.c parsing/parsing2.c parsing/parsing3.c parsing/parsing0.c parsing/move_player.c \
 			parsing/check/check_map.c parsing/check/che_map_utils.c parsing/check/check_utils.c\
 			parsing/draw/draw_map.c  parsing/draw/draw_utils.c parsing/draw/draw_minimap.c\
-			raycasting/raycasting_utils.c raycasting/raycasting.c \
+			raycasting/raycasting_utils.c raycasting/raycasting.c raycasting/utils.c\
 			texturing.c \
 			main.c 
 
