@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 12:57:13 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/11/02 13:44:45 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/04 11:02:54 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void draw_3d(t_data *data, double line_height, int i, t_rays rays)
     int tex_indexx = tex_index(rays.dis_H, rays.dis_V, rays.rayangle);
 
     top = (HEIGHT / 2) - (line_height / 2);
-    int j = top;
+    double j = top;
     bot = (HEIGHT / 2) + (line_height / 2);
     if (top < 0)
         top = 0;
