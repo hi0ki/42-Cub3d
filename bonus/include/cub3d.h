@@ -57,7 +57,7 @@ void draw_line(void *image, int x, int y, double size, int color, double angle);
 /*				texturing				*/
 
 void	draw_f_c(t_data *data);
-int	get_color(t_data *data, t_rays rays, int tex_y,
+uint32_t	get_color(t_data *data, t_rays rays, double tex_y,
 		int texture_index);
 int		tex_index(t_dis_H dis_H, t_dis_V dis_V, double rayangle);
 
@@ -84,7 +84,7 @@ void	start_raycasting(t_data *data);
 int		check_ray(t_data *data, double y, double x);
 double	cal_dis(double xp, double yp, double x, double y);
 int		check_pos(t_data *data, double py, double px, double num_pix);
-void draw_3d(t_data *data, double line_height, int i, t_rays rays);
+void draw_3d(t_data *data, double line_height, double i, t_rays rays);
 void	start_drawing(void *ptr);
 int is_door(char **map, double y, double x);
 #endif

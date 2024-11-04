@@ -70,11 +70,11 @@ int check_ray(t_data *data, double y, double x)
     return (0);
 }
 
-void draw_3d(t_data *data, double line_height, int i, t_rays rays)
+void draw_3d(t_data *data, double line_height, double i, t_rays rays)
 {
     double top;
     double bot;
-    int tex_y;
+    double tex_y;
     int tex_indexx = tex_index(rays.dis_H, rays.dis_V, rays.rayangle);
 
     top = (HEIGHT / 2) - (line_height / 2);
