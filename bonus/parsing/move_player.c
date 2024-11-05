@@ -6,20 +6,16 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:50:58 by kadam             #+#    #+#             */
-/*   Updated: 2024/11/04 12:09:54 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/05 13:44:32 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int open_door(t_data *data)
+static int open_door(t_data *data, int xa, int ya)
 {
 	t_rays ray;
-	int xa;
-	int ya;
 
-	xa = 0;
-	ya = 0;
 	ray.dis_H.open_door = false;
 	ray.dis_V.open_door = false;
 	ray.dis_H.is_door = false;
@@ -69,14 +65,14 @@ static void	handle_movement(t_data *data, double *new_px,
 	}
 }
 
-void door_keyhook(mlx_key_data_t keydata, void *param)
+static void door_keyhook(mlx_key_data_t keydata, void *param)
 {
 	t_data *data = (t_data *)param;
 	if (keydata.key == MLX_KEY_E && keydata.action == MLX_PRESS)
-		open_door(data);
+		open_door(data, 0, 0);
 }
 
-void key_hook(t_data *data)
+static void key_hook(t_data *data)
 {
 	double	new_px;
 	double	new_py;
@@ -97,7 +93,6 @@ void key_hook(t_data *data)
 		data->player.py = new_py;
 	}
 }
-
 
 void start_key_hook(void *param)
 {

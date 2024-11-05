@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:12:37 by kadam             #+#    #+#             */
-/*   Updated: 2024/11/04 11:23:26 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/05 13:46:33 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,8 @@ int		valid_char(char **arr, t_data *s_map);
 int		found_zero_index(char **arr, t_data *s_map);
 int		valid_path(char **data, int y, int x);
 int		check_door(t_data *data);
-void key_hook(t_data *data);
 void start_key_hook(void *param);
-
+void mouse_hook(void *param);
 
 /*					raycasting					*/
 double cal_distance(t_data *data, t_dis_H *dis_H, t_dis_V *dis_V, double rayangle);
