@@ -35,6 +35,11 @@ static void	handle_movement(t_data *data, double *new_px,
 		*new_px -= sin(data->player.angle) * MOVE_SPEED;
 		*new_py += cos(data->player.angle) * MOVE_SPEED;
 	}
+	if(mlx_is_key_down(data->mlx, MLX_KEY_SPACE))
+	{
+		if(data->index == 0 || data->index == 2)
+            data->index = 1;
+	}
 }
 
 static void door_keyhook(mlx_key_data_t keydata, void *param)
