@@ -6,11 +6,35 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 13:44:52 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/11/05 13:46:05 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/06 12:46:53 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void open_door(t_data *data, t_rays ray,int xa, int ya)
+{
+	if (ray.dis_H.is_door == true &&  ray.dis_H.dis <= 20)
+	{
+		xa = ray.dis_H.x_h / SIZE;
+		ya = ray.dis_H.y_h / SIZE;
+		data->map[ya][xa] = 'O';
+	}
+	if (ray.dis_V.is_door == true &&  ray.dis_V.dis <= 20)
+	{
+		xa = ray.dis_V.x_v / SIZE;
+		ya = ray.dis_V.y_v / SIZE;
+		data->map[ya][xa] = 'O';
+	}
+}
+
+void close_door(t_data *data, t_rays ray)
+{
+	if (ray.dis_H.open_door == true)
+		data->map[ray.dis_H.y_o][ray.dis_H.x_o] = 'D';
+	else if (ray.dis_V.open_door == true)
+		data->map[ray.dis_V.y_o][ray.dis_V.x_o] = 'D';
+}
 
 void mouse_hook(void *param)
 {

@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 13:42:02 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/11/04 11:25:52 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/06 12:42:59 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ double cal_distance(t_data *data, t_dis_H *dis_H, t_dis_V *dis_V, double rayangl
     if (vdis < hdis && vdis > 0)
     {
         dis_V->inter_type_v = 'V';
+        dis_V->dis = vdis;
         if (is_door(data->map, dis_V->y_v, dis_V->x_v))
             dis_V->is_door = true;
         return (vdis);
@@ -128,6 +129,7 @@ double cal_distance(t_data *data, t_dis_H *dis_H, t_dis_V *dis_V, double rayangl
     else
     {
         dis_H->inter_type_h = 'H';
+        dis_H->dis = hdis;
         if (is_door(data->map, dis_H->y_h, dis_H->x_h))
             dis_H->is_door  = true;
         return (hdis);
