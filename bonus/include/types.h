@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 12:58:48 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/11/06 12:23:51 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/08 12:57:32 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,9 @@ typedef struct s_lines
 	int				e_x;
 	int				y;
 	int				x_pos;
-	struct s_lines *next;
-	struct s_lines *prv;
+	struct s_lines	*next;
+	struct s_lines	*prv;
 }t_lines;
-
 
 typedef struct s_player
 {
@@ -57,35 +56,35 @@ typedef struct s_player
 	int				y;
 }					t_player;
 
-typedef struct s_dis_H
+typedef struct s_dis_h
 {
 	double			x_h;
 	double			y_h;
 	double			dis;
 	int				x_o;
 	int				y_o;
-	bool			open_door;
-	bool			is_door;
+	bool			close_d;
+	bool			open_d;
 	char			inter_type_h;
-}					t_dis_H;
+}					t_dis_h;
 
-typedef struct s_dis_V
+typedef struct s_dis_v
 {
 	double			x_v;
 	double			y_v;
 	double			dis;
 	int				x_o;
 	int				y_o;
-	bool			open_door;
-	bool			is_door;
+	bool			close_d;
+	bool			open_d;
 	char			inter_type_v;
-}					t_dis_V;
+}					t_dis_v;
 
 typedef struct s_rays
 {
-	double 			rayangle;
-	t_dis_H			dis_H;
-	t_dis_V			dis_V;
+	double			rayangle;
+	t_dis_h			dis_h;
+	t_dis_v			dis_v;
 }t_rays;
 
 typedef struct s_map
@@ -103,7 +102,7 @@ typedef struct s_map
 	mlx_t			*mlx;
 	mlx_image_t		*image;
 	mlx_texture_t	*textur[5];
-	mlx_texture_t   *gun[8];
+	mlx_texture_t	*gun[8];
 }					t_data;
 
 #endif

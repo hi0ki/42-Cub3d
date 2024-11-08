@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:12:37 by kadam             #+#    #+#             */
-/*   Updated: 2024/11/04 11:28:33 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/08 12:56:29 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		check_all(int ac, char **av, t_data *data_struct, int fd);
 void	draw_f_c(t_data *data);
 uint32_t	get_color(t_data *data, t_rays rays, double tex_y,
 		int texture_index);
-int		tex_index(t_dis_H dis_H, t_dis_V dis_V, double rayangle);
+int		tex_index(t_dis_h dis_h, t_dis_v dis_v, double rayangle);
 
 /*                      utils                   */
 void	check_map(t_data *s_map);

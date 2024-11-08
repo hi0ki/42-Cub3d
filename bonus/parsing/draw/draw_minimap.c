@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 20:06:54 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/10/31 14:08:40 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/06 13:42:39 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static void minimap_top(t_data *data, t_lines **lines, int len)
     int x, y;
     int i = 0;
     t_lines *node;
-    // t_lines *tmp;
 
     y = data->player.py / SIZE;
     x = data->player.px / SIZE;

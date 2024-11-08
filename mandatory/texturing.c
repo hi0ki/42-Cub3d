@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 13:34:32 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/31 12:49:09 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/08 12:56:29 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,16 @@ void	draw_f_c(t_data *data)
 	}
 }
 
-int	tex_index(t_dis_H dis_H, t_dis_V dis_V, double rayangle)
+int	tex_index(t_dis_h dis_h, t_dis_v dis_v, double rayangle)
 {
-	if (dis_V.inter_type_v == 'V')
+	if (dis_v.inter_type_v == 'V')
 	{
 		if (rayangle > M_PI_2 && rayangle < 3 * M_PI_2)
 			return (2);
 		else
 			return (3);
 	}
-	else if (dis_H.inter_type_h == 'H')
+	else if (dis_h.inter_type_h == 'H')
 	{
 		if (rayangle > M_PI && rayangle < 2 * M_PI)
 			return (1);
@@ -71,11 +71,11 @@ uint32_t	get_color(t_data *data, t_rays rays, double tex_y,
 	int	index;
 
 	tex_x = 0;
-	if (rays.dis_H.inter_type_h == 'H')
-		tex_x = ((rays.dis_H.x_h / SIZE) - floor(rays.dis_H.x_h / SIZE))
+	if (rays.dis_h.inter_type_h == 'H')
+		tex_x = ((rays.dis_h.x_h / SIZE) - floor(rays.dis_h.x_h / SIZE))
 			* data->textur[texture_index]->width;
-	else if (rays.dis_V.inter_type_v == 'V')
-		tex_x = ((rays.dis_V.y_v / SIZE) - floor(rays.dis_V.y_v / SIZE))
+	else if (rays.dis_v.inter_type_v == 'V')
+		tex_x = ((rays.dis_v.y_v / SIZE) - floor(rays.dis_v.y_v / SIZE))
 			* data->textur[texture_index]->width;
 	if (tex_x < 0 || tex_y < 0
 		|| (uint32_t)tex_x >= data->textur[texture_index]->width

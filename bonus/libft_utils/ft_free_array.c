@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 14:31:21 by kadam             #+#    #+#             */
-/*   Updated: 2024/09/04 12:41:39 by kadam            ###   ########.fr       */
+/*   Updated: 2024/11/08 13:54:18 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void free_2d_array(char **array)
+void	free_2d_array(char **array)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!array)
-		return;
+		return ;
 	while (array[i])
 	{
 		free(array[i]);

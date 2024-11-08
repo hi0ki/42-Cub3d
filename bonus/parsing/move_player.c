@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:50:58 by kadam             #+#    #+#             */
-/*   Updated: 2024/11/06 12:46:23 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/08 12:56:29 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ static void door_keyhook(mlx_key_data_t keydata, void *param)
 	t_data *data = (t_data *)param;
 	t_rays ray;
 
-	ray.dis_H.open_door = false;
-	ray.dis_V.open_door = false;
-	ray.dis_H.is_door = false;
-	ray.dis_V.is_door = false;
-	cal_distance(data, &ray.dis_H, &ray.dis_V, data->player.angle);
+	ray.dis_h.close_d = false;
+	ray.dis_v.close_d = false;
+	ray.dis_h.open_d = false;
+	ray.dis_v.open_d = false;
+	cal_distance(data, &ray.dis_h, &ray.dis_v, data->player.angle);
 	if (keydata.key == MLX_KEY_E && keydata.action == MLX_PRESS)
 		open_door(data, ray, 0, 0);
 	else if (keydata.key == MLX_KEY_Q && keydata.action == MLX_PRESS)
@@ -82,8 +82,9 @@ static void key_hook(t_data *data)
 
 void start_key_hook(void *param)
 {
-    t_data *data = (t_data *)param;
+    t_data *data;
 
+	data = (t_data *)param;
     key_hook(data);
 	mlx_key_hook(data->mlx, door_keyhook, data);
 }

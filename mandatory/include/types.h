@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 12:58:48 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/11/04 14:09:50 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/08 12:56:29 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,24 +47,24 @@ typedef struct s_player
 	mlx_image_t		*image_player;
 }					t_player;
 
-typedef struct s_dis_H
+typedef struct s_dis_h
 {
 	double			x_h;
 	double			y_h;
 	char			inter_type_h;
-}					t_dis_H;
+}					t_dis_h;
 
-typedef struct s_dis_V
+typedef struct s_dis_v
 {
 	double			x_v;
 	double			y_v;
 	char			inter_type_v;
-}					t_dis_V;
+}					t_dis_v;
 
 typedef struct s_rays
 {
-	t_dis_H			dis_H;
-	t_dis_V			dis_V;
+	t_dis_h			dis_h;
+	t_dis_v			dis_v;
 	double 			rayangle;
 }t_rays;
 

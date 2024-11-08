@@ -6,132 +6,128 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 13:42:02 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/11/06 12:42:59 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/08 12:56:29 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int h_open_door(t_data *data, t_dis_H *dis_H)
+int h_close_d(t_data *data, t_dis_h *dis_h)
 {
     int xa;
     int ya;
 
-    xa = dis_H->x_h / SIZE;
-    ya = dis_H->y_h / SIZE;
+    xa = dis_h->x_h / SIZE;
+    ya = dis_h->y_h / SIZE;
     if (ya < 0 || ya >= ft_lenarray(data->map) ||
     xa >= _strlen(data->map[ya]) || xa < 0)
         return (0);
-    if (data->map[ya][xa] && data->map[ya][xa] == 'O' && dis_H->open_door == false)
+    if (data->map[ya][xa] && data->map[ya][xa] == 'O' && dis_h->close_d == false)
     {
-        dis_H->x_o = xa;
-        dis_H->y_o = ya;
-        dis_H->open_door = true;
+        dis_h->x_o = xa;
+        dis_h->y_o = ya;
+        dis_h->close_d = true;
     }
     return (0);
 }
-int v_open_door(t_data *data, t_dis_V *dis_V)
+int v_close_d(t_data *data, t_dis_v *dis_v)
 {
     int xa;
     int ya;
 
-    xa = dis_V->x_v / SIZE;
-    ya = dis_V->y_v / SIZE;
+    xa = dis_v->x_v / SIZE;
+    ya = dis_v->y_v / SIZE;
     if (ya < 0 || ya >= ft_lenarray(data->map) ||
     xa >= _strlen(data->map[ya]) || xa < 0)
         return (0);
-    if (data->map[ya][xa] && data->map[ya][xa] == 'O' && dis_V->open_door == false)
+    if (data->map[ya][xa] && data->map[ya][xa] == 'O' && dis_v->close_d == false)
     {
-        dis_V->x_o = xa;
-        dis_V->y_o = ya;
-        dis_V->open_door = true;
+        dis_v->x_o = xa;
+        dis_v->y_o = ya;
+        dis_v->close_d = true;
     }
     return (0);
 }
 
-double distance_hrz(t_data *data, t_dis_H *dis_H, double angle)
+double distance_hrz(t_data *data, t_dis_h *dis_h, double angle)
 {
     double hdis;
     double ya;
 
     if (angle >= M_PI)
     {
-        dis_H->y_h = floor(data->player.py / SIZE) * SIZE - 0.000001;
+        dis_h->y_h = floor(data->player.py / SIZE) * SIZE - 0.000001;
         ya = -SIZE;
     }
     else
     {
-        dis_H->y_h = floor((data->player.py) / SIZE) * SIZE + SIZE;
+        dis_h->y_h = floor((data->player.py) / SIZE) * SIZE + SIZE;
         ya = SIZE;
     }
-    dis_H->x_h = ((dis_H->y_h - data->player.py) / tan(angle)) + data->player.px;
+    dis_h->x_h = ((dis_h->y_h - data->player.py) / tan(angle)) + data->player.px;
     while (1)
     {
         if (angle == data->player.angle)
-            h_open_door(data, dis_H);
-        if (check_ray(data, dis_H->y_h, dis_H->x_h) == -1)
+            h_close_d(data, dis_h);
+        if (check_ray(data, dis_h->y_h, dis_h->x_h) == -1)
             break;
-        dis_H->y_h += ya;
-        dis_H->x_h += ya / tan(angle);
+        dis_h->y_h += ya;
+        dis_h->x_h += ya / tan(angle);
     }
-    hdis = cal_dis(data->player.px, data->player.py, dis_H->x_h, dis_H->y_h);
+    hdis = cal_dis(data->player.px, data->player.py, dis_h->x_h, dis_h->y_h);
     return (hdis);
 }
 
-double distance_vrt(t_data *data, t_dis_V *dis_V, double angle)
+double distance_vrt(t_data *data, t_dis_v *dis_v, double angle)
 {
     double vdis;
     double xa;
 
     if (angle > M_PI_2 && angle < M_PI_2 * 3)
     {
-        dis_V->x_v = floor(data->player.px / SIZE) * SIZE - 0.000001;
+        dis_v->x_v = floor(data->player.px / SIZE) * SIZE - 0.000001;
         xa = -SIZE;
     }
     else
     {
-        dis_V->x_v = floor(data->player.px / SIZE) * SIZE + SIZE;
+        dis_v->x_v = floor(data->player.px / SIZE) * SIZE + SIZE;
         xa = SIZE;
     }
-    dis_V->y_v = data->player.py + (dis_V->x_v - data->player.px) * tan(angle);
+    dis_v->y_v = data->player.py + (dis_v->x_v - data->player.px) * tan(angle);
     while (1)
     {
         if (angle == data->player.angle)
-            v_open_door(data, dis_V);
-        if (check_ray(data, dis_V->y_v, dis_V->x_v) == -1)
+            v_close_d(data, dis_v);
+        if (check_ray(data, dis_v->y_v, dis_v->x_v) == -1)
             break;
-        dis_V->x_v += xa;
-        dis_V->y_v += xa * tan(angle);
+        dis_v->x_v += xa;
+        dis_v->y_v += xa * tan(angle);
     }
-    vdis = cal_dis(data->player.px, data->player.py, dis_V->x_v, dis_V->y_v);
+    vdis = cal_dis(data->player.px, data->player.py, dis_v->x_v, dis_v->y_v);
     return (vdis);
 }
 
-double cal_distance(t_data *data, t_dis_H *dis_H, t_dis_V *dis_V, double rayangle)
+double cal_distance(t_data *data, t_dis_h *dis_h, t_dis_v *dis_v, double rayangle)
 {
     double vdis = 0;
     double hdis = 0;
 
-    hdis = distance_hrz(data, dis_H, rayangle);
-    vdis = distance_vrt(data, dis_V, rayangle);
-    dis_V->is_door = false;
-    dis_H->is_door  = false;
-    dis_H->inter_type_h = 'N';
-    dis_V->inter_type_v = 'N';
+    hdis = distance_hrz(data, dis_h, rayangle);
+    vdis = distance_vrt(data, dis_v, rayangle);
     if (vdis < hdis && vdis > 0)
     {
-        dis_V->inter_type_v = 'V';
-        dis_V->dis = vdis;
-        if (is_door(data->map, dis_V->y_v, dis_V->x_v))
-            dis_V->is_door = true;
+        dis_v->inter_type_v = 'V';
+        dis_v->dis = vdis;
+        if (open_d(data->map, dis_v->y_v, dis_v->x_v))
+            dis_v->open_d = true;
         return (vdis);
     }
     else
     {
-        dis_H->inter_type_h = 'H';
-        dis_H->dis = hdis;
-        if (is_door(data->map, dis_H->y_h, dis_H->x_h))
-            dis_H->is_door  = true;
+        dis_h->inter_type_h = 'H';
+        dis_h->dis = hdis;
+        if (open_d(data->map, dis_h->y_h, dis_h->x_h))
+            dis_h->open_d = true;
         return (hdis);
     }
 }
@@ -149,7 +145,11 @@ void start_raycasting(t_data *data)
     while (i < WIDTH)
     {
         rayangle = ft_normalize(rayangle);
-        dis = cal_distance(data, &rays[i].dis_H, &rays[i].dis_V, rayangle);
+        rays[i].dis_v.open_d = false;
+        rays[i].dis_h.open_d  = false;
+        rays[i].dis_h.inter_type_h = 'N';
+        rays[i].dis_v.inter_type_v = 'N';
+        dis = cal_distance(data, &rays[i].dis_h, &rays[i].dis_v, rayangle);
         dis = dis * cos(data->player.angle - rayangle);
         line_height = (SIZE / dis) * (WIDTH / 2) / tan(fov / 2);
         rays[i].rayangle = rayangle;

@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:12:37 by kadam             #+#    #+#             */
-/*   Updated: 2024/11/06 12:51:19 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/08 12:56:29 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int		_strlen(char *str);
 t_lines	*ft_lstnew(void);
 void	ft_lstadd_back(t_lines **lst, t_lines *new);
 
-
 /*                    PARSING                      */
 int		process_color(int *data_color, char *str, char *name);
 int		process_line(char *c, char **ptr_line, int *find);
@@ -59,7 +58,7 @@ void	draw_line(void *image, int x, int y, double size, int color, double angle);
 void		draw_f_c(t_data *data);
 uint32_t	get_color(t_data *data, t_rays rays, double tex_y,
 		int texture_index);
-int			tex_index(t_dis_H dis_H, t_dis_V dis_V, double rayangle);
+int			tex_index(t_dis_h dis_h, t_dis_v dis_v, double rayangle);
 
 /*                      UTILS                  */
 void	check_map(t_data *s_map);
@@ -68,12 +67,12 @@ void	put_err(char *str, t_data *s_map);
 void	start_x(t_lines *node, int x, int len);
 void	end_x(t_data *data, t_lines *node, int x, int len);
 
-
 /*				CHECK UTILS						*/
 int		valid_char(char **arr, t_data *s_map);
 int		found_zero_index(char **arr, t_data *s_map);
 int		valid_path(char **data, int y, int x);
 int		check_door(t_data *data);
+
 /*				HOOKS & UTILS		*/
 void	start_key_hook(void *param);
 void	mouse_hook(void *param);
@@ -81,14 +80,14 @@ void	open_door(t_data *data, t_rays ray,int xa, int ya);
 void	close_door(t_data *data, t_rays ray);
 
 /*					RAYCASTING				*/
-double	cal_distance(t_data *data, t_dis_H *dis_H, t_dis_V *dis_V, double rayangle);
+double	cal_distance(t_data *data, t_dis_h *dis_h, t_dis_v *dis_v, double rayangle);
 void	start_raycasting(t_data *data);
 int		check_ray(t_data *data, double y, double x);
 double	cal_dis(double xp, double yp, double x, double y);
 int		check_pos(t_data *data, double py, double px, double num_pix);
 void	draw_3d(t_data *data, double line_height, double i, t_rays rays);
 void	start_drawing(void *ptr);
-int		is_door(char **map, double y, double x);
+int		open_d(char **map, double y, double x);
 double	ft_normalize(double angle);
 
 #endif
