@@ -1,0 +1,94 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_minimap.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/15 20:06:54 by eel-ansa          #+#    #+#             */
+/*   Updated: 2024/11/06 13:42:39 by eel-ansa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../include/cub3d.h"
+
+static void minimap_top(t_data *data, t_lines **lines, int len)
+{
+    int x, y;
+    int i = 0;
+    t_lines *node;
+
+    y = data->player.py / SIZE;
+    x = data->player.px / SIZE;
+    while(y > 0 &&  i < len)
+    {
+        y--;
+        i++;
+    }
+    while (y < ft_lenarray(data->map) &&  i >= 0)
+    {
+        node = ft_lstnew();
+        node->y = y;
+        node->x_pos = x;
+        start_x(node, x, len);
+        end_x(data, node, x, len);
+        ft_lstadd_back(lines, node);
+        y++;
+        i--;
+    }
+}
+
+static void minimap_bot(t_data *data, t_lines **lines, int len)
+{
+    int x, y;
+    int i = 0;
+    t_lines *node;
+
+    y = data->player.py / SIZE + 1;
+    x = data->player.px / SIZE;
+    while (y < ft_lenarray(data->map) &&  i < len)
+    {
+        node = ft_lstnew();
+        node->y = y;
+        node->x_pos = x;
+        start_x(node, x, len);
+        end_x(data, node, x, len);
+        ft_lstadd_back(lines, node);
+        y++;
+        i++;
+    }
+}
+
+static void drawing_mini(t_data *data, t_lines *lines)
+{
+    t_lines *tmp;
+
+    tmp = lines;
+    while (tmp)
+    {
+        if (tmp->y == (int)data->player.py / SIZE)
+        {
+            draw_top(data, tmp);
+            draw_bot(data, tmp);
+            break;
+        }
+        tmp = tmp->next;
+    }
+}
+
+void draw_minimap(t_data *data)
+{
+    t_lines *lines = NULL;
+    t_lines *tmp = NULL;
+
+    minimap_top(data, &lines, 5);
+    minimap_bot(data, &lines, 5);
+    drawing_mini(data, lines);
+    while (lines)
+    {
+        tmp = lines->next;
+        free(lines);
+        lines = tmp;
+    }
+    draw_square(data->image, 110 + 20, 110 + 20, 4, RED);
+}

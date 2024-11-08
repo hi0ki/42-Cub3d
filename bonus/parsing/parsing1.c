@@ -6,13 +6,13 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 13:20:39 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/31 12:49:09 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/10/31 12:52:33 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static int	check_av_path(char *str, int len, int index)
+int	check_av_path(char *str, int len, int index)
 {
 	int	fd;
 
@@ -81,11 +81,15 @@ static int	init_struct(t_data *data_struct, t_helper *helper, int fd, char *av)
 	data_struct->so = NULL;
 	data_struct->we = NULL;
 	data_struct->ea = NULL;
+	data_struct->index = 0;
 	int i;
 
 	i = 0;
-	while (i < 4)
+	while (i < 5)
 		data_struct->textur[i++] = NULL;
+	i = 0;
+	while (i < 7)
+		data_struct->gun[i++] = NULL;
 	i = 0;
 	while (i < 3)
 	{
@@ -106,54 +110,76 @@ static int	init_struct(t_data *data_struct, t_helper *helper, int fd, char *av)
 	return (0);
 }
 
-static int	load_img(t_data *data)
+static int	load_img(t_data *map)
 {
-    data->textur[0] = mlx_load_png(data->no);
-    data->textur[1] = mlx_load_png(data->so);
-    data->textur[2] = mlx_load_png(data->we);
-    data->textur[3] = mlx_load_png(data->ea);
-    if (!data->textur[0] || !data->textur[1] || !data->textur[2] || !data->textur[3])
-    {
+	map->textur[0] = mlx_load_png(map->no);
+	map->textur[1] = mlx_load_png(map->so);
+	map->textur[2] = mlx_load_png(map->we);
+	map->textur[3] = mlx_load_png(map->ea);
+	map->textur[4] = mlx_load_png("./texturs/download.png");
+	if (!map->textur[0] || !map->textur[1] || !map->textur[2]
+		|| !map->textur[3] || !map->textur[4])
+	
+	{
 		int i = 0;
-		while (i < 4)
+		while (i < 5)
 		{
-			if (data->textur[i])
+			if (map->textur[i])
 			{
-				mlx_delete_texture(data->textur[i]);
-				data->textur[i] = NULL;
+				mlx_delete_texture(map->textur[i]);
+				map->textur[i] = NULL;
 			}
 			i++;
 		}
-        return (ft_putstrn_fd("Error\nUnable to load texture\n", 2), 1);
-    }
-    return (0);
+		return (ft_putstrn_fd("Error\nFailed to load textures\n", 2), 1);
+
+	}
+	map->gun[0] = mlx_load_png("./gun/shoo0.png");
+    map->gun[1] = mlx_load_png("./gun/shoo1.png");
+    map->gun[2] = mlx_load_png("./gun/shoo2.png");
+    map->gun[3] = mlx_load_png("./gun/shoo3.png");
+    map->gun[4] = mlx_load_png("./gun/shoo4.png");
+    map->gun[5] = mlx_load_png("./gun/shoo5.png");
+    map->gun[6] = mlx_load_png("./gun/shoo6.png");
+	if (!map->gun[0] || !map->gun[1] || !map->gun[2] || !map->gun[3] || !map->gun[4] || !map->gun[5] || !map->gun[6])
+	{
+		int i = 0;
+		while (i < 7)
+		{
+			if (map->gun[i])
+			{
+				mlx_delete_texture(map->gun[i]);
+				map->gun[i] = NULL;
+			}
+			i++;
+		}
+		return (ft_putstrn_fd("Error\nFailed to load gun textures\n", 2), 1);
+	}
+	return (0);
 }
 
-int	check_all(int ac, char **av, t_data *data_struct, int fd)
+int	check_all(int ac, char **av, t_data *map_struct, int fd)
 {
 	t_helper	helper;
 
-	if (ac != 2 || (ac == 2 && av[1] && !check_av_path(av[1], ft_strlen(av[1]),
-				0)))
-		return (ft_putstrn_fd("Error\nInvalid arg\n", 2), 1);
-	if (init_struct(data_struct, &helper, fd, av[1]))
+	if (init_struct(map_struct, &helper, fd, av[1]))
 		return (1);
 	if (read_file(fd, &helper))
 		return (1);
-	if (read_map(helper.line, fd, data_struct, helper.ptr_line))
-		return (free(helper.ptr_line), free(helper.line), 1);
+	if (read_map(helper.line, fd, map_struct, helper.ptr_line))
+		return (free(helper.ptr_line), 1);
 	free(helper.ptr_line);
 	ac = 0;
 	while (ac < 3)
 	{
-		if (data_struct->f[ac] < 0 || data_struct->f[ac] > 255
-			|| data_struct->c[ac] < 0 || data_struct->c[ac] > 255)
+		if (map_struct->f[ac] < 0 || map_struct->f[ac] > 255
+			|| map_struct->c[ac] < 0 || map_struct->c[ac] > 255)
 			return (ft_putstrn_fd("Error\nInvalid color\n", 2), 1);
 		ac++;
 	}
-	if (data_struct->map == NULL)
+	if (map_struct->map == NULL)
 		return (ft_putstrn_fd("Error\n: The map is empty", 2), 1);
-	if (load_img(data_struct))
+	if (load_img(map_struct))
 		return (1);
 	return (0);
 }
