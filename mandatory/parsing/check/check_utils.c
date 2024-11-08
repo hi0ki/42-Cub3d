@@ -32,7 +32,7 @@ char	**copy_arr(char **array)
 
 void	put_err(char *str, t_data *s_map)
 {
+	free_all(s_map, 0);
 	ft_putstrn_fd(str, 2);
-	(void)s_map;
 	exit(EXIT_FAILURE);
 }

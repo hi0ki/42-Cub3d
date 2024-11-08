@@ -41,7 +41,7 @@ int	process_path(char **str, int i, char *name, char **path)
 		return (free_2d_array(split),
 			ft_putstrn_fd("Error\nYOU HAVE TO SET ALL THE PATHS\n", 2), 1);
 	if (check_av_path(split[1], 0, 1) == 1)
-		return (1);
+		return (free_2d_array(split),1);
 	free(*path);
 	*path = ft_strdup(split[1]);
 	free_2d_array(split);
@@ -62,6 +62,7 @@ static int is_new_line(char **line, int *fd, char *av, int j)
 		free(*line);
 		*line = get_next_line(*fd);
 	}
+	free(*line);
 	if (j == 0)
 		return (ft_putstrn_fd("Error: Empty line", 2), 1);
 	close(*fd);
@@ -83,6 +84,9 @@ static int	init_struct(t_data *data_struct, t_helper *helper, int fd, char *av)
 	int i;
 
 	i = 0;
+	while (i < 4)
+		data_struct->textur[i++] = NULL;
+	i = 0;
 	while (i < 3)
 	{
 		data_struct->f[i] = -1;
@@ -92,6 +96,7 @@ static int	init_struct(t_data *data_struct, t_helper *helper, int fd, char *av)
 	helper->res = 0;
 	helper->ptr_line = NULL;
 	helper->trim_line = NULL;
+	data_struct->map = NULL;
 	i = 0;
 	while (i < 6)
 		helper->find[i++] = 0;
@@ -103,14 +108,24 @@ static int	init_struct(t_data *data_struct, t_helper *helper, int fd, char *av)
 
 static int	load_img(t_data *data)
 {
-	data->textur[0] = mlx_load_png(data->no);
-	data->textur[1] = mlx_load_png(data->so);
-	data->textur[2] = mlx_load_png(data->we);
-	data->textur[3] = mlx_load_png(data->ea);
-	if (!data->textur[0] || !data->textur[1] || !data->textur[2]
-		|| !data->textur[3])
-		return (ft_putstrn_fd("Error\nUnable to load texture\n", 2), 1);
-	return (0);
+    data->textur[0] = mlx_load_png(data->no);
+    data->textur[1] = mlx_load_png(data->so);
+    data->textur[2] = mlx_load_png(data->we);
+    data->textur[3] = mlx_load_png(data->ea);
+    if (!data->textur[0] || !data->textur[1] || !data->textur[2] || !data->textur[3])
+    {
+        if (data->textur[0]) 
+			mlx_delete_texture(data->textur[0]);
+        if (data->textur[1]) 
+			mlx_delete_texture(data->textur[1]);
+        if (data->textur[2]) 
+			mlx_delete_texture(data->textur[2]);
+        if (data->textur[3]) 
+			mlx_delete_texture(data->textur[3]);
+        return (ft_putstrn_fd("Error\nUnable to load texture\n", 2), 1);
+    }
+
+    return (0);
 }
 
 int	check_all(int ac, char **av, t_data *data_struct, int fd)
@@ -125,7 +140,7 @@ int	check_all(int ac, char **av, t_data *data_struct, int fd)
 	if (read_file(fd, &helper))
 		return (1);
 	if (read_map(helper.line, fd, data_struct, helper.ptr_line))
-		return (free(helper.ptr_line), 1);
+		return (free(helper.ptr_line), free(helper.line), 1);
 	free(helper.ptr_line);
 	ac = 0;
 	while (ac < 3)

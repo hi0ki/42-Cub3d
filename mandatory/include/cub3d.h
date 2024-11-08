@@ -13,7 +13,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../MLX42/include/MLX42/MLX42.h"
+# include "../../MLX42/include/MLX42/MLX42.h"
 # include "../gnl/get_next_line.h"
 # include "types.h"
 # include <fcntl.h>
@@ -25,6 +25,7 @@
 # include <unistd.h>
 
 /*				libft				*/
+void free_pointer(void **ptr);
 int		ft_lenarray(char **array);
 void	free_2d_array(char **array);
 void	ft_putstrn_fd(char *s, int fd);
@@ -45,7 +46,7 @@ int		process_path(char **str, int i, char *name, char **path);
 int		read_file(int fd, t_helper *helper);
 int		check_all(int ac, char **av, t_data *data_struct, int fd);
 
-//texturing:
+/*					texturing					*/
 
 void	draw_f_c(t_data *data);
 uint32_t	get_color(t_data *data, t_rays rays, double tex_y,
@@ -56,6 +57,7 @@ int		tex_index(t_dis_h dis_h, t_dis_v dis_v, double rayangle);
 void	check_map(t_data *s_map);
 char	**copy_arr(char **array);
 void	put_err(char *str, t_data *s_map);
+void free_all(t_data *data_struct, int i);
 
 /*				check_utils						*/
 int		valid_char(char **arr, t_data *s_map);
