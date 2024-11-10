@@ -13,7 +13,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../MLX42/include/MLX42/MLX42.h"
+# include "../../MLX42/include/MLX42/MLX42.h"
 # include "../gnl/get_next_line.h"
 # include "types.h"
 # include <fcntl.h>
@@ -52,7 +52,6 @@ void	draw_top(t_data *data, t_lines *lines);
 void	draw_bot(t_data *data, t_lines *lines);
 void	draw_square(void *image, int x, int y, int size, int color);
 void	draw_background(t_data *data);
-void	draw_line(void *image, int x, int y, double size, int color, double angle);
 
 /*				TEXTURES			*/
 void		draw_f_c(t_data *data);
@@ -66,12 +65,14 @@ char	**copy_arr(char **array);
 void	put_err(char *str, t_data *s_map);
 void	start_x(t_lines *node, int x, int len);
 void	end_x(t_data *data, t_lines *node, int x, int len);
+void	free_all(t_data *data_struct, int i);
 
 /*				CHECK UTILS						*/
 int		valid_char(char **arr, t_data *s_map);
 int		found_zero_index(char **arr, t_data *s_map);
 int		valid_path(char **data, int y, int x);
 int		check_door(t_data *data);
+int	check_av_path(char *str, int len, int index);
 
 /*				HOOKS & UTILS		*/
 void	start_key_hook(void *param);

@@ -61,7 +61,7 @@ static int	validate_commas(char *ptr)
 	return (0);
 }
 
-int	process_color(int *data_color, char *str, char *name)
+int	process_color(int *map_color, char *str, char *name)
 {
 	char	*ptr;
 	int		i;
@@ -82,7 +82,7 @@ int	process_color(int *data_color, char *str, char *name)
 	i = 0;
 	while (i < 3)
 	{
-		data_color[i] = ft_atoi(split[i]);
+		map_color[i] = ft_atoi(split[i]);
 		i++;
 	}
 	return (free_2d_array(split), 0);

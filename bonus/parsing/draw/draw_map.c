@@ -124,7 +124,7 @@ void start_drawing(void *ptr)
     if (data->index == 1 && frame <= 6)
     {
         draw_gun(data, frame % 7);
-        if (counter % 4 == 0)
+        if (counter % 2 == 0)
             frame++;
         counter++;
         if (frame == 7)

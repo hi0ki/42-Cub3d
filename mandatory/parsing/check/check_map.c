@@ -19,10 +19,7 @@ int	floodfill(char **map, int row, int col)
 	if (map[row][col] != '1')
 	{
 		if (valid_path(map, row, col) == -1)
-		{
-			printf("wach hna\n");
 			return (-1);
-		}
 	}
 	if (map[row][col] != '1')
 		map[row][col] = '1';
@@ -49,7 +46,7 @@ void	check_map(t_data *data)
 		if (floodfill(cpy_arr, data->player.y, data->player.x))
 		{
 			free_2d_array(cpy_arr);
-			put_err("Error: Invalid map.10", data);
+			put_err("Error: Invalid map", data);
 		}
 	}
 	free_2d_array(cpy_arr);

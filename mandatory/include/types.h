@@ -70,7 +70,6 @@ typedef struct s_rays
 
 typedef struct s_map
 {
-	char			**str;
 	char			**map;
 	char			*no;
 	char			*so;

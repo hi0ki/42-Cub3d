@@ -119,6 +119,8 @@ int	read_map(char *line, int fd, t_data *data_struct, char *ptr_line)
 	while (line)
 	{
 		tmp = _strjoin(tmp, line);
+		if (tmp == NULL)
+			put_err("Error: Invalid map", data_struct);
 		free(line);
 		line = get_next_line(fd);
 	}

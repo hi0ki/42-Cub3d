@@ -91,5 +91,4 @@ void draw_minimap(t_data *data)
         lines = tmp;
     }
     draw_square(data->image, 110 + 20, 110 + 20, 4, RED);
-    draw_line(data->image, 110 + 20, 110 + 20, 7, GREEN, data->player.angle);
 }

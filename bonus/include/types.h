@@ -92,7 +92,6 @@ typedef struct s_map
 	int				f[3];
 	int				c[3];
 	int				index;
-	char			**str;
 	char			**map;
 	char			*no;
 	char			*so;

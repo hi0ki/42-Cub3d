@@ -12,7 +12,7 @@
 
 #include "../include/cub3d.h"
 
-static int	check_av_path(char *str, int len, int index)
+int	check_av_path(char *str, int len, int index)
 {
 	int	fd;
 
@@ -41,12 +41,13 @@ int	process_path(char **str, int i, char *name, char **path)
 		return (free_2d_array(split),
 			ft_putstrn_fd("Error\nYOU HAVE TO SET ALL THE PATHS\n", 2), 1);
 	if (check_av_path(split[1], 0, 1) == 1)
-		return (1);
+		return (free_2d_array(split),1);
 	free(*path);
 	*path = ft_strdup(split[1]);
 	free_2d_array(split);
 	return (0);
 }
+
 static int is_new_line(char **line, int *fd, char *av, int j)
 {
 	if (!*line || !line)
@@ -61,6 +62,7 @@ static int is_new_line(char **line, int *fd, char *av, int j)
 		free(*line);
 		*line = get_next_line(*fd);
 	}
+	free(*line);
 	if (j == 0)
 		return (ft_putstrn_fd("Error: Empty line", 2), 1);
 	close(*fd);
@@ -79,8 +81,15 @@ static int	init_struct(t_data *data_struct, t_helper *helper, int fd, char *av)
 	data_struct->so = NULL;
 	data_struct->we = NULL;
 	data_struct->ea = NULL;
+	data_struct->index = 0;
 	int i;
 
+	i = 0;
+	while (i < 5)
+		data_struct->textur[i++] = NULL;
+	i = 0;
+	while (i < 7)
+		data_struct->gun[i++] = NULL;
 	i = 0;
 	while (i < 3)
 	{
@@ -91,6 +100,7 @@ static int	init_struct(t_data *data_struct, t_helper *helper, int fd, char *av)
 	helper->res = 0;
 	helper->ptr_line = NULL;
 	helper->trim_line = NULL;
+	data_struct->map = NULL;
 	i = 0;
 	while (i < 6)
 		helper->find[i++] = 0;
@@ -109,7 +119,21 @@ static int	load_img(t_data *map)
 	map->textur[4] = mlx_load_png("./texturs/download.png");
 	if (!map->textur[0] || !map->textur[1] || !map->textur[2]
 		|| !map->textur[3] || !map->textur[4])
-		return (ft_putstrn_fd("Error\nUnable to load texture\n", 2), 1);
+	
+	{
+		int i = 0;
+		while (i < 5)
+		{
+			if (map->textur[i])
+			{
+				mlx_delete_texture(map->textur[i]);
+				map->textur[i] = NULL;
+			}
+			i++;
+		}
+		return (ft_putstrn_fd("Error\nFailed to load textures\n", 2), 1);
+
+	}
 	map->gun[0] = mlx_load_png("./gun/shoo0.png");
     map->gun[1] = mlx_load_png("./gun/shoo1.png");
     map->gun[2] = mlx_load_png("./gun/shoo2.png");
@@ -118,7 +142,19 @@ static int	load_img(t_data *map)
     map->gun[5] = mlx_load_png("./gun/shoo5.png");
     map->gun[6] = mlx_load_png("./gun/shoo6.png");
 	if (!map->gun[0] || !map->gun[1] || !map->gun[2] || !map->gun[3] || !map->gun[4] || !map->gun[5] || !map->gun[6])
-		return (ft_putstrn_fd("Error\nUnable to load gun texture\n", 2), 1);
+	{
+		int i = 0;
+		while (i < 7)
+		{
+			if (map->gun[i])
+			{
+				mlx_delete_texture(map->gun[i]);
+				map->gun[i] = NULL;
+			}
+			i++;
+		}
+		return (ft_putstrn_fd("Error\nFailed to load gun textures\n", 2), 1);
+	}
 	return (0);
 }
 
@@ -126,9 +162,6 @@ int	check_all(int ac, char **av, t_data *map_struct, int fd)
 {
 	t_helper	helper;
 
-	if (ac != 2 || (ac == 2 && av[1] && !check_av_path(av[1], ft_strlen(av[1]),
-				0)))
-		return (ft_putstrn_fd("Error\nInvalid arg\n", 2), 1);
 	if (init_struct(map_struct, &helper, fd, av[1]))
 		return (1);
 	if (read_file(fd, &helper))

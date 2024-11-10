@@ -38,8 +38,8 @@ char	*_strjoin(char *s1, char *s2)
 	if (ft_strlen(s2) == 1 && s2[0] == '\n')
 	{
 		free(s2);
-        printf("Error: Invalid map9\n");
-		exit(1);
+		free(s1);
+		return (NULL);
 	}
 	dlen = ft_strlen(s1);
 	slen = ft_strlen(s2);
