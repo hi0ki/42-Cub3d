@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 13:20:39 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/31 12:52:33 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/11 11:13:13 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ static int	load_img(t_data *map)
 	map->textur[1] = mlx_load_png(map->so);
 	map->textur[2] = mlx_load_png(map->we);
 	map->textur[3] = mlx_load_png(map->ea);
-	map->textur[4] = mlx_load_png("./texturs/download.png");
+	map->textur[4] = mlx_load_png("./texturs/door.png");
 	if (!map->textur[0] || !map->textur[1] || !map->textur[2]
 		|| !map->textur[3] || !map->textur[4])
 	
@@ -134,13 +134,13 @@ static int	load_img(t_data *map)
 		return (ft_putstrn_fd("Error\nFailed to load textures\n", 2), 1);
 
 	}
-	map->gun[0] = mlx_load_png("./gun/shoo0.png");
-    map->gun[1] = mlx_load_png("./gun/shoo1.png");
-    map->gun[2] = mlx_load_png("./gun/shoo2.png");
-    map->gun[3] = mlx_load_png("./gun/shoo3.png");
-    map->gun[4] = mlx_load_png("./gun/shoo4.png");
-    map->gun[5] = mlx_load_png("./gun/shoo5.png");
-    map->gun[6] = mlx_load_png("./gun/shoo6.png");
+	map->gun[0] = mlx_load_png("./bonus/gun/shoo0.png");
+    map->gun[1] = mlx_load_png("./bonus/gun/shoo1.png");
+    map->gun[2] = mlx_load_png("./bonus/gun/shoo2.png");
+    map->gun[3] = mlx_load_png("./bonus/gun/shoo3.png");
+    map->gun[4] = mlx_load_png("./bonus/gun/shoo4.png");
+    map->gun[5] = mlx_load_png("./bonus/gun/shoo5.png");
+    map->gun[6] = mlx_load_png("./bonus/gun/shoo6.png");
 	if (!map->gun[0] || !map->gun[1] || !map->gun[2] || !map->gun[3] || !map->gun[4] || !map->gun[5] || !map->gun[6])
 	{
 		int i = 0;

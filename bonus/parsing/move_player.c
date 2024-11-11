@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:50:58 by kadam             #+#    #+#             */
-/*   Updated: 2024/11/08 12:56:29 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/11 12:14:16 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,19 @@ static void	handle_movement(t_data *data, double *new_px,
 		*new_px -= sin(data->player.angle) * MOVE_SPEED;
 		*new_py += cos(data->player.angle) * MOVE_SPEED;
 	}
-	if(mlx_is_key_down(data->mlx, MLX_KEY_SPACE))
+	if (mlx_is_key_down(data->mlx, MLX_KEY_SPACE))
 	{
-		if(data->index == 0 || data->index == 2)
-            data->index = 1;
+		if (data->index == 0 || data->index == 2)
+			data->index = 1;
 	}
 }
 
-static void door_keyhook(mlx_key_data_t keydata, void *param)
+static void	door_keyhook(mlx_key_data_t keydata, void *param)
 {
-	t_data *data = (t_data *)param;
-	t_rays ray;
+	t_data	*data;
+	t_rays	ray;
 
+	data = (t_data *)param;
 	ray.dis_h.close_d = false;
 	ray.dis_v.close_d = false;
 	ray.dis_h.open_d = false;
@@ -58,7 +59,7 @@ static void door_keyhook(mlx_key_data_t keydata, void *param)
 		close_door(data, ray);
 }
 
-static void key_hook(t_data *data)
+static void	key_hook(t_data *data)
 {
 	double	new_px;
 	double	new_py;
@@ -80,11 +81,11 @@ static void key_hook(t_data *data)
 	}
 }
 
-void start_key_hook(void *param)
+void	start_key_hook(void *param)
 {
-    t_data *data;
+	t_data	*data;
 
 	data = (t_data *)param;
-    key_hook(data);
+	key_hook(data);
 	mlx_key_hook(data->mlx, door_keyhook, data);
 }

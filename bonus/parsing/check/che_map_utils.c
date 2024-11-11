@@ -6,24 +6,24 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 17:57:59 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/10/31 12:59:13 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/11 11:53:53 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int door_helper(char **data, int y, int x)
+int	door_helper(char **data, int y, int x)
 {
-    if ((data[y][x - 1] == '1' && data[y][x + 1] == '1') || 
-        (data[y - 1][x] == '1' && data[y + 1][x] == '1'))
-        return 1;
-    return 0;
+	if ((data[y][x - 1] == '1' && data[y][x + 1] == '1') || 
+		(data[y - 1][x] == '1' && data[y + 1][x] == '1'))
+		return (1);
+	return (0);
 }
 
-int check_door(t_data *data)
+int	check_door(t_data *data)
 {
-	int y;
-	int x;
+	int	y;
+	int	x;
 
 	y = 0;
 	while (data->map[y])
@@ -52,7 +52,7 @@ int	valid_path(char **map, int y, int x)
 	if (!ft_strchr("1WESN0D", map[y][x - 1]))
 		return (-1);
 	if (y > 0 && (x >= _strlen(map[y - 1]) || 
-		!ft_strchr("1WESN0D", map[y - 1][x])))
+			!ft_strchr("1WESN0D", map[y - 1][x])))
 		return (-1);
 	if (y != ft_lenarray(map) - 1 && (x >= _strlen(map[y + 1])
 			|| !ft_strchr("1WESN0D", map[y + 1][x])))

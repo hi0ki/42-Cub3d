@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 15:34:48 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/31 12:49:09 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/11 12:16:27 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static int	update_find(char c, int *find, int x)
 		while (x < 6)
 		{
 			if (find[x] != 1)
-				return (ft_putstrn_fd("Error\nYou have to set all the paths and colors\n",2),1);
+				return (ft_putstrn_fd("Error\nIncomplete paths and colors\n", 2), 
+					1);
 			x++;
 		}
 		return (0);

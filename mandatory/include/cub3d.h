@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:12:37 by kadam             #+#    #+#             */
-/*   Updated: 2024/11/08 12:56:29 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/11 10:53:54 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CUB3D_H
 
 # include "../../MLX42/include/MLX42/MLX42.h"
-# include "../gnl/get_next_line.h"
+# include "../../gnl/get_next_line.h"
 # include "types.h"
 # include <fcntl.h>
 # include <math.h>

@@ -1,38 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_utils.c                                      :+:      :+:    :+:   */
+/*   more_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/05 18:00:58 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/11/11 11:54:11 by eel-ansa         ###   ########.fr       */
+/*   Created: 2024/11/11 12:09:36 by eel-ansa          #+#    #+#             */
+/*   Updated: 2024/11/11 12:11:01 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-char	**copy_arr(char **array)
+void	start_x(t_lines *node, int x, int len)
 {
-	int		i;
-	int		y;
-	char	**arr;
+	int	j;
 
-	i = 0;
-	y = ft_lenarray(array);
-	arr = malloc((y + 1) * sizeof(char *));
-	while (array[i])
+	j = 0;
+	while (x > 0 && j < len)
 	{
-		arr[i] = ft_strdup(array[i]);
-		i++;
+		x--;
+		j++;
 	}
-	arr[i] = NULL;
-	return (arr);
+	node->s_x = x;
 }
 
-void	put_err(char *str, t_data *s_map)
+void	end_x(t_data *data, t_lines *node, int x, int len)
 {
-	free_all(s_map, 0);
-	ft_putstrn_fd(str, 2);
-	exit(EXIT_FAILURE);
+	int	j;
+
+	j = 0;
+	while (data->map[node->y][x] && j < len)
+	{
+		x++;
+		j++;
+	}
+	node->e_x = x;
 }
