@@ -12,7 +12,7 @@
 
 #include "../include/cub3d.h"
 
-int	read_file(int fd, t_helper *helper)
+int	read_file(int fd, t_helper *helper, int x)
 {
 	while (helper->line != NULL)
 	{
@@ -20,12 +20,11 @@ int	read_file(int fd, t_helper *helper)
 		if (!ft_strcmp(helper->trim_line, "\n"))
 		{
 			free(helper->trim_line);
-			free(helper->line);
-			helper->line = get_next_line(fd);
-			continue ;
+			helper->trim_line = NULL;
 		}
 		else
 		{
+			x = 1;
 			helper->res = process_line(helper->trim_line, &helper->ptr_line,
 					helper->find);
 			free(helper->trim_line);
@@ -37,5 +36,7 @@ int	read_file(int fd, t_helper *helper)
 		free(helper->line);
 		helper->line = get_next_line(fd);
 	}
+	if (x == 0)
+		return (free(helper->line), ft_putstrn_fd("Error: Empty file", 2), 1);
 	return (0);
 }

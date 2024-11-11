@@ -40,10 +40,9 @@ int			process_color(int *data_color, char *str, char *name);
 int			process_line(char *c, char **ptr_line, int *find);
 int			read_map(char *line, int fd, t_data *data_struct, char *ptr_line);
 int			process_path(char **str, int i, char *name, char **path);
-int			read_file(int fd, t_helper *helper);
-int			init_struct(t_data *data_struct, t_helper *helper, int fd,
-				char *av);
-int			check_all(int ac, char **av, t_data *data_struct, int fd);
+int			read_file(int fd, t_helper *helper, int x);
+int			init_struct(t_data *data_struct, t_helper *helper, int fd);
+int			check_all(int ac, t_data *data_struct, int fd);
 int			check_av_path(char *str, int len, int index);
 
 /*					texturing					*/

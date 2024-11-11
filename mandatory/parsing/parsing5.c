@@ -12,34 +12,6 @@
 
 #include "../include/cub3d.h"
 
-static int	is_new_line(char **line, int *fd, char *av, int j)
-{
-	if (!*line || !line)
-		return (ft_putstrn_fd("Error: Failed to read file", 2), 1);
-	while (*line)
-	{
-		if (*line[0] != '\n')
-		{
-			j = 1;
-			break ;
-		}
-		free(*line);
-		*line = get_next_line(*fd);
-	}
-	free(*line);
-	*line = NULL;
-	if (j == 0)
-		return (ft_putstrn_fd("Error: Empty line", 2), 1);
-	close(*fd);
-	*fd = open(av, O_RDONLY);
-	if (*fd == -1)
-		return (ft_putstrn_fd("Error: Failed to open file", 2), 1);
-	*line = get_next_line(*fd);
-	if (!*line)
-		return (ft_putstrn_fd("Error: Failed to read file", 2), 1);
-	return (0);
-}
-
 static void	init_data_struct(t_data *data_struct, int i)
 {
 	data_struct->no = NULL;
@@ -58,7 +30,7 @@ static void	init_data_struct(t_data *data_struct, int i)
 	data_struct->map = NULL;
 }
 
-int	init_struct(t_data *data_struct, t_helper *helper, int fd, char *av)
+int	init_struct(t_data *data_struct, t_helper *helper, int fd)
 {
 	int	i;
 
@@ -70,7 +42,7 @@ int	init_struct(t_data *data_struct, t_helper *helper, int fd, char *av)
 	while (i < 6)
 		helper->find[i++] = 0;
 	helper->line = get_next_line(fd);
-	if (is_new_line(&helper->line, &fd, av, 0))
-		return (1);
+	if (helper->line == NULL)
+		return (ft_putstrn_fd("Error: Empty file", 2), 1);
 	return (0);
 }

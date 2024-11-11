@@ -86,13 +86,13 @@ static int	load_img(t_data *data)
 	return (0);
 }
 
-int	check_all(int ac, char **av, t_data *data_struct, int fd)
+int	check_all(int ac, t_data *data_struct, int fd)
 {
 	t_helper	helper;
 
-	if (init_struct(data_struct, &helper, fd, av[1]))
+	if (init_struct(data_struct, &helper, fd))
 		return (1);
-	if (read_file(fd, &helper))
+	if (read_file(fd, &helper, 0))
 		return (1);
 	if (read_map(helper.line, fd, data_struct, helper.ptr_line))
 		return (free(helper.ptr_line), free(helper.line), 1);

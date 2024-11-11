@@ -41,10 +41,9 @@ int			process_color(int *data_color, char *str, char *name);
 int			process_line(char *c, char **ptr_line, int *find);
 int			read_map(char *line, int fd, t_data *data_struct, char *ptr_line);
 int			process_path(char **str, int i, char *name, char **path);
-int			read_file(int fd, t_helper *helper);
-int			check_all(int ac, char **av, t_data *data_struct, int fd);
-int			init_struct(t_data *data_struct, t_helper *helper, int fd,
-				char *av);
+int			read_file(int fd, t_helper *helper, int x);
+int			check_all(int ac, t_data *data_struct, int fd);
+int			init_struct(t_data *data_struct, t_helper *helper, int fd);
 /*						DRAWING						*/
 void		draw_minimap(t_data *data);
 void		draw_top(t_data *data, t_lines *lines);
