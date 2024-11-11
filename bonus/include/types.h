@@ -29,18 +29,18 @@
 
 typedef struct s_gun
 {
-    int arr[4];
-    int i;
-    int j;
-    int index;
-    int height;
-    int width;
-    int scale_factor;
-    int x_c;
-    int y_c;
-    int k;
-    int l;
-} t_gun;
+	int				arr[4];
+	int				i;
+	int				j;
+	int				index;
+	int				height;
+	int				width;
+	int				scale_factor;
+	int				x_c;
+	int				y_c;
+	int				k;
+	int				l;
+}					t_gun;
 
 typedef struct s_helper
 {

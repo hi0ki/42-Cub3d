@@ -15,7 +15,7 @@
 double	cal_dis(double xp, double yp, double x, double y)
 {
 	double	dx;
-	double	dy; 
+	double	dy;
 
 	dy = y - yp;
 	dx = x - xp;
@@ -63,13 +63,13 @@ int	check_ray(t_data *data, double y, double x)
 
 	ay = y / SIZE;
 	ax = x / SIZE;
-	if (ay < 0 || ay >= ft_lenarray(data->map) || 
-		ax >= _strlen(data->map[ay]) || ax < 0)
+	if (ay < 0 || ay >= ft_lenarray(data->map) || ax >= _strlen(data->map[ay])
+		|| ax < 0)
 		return (-1);
 	if (check_pos(data, y, x, 0.000001) == -1)
 		return (-1);
-	if (data->map[ay][ax] && (data->map[ay][ax] == '1' || 
-		data->map[ay][ax] == 'D'))
+	if (data->map[ay][ax] && (data->map[ay][ax] == '1'
+			|| data->map[ay][ax] == 'D'))
 		return (-1);
 	return (0);
 }
@@ -80,8 +80,9 @@ void	draw_3d(t_data *data, double line_height, double i, t_rays rays)
 	double	bot;
 	double	tex_y;
 	double	j;
-	int	tex_indexx = tex_index(rays.dis_h, rays.dis_v, rays.rayangle);
+	int		tex_indexx;
 
+	tex_indexx = tex_index(rays.dis_h, rays.dis_v, rays.rayangle);
 	top = (HEIGHT / 2) - (line_height / 2);
 	j = top;
 	bot = (HEIGHT / 2) + (line_height / 2);
@@ -92,7 +93,8 @@ void	draw_3d(t_data *data, double line_height, double i, t_rays rays)
 	while (top < bot)
 	{
 		tex_y = ((top - j) / line_height) * data->textur[tex_indexx]->height;
-		mlx_put_pixel(data->image, i, top, get_color(data, rays, tex_y, tex_indexx));
+		mlx_put_pixel(data->image, i, top, get_color(data, rays, tex_y,
+				tex_indexx));
 		top++;
 	}
 }

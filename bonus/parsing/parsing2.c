@@ -89,7 +89,7 @@ static int	read_path_color(t_data *data_struct, char **str, int i)
 		if (process_path_wrapper(str, i, data_struct))
 			return (1);
 		else if (str[i][0] != 'N' && str[i][0] != 'S' && str[i][0] != 'W'
-			&& str[i][0] != 'E')
+				&& str[i][0] != 'E')
 		{
 			if (str[i][0] == 'F')
 			{

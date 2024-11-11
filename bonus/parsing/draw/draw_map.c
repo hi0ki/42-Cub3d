@@ -31,36 +31,41 @@ void	draw_square(void *image, int x, int y, int size, int color)
 	}
 }
 
-void	draw_line(void *image, int x, int y, double size, int color,
-		double angle)
+static void	draw_line(void *image, int x, int y, double angle)
 {
-	int y1;
-	int x1;
+	int		y1;
+	int		x1;
+	double	i;
 
+	i = 0;
 	x1 = 0;
-	y = 1;
-	for (double i = 0; i < size; i++)
+	y1 = 0;
+	while (i < 6)
 	{
 		y1 = y + i * sin(angle);
 		x1 = x + i * cos(angle);
 		if (y1 >= 0 && y1 < HEIGHT && x1 >= 0 && x1 < WIDTH)
-			mlx_put_pixel(image, x1, y1, color);
+			mlx_put_pixel(image, x1, y1, GREEN);
+		i++;
 	}
 }
 
 void	draw_cros(t_data *data)
 {
-	double x = WIDTH / 2;
-	double y = HEIGHT / 2;
-	draw_line(data->image, x - 3, y, 6, GREEN, M_PI);
-	draw_line(data->image, x, y - 3, 6, GREEN, M_PI_2 * 3);
-	draw_line(data->image, x, y + 3, 6, GREEN, M_PI_2);
-	draw_line(data->image, x + 3, y, 6, GREEN, 0);
+	double	x;
+	double	y;
+
+	x = WIDTH / 2;
+	y = HEIGHT / 2;
+	draw_line(data->image, x - 3, y, M_PI);
+	draw_line(data->image, x, y - 3, M_PI_2 * 3);
+	draw_line(data->image, x, y + 3, M_PI_2);
+	draw_line(data->image, x + 3, y, 0);
 }
 
 void	start_drawing(void *ptr)
 {
-	t_data		*data;
+	t_data	*data;
 
 	data = (t_data *)ptr;
 	mlx_delete_image(data->mlx, data->image);

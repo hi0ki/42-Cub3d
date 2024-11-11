@@ -42,7 +42,7 @@ static void	minimap_top(t_data *data, t_lines **lines, int len)
 
 static void	minimap_bot(t_data *data, t_lines **lines, int len)
 {
-	int		x; 
+	int		x;
 	int		y;
 	int		i;
 	t_lines	*node;

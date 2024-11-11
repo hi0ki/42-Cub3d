@@ -19,14 +19,14 @@ void	draw_lift(t_data *data, t_lines *tmp, double xsize, double ysize)
 	i = 0;
 	while (tmp->x_pos - i >= tmp->s_x)
 	{
-		if (data->map[tmp->y][tmp->x_pos - i] == '1' && 
-			tmp->x_pos - i < _strlen(data->map[tmp->y])) 
+		if (data->map[tmp->y][tmp->x_pos - i] == '1' &&
+			tmp->x_pos - i < _strlen(data->map[tmp->y]))
 			draw_square(data->image, xsize, ysize, SIZE, BLACK);
-		else if (ft_strchr("NWSE0", data->map[tmp->y][tmp->x_pos - i]) && 
-			tmp->x_pos - i < _strlen(data->map[tmp->y]))
+		else if (ft_strchr("NWSE0", data->map[tmp->y][tmp->x_pos - i]) &&
+					tmp->x_pos - i < _strlen(data->map[tmp->y]))
 			draw_square(data->image, xsize, ysize, SIZE, WHITE);
-		else if (data->map[tmp->y][tmp->x_pos - i] == 'D' && 
-			tmp->x_pos - i < _strlen(data->map[tmp->y]))
+		else if (data->map[tmp->y][tmp->x_pos - i] == 'D' &&
+					tmp->x_pos - i < _strlen(data->map[tmp->y]))
 			draw_square(data->image, xsize, ysize, SIZE, GREEN);
 		xsize -= SIZE;
 		i++;
@@ -38,8 +38,8 @@ void	draw_right(t_data *data, t_lines *tmp, double xsize, double ysize)
 	int	i;
 
 	i = 1;
-	while (tmp->x_pos + i < _strlen(data->map[tmp->y]) && 
-		tmp->x_pos + i <= tmp->e_x)
+	while (tmp->x_pos + i < _strlen(data->map[tmp->y]) && tmp->x_pos
+		+ i <= tmp->e_x)
 	{
 		if (data->map[tmp->y][tmp->x_pos + i] == '1')
 			draw_square(data->image, xsize, ysize, SIZE, BLACK);

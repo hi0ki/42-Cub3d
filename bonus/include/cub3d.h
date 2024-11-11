@@ -46,14 +46,14 @@ int			read_map(char *line, int fd, t_data *data_struct, char *ptr_line);
 int			process_path(char **str, int i, char *name, char **path);
 int			read_file(int fd, t_helper *helper);
 int			check_all(int ac, char **av, t_data *data_struct, int fd);
-int			init_struct(t_data *data_struct, t_helper *helper,
-				int fd, char *av);
+int			init_struct(t_data *data_struct, t_helper *helper, int fd,
+				char *av);
 /*						DRAWING						*/
 void		draw_minimap(t_data *data);
 void		draw_top(t_data *data, t_lines *lines);
 void		draw_bot(t_data *data, t_lines *lines);
 void		draw_square(void *image, int x, int y, int size, int color);
-void 		helper_gun(t_data *data);
+void		helper_gun(t_data *data);
 void		draw_background(t_data *data);
 
 /*				TEXTURES			*/

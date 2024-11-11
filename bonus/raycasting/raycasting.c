@@ -52,10 +52,9 @@ int	v_close_d(t_data *data, t_dis_v *dis_v)
 	return (0);
 }
 
-double	distance_hrz(t_data *data, t_dis_h *dis_h, double angle)
+double	distance_hrz(t_data *data, t_dis_h *dis_h, double angle, double ya)
 {
 	double	hdis;
-	double	ya;
 
 	if (angle >= M_PI)
 	{
@@ -119,7 +118,7 @@ double	cal_distance(t_data *data, t_dis_h *dis_h, t_dis_v *dis_v,
 
 	vdis = 0;
 	hdis = 0;
-	hdis = distance_hrz(data, dis_h, rayangle);
+	hdis = distance_hrz(data, dis_h, rayangle, 0);
 	vdis = distance_vrt(data, dis_v, rayangle);
 	if (vdis < hdis && vdis > 0)
 	{

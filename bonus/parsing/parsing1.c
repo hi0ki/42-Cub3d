@@ -39,7 +39,8 @@ int	process_path(char **str, int i, char *name, char **path)
 	split = ft_split(str[i], " \t\v\f\r");
 	if (ft_lenarray(split) != 2 || (split[0] && ft_strcmp(split[0], name) != 0))
 		return (free_2d_array(split),
-			ft_putstrn_fd("Error\nYOU HAVE TO SET ALL THE PATHS\n", 2), 1);
+			ft_putstrn_fd("Error\nYOU HAVE TO SET ALL THE PATHS\n", 2),
+			1);
 	if (check_av_path(split[1], 0, 1) == 1)
 		return (free_2d_array(split), 1);
 	free(*path);
