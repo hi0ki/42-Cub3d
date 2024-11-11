@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 12:58:48 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/11/11 12:08:48 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/11 17:11:48 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define BLACK 0x000000FF
 # define GREY 0x808080FF
 # define NEW 0xE0E0E0FF
+# define FOV 1.047198
 # define ROTATION_SPEED 0.088
 # define MOVE_SPEED 3.0
 # define SIZE 20
