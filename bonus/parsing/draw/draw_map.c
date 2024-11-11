@@ -6,7 +6,11 @@
 /*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:48:43 by kadam             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/11/10 22:07:34 by kadam            ###   ########.fr       */
+=======
+/*   Updated: 2024/11/11 12:05:49 by eel-ansa         ###   ########.fr       */
+>>>>>>> hiki
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +19,15 @@
 void	draw_square(void *image, int x, int y, int size, int color)
 {
 	int	i;
+<<<<<<< HEAD
 
 	i = 0;
 	int j;
+=======
+	int	j;
+
+	i = 0;
+>>>>>>> hiki
 	j = 0;
 	while (i < size)
 	{
@@ -34,8 +44,16 @@ void	draw_square(void *image, int x, int y, int size, int color)
 void	draw_line(void *image, int x, int y, double size, int color,
 		double angle)
 {
+<<<<<<< HEAD
 	int	y1 = 0;
 	int	x1 = 0;
+=======
+	int y1;
+	int x1;
+
+	x1 = 0;
+	y = 1;
+>>>>>>> hiki
 	for (double i = 0; i < size; i++)
 	{
 		y1 = y + i * sin(angle);
@@ -55,11 +73,16 @@ static int	color_pixel(int *arr, int index)
 
 void	draw_cros(t_data *data)
 {
+<<<<<<< HEAD
 	double	x;
 	double	y;
 
 	x = WIDTH / 2;
 	y = HEIGHT / 2;
+=======
+	double x = WIDTH / 2;
+	double y = HEIGHT / 2;
+>>>>>>> hiki
 	draw_line(data->image, x - 3, y, 6, GREEN, M_PI);       // lift
 	draw_line(data->image, x, y - 3, 6, GREEN, M_PI_2 * 3); // top
 	draw_line(data->image, x, y + 3, 6, GREEN, M_PI_2);     // bot
@@ -68,6 +91,7 @@ void	draw_cros(t_data *data)
 
 void	draw_gun(t_data *data, int in)
 {
+<<<<<<< HEAD
 	int	arr[4];
 	int	i;
 	int	j;
@@ -92,6 +116,21 @@ void	draw_gun(t_data *data, int in)
 	{
 		ft_putstrn_fd("The gun is too big for the game window.", 2);
 		return ;
+=======
+	int arr[4];
+	int i = 0;
+	int j = 0;
+	int index = 0;
+	int height = data->gun[in]->height;
+	int width = data->gun[in]->width;
+	int scale_factor = 4;
+	int x_c = WIDTH / 2 - (width * scale_factor) / 2;
+	int y_c = HEIGHT - (height * scale_factor);
+	if (height * scale_factor > HEIGHT || width * scale_factor > WIDTH)
+	{
+		ft_putstrn_fd("The gun is too big for the game window.", 2);
+		return;
+>>>>>>> hiki
 	}
 	while (i < height)
 	{
@@ -104,6 +143,7 @@ void	draw_gun(t_data *data, int in)
 			arr[3] = data->gun[in]->pixels[index + 3];
 			if (arr[0] || arr[1] || arr[2] || arr[3])
 			{
+<<<<<<< HEAD
 				k = 0;
 				while (k < scale_factor)
 				{
@@ -112,6 +152,15 @@ void	draw_gun(t_data *data, int in)
 					{
 						mlx_put_pixel(data->image, x_c + (j * scale_factor) + l,
 							y_c + (i * scale_factor) + k, color_pixel(arr, 0));
+=======
+				int k = 0;
+				while (k < scale_factor)
+				{
+					int l = 0;
+					while (l < scale_factor)
+					{
+						mlx_put_pixel(data->image, x_c + (j * scale_factor) + l, y_c + (i * scale_factor) + k, color_pixel(arr, 0));
+>>>>>>> hiki
 						l++;
 					}
 					k++;
@@ -127,7 +176,11 @@ void	draw_gun(t_data *data, int in)
 void	start_drawing(void *ptr)
 {
 	t_data		*data;
+<<<<<<< HEAD
 	static int	frame;
+=======
+	static int	frame ;
+>>>>>>> hiki
 	static int	counter;
 
 	data = (t_data *)ptr;

@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 12:57:13 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/11/08 12:56:29 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/11 12:18:51 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,17 @@
 double	cal_dis(double xp, double yp, double x, double y)
 {
 	double	dx;
+<<<<<<< HEAD
 	double	dy;
 
 	dx = x - xp;
 	dy = y - yp;
+=======
+	double	dy; 
+
+	dy = y - yp;
+	dx = x - xp;
+>>>>>>> hiki
 	return (sqrt(dx * dx + dy * dy));
 }
 
@@ -63,6 +70,7 @@ int	check_ray(t_data *data, double y, double x)
 
 	ay = y / SIZE;
 	ax = x / SIZE;
+<<<<<<< HEAD
 	if (ay < 0 || ay >= ft_lenarray(data->map) || ax >= _strlen(data->map[ay])
 		|| ax < 0)
 		return (-1);
@@ -70,6 +78,15 @@ int	check_ray(t_data *data, double y, double x)
 		return (-1);
 	if (data->map[ay][ax] && (data->map[ay][ax] == '1'
 			|| data->map[ay][ax] == 'D'))
+=======
+	if (ay < 0 || ay >= ft_lenarray(data->map) || 
+		ax >= _strlen(data->map[ay]) || ax < 0)
+		return (-1);
+	if (check_pos(data, y, x, 0.000001) == -1)
+		return (-1);
+	if (data->map[ay][ax] && (data->map[ay][ax] == '1' || 
+		data->map[ay][ax] == 'D'))
+>>>>>>> hiki
 		return (-1);
 	return (0);
 }
@@ -80,9 +97,14 @@ void	draw_3d(t_data *data, double line_height, double i, t_rays rays)
 	double	bot;
 	double	tex_y;
 	double	j;
+<<<<<<< HEAD
 	int		tex_indexx;
 
 	tex_indexx = tex_index(rays.dis_h, rays.dis_v, rays.rayangle);
+=======
+	int	tex_indexx = tex_index(rays.dis_h, rays.dis_v, rays.rayangle);
+
+>>>>>>> hiki
 	top = (HEIGHT / 2) - (line_height / 2);
 	j = top;
 	bot = (HEIGHT / 2) + (line_height / 2);
@@ -93,8 +115,12 @@ void	draw_3d(t_data *data, double line_height, double i, t_rays rays)
 	while (top < bot)
 	{
 		tex_y = ((top - j) / line_height) * data->textur[tex_indexx]->height;
+<<<<<<< HEAD
 		mlx_put_pixel(data->image, i, top, get_color(data, rays, tex_y,
 				tex_indexx));
+=======
+		mlx_put_pixel(data->image, i, top, get_color(data, rays, tex_y, tex_indexx));
+>>>>>>> hiki
 		top++;
 	}
 }

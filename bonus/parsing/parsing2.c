@@ -6,7 +6,11 @@
 /*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 15:34:48 by kadam             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/11/10 21:34:26 by kadam            ###   ########.fr       */
+=======
+/*   Updated: 2024/11/11 12:16:27 by eel-ansa         ###   ########.fr       */
+>>>>>>> hiki
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +35,11 @@ static int	update_find(char c, int *find, int x)
 		while (x < 6)
 		{
 			if (find[x] != 1)
+<<<<<<< HEAD
 				return (ft_putstrn_fd("Error\nYpath or color is invalid", 2),
+=======
+				return (ft_putstrn_fd("Error\nIncomplete paths and colors\n", 2), 
+>>>>>>> hiki
 					1);
 			x++;
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 00:00:20 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/09/06 12:52:33 by kadam            ###   ########.fr       */
+/*   Updated: 2024/11/11 10:58:36 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 #  define BUFFER_SIZE 20
 # endif
 
-# include "../include/cub3d.h"
+# include "../mandatory/include/cub3d.h"
+# include "../bonus/include/cub3d.h"
 # include <limits.h>
 # include <stdio.h>
 # include <stdlib.h>

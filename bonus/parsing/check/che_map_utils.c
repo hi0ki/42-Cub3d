@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 17:57:59 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/10/31 12:59:13 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/11 11:53:53 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,13 @@
 
 int	door_helper(char **data, int y, int x)
 {
+<<<<<<< HEAD
 	if ((data[y][x - 1] == '1' && data[y][x + 1] == '1') || (data[y
 			- 1][x] == '1' && data[y + 1][x] == '1'))
+=======
+	if ((data[y][x - 1] == '1' && data[y][x + 1] == '1') || 
+		(data[y - 1][x] == '1' && data[y + 1][x] == '1'))
+>>>>>>> hiki
 		return (1);
 	return (0);
 }
@@ -51,8 +56,13 @@ int	valid_path(char **map, int y, int x)
 		return (-1);
 	if (!ft_strchr("1WESN0D", map[y][x - 1]))
 		return (-1);
+<<<<<<< HEAD
 	if (y > 0 && (x >= _strlen(map[y - 1]) || !ft_strchr("1WESN0D", map[y
 				- 1][x])))
+=======
+	if (y > 0 && (x >= _strlen(map[y - 1]) || 
+			!ft_strchr("1WESN0D", map[y - 1][x])))
+>>>>>>> hiki
 		return (-1);
 	if (y != ft_lenarray(map) - 1 && (x >= _strlen(map[y + 1])
 			|| !ft_strchr("1WESN0D", map[y + 1][x])))
