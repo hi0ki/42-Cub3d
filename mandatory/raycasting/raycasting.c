@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 13:42:02 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/11/08 12:56:29 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/11 17:09:46 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,29 +91,23 @@ double	cal_distance(t_data *data, t_dis_h *dis_h, t_dis_v *dis_v,
 	}
 }
 
-void	start_raycasting(t_data *data)
+void	start_raycasting(t_data *data, int i, double dis)
 {
-	double	fov;
 	double	rayangle;
 	double	angle;
-	double	dis;
 	double	line_height;
-	int		i;
 	t_rays	*rays;
 
-	fov = 60 * (M_PI / 180);
-	rayangle = data->player.angle - fov / 2;
-	angle = fov / WIDTH;
-	dis = 0;
+	rayangle = data->player.angle - FOV / 2;
+	angle = FOV / WIDTH;
 	line_height = 0;
-	i = 0;
 	rays = malloc(sizeof(t_rays) * WIDTH);
 	while (i < WIDTH)
 	{
 		rayangle = ft_normalize(rayangle);
 		dis = cal_distance(data, &rays[i].dis_h, &rays[i].dis_v, rayangle);
 		dis = dis * cos(data->player.angle - rayangle);
-		line_height = (SIZE / dis) * (WIDTH / 2) / tan(fov / 2);
+		line_height = (SIZE / dis) * (WIDTH / 2) / tan(FOV / 2);
 		rays[i].rayangle = rayangle;
 		draw_3d(data, line_height, i, rays[i]);
 		rayangle += angle;

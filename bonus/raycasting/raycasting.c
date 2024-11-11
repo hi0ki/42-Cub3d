@@ -3,54 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 13:42:02 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/11/10 21:29:40 by kadam            ###   ########.fr       */
+/*   Updated: 2024/11/11 17:15:52 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-int	h_close_d(t_data *data, t_dis_h *dis_h)
-{
-	int	xa;
-	int	ya;
-
-	xa = dis_h->x_h / SIZE;
-	ya = dis_h->y_h / SIZE;
-	if (ya < 0 || ya >= ft_lenarray(data->map) || xa >= _strlen(data->map[ya])
-		|| xa < 0)
-		return (0);
-	if (data->map[ya][xa] && data->map[ya][xa] == 'O'
-		&& dis_h->close_d == false)
-	{
-		dis_h->x_o = xa;
-		dis_h->y_o = ya;
-		dis_h->close_d = true;
-	}
-	return (0);
-}
-
-int	v_close_d(t_data *data, t_dis_v *dis_v)
-{
-	int	xa;
-	int	ya;
-
-	xa = dis_v->x_v / SIZE;
-	ya = dis_v->y_v / SIZE;
-	if (ya < 0 || ya >= ft_lenarray(data->map) || xa >= _strlen(data->map[ya])
-		|| xa < 0)
-		return (0);
-	if (data->map[ya][xa] && data->map[ya][xa] == 'O'
-		&& dis_v->close_d == false)
-	{
-		dis_v->x_o = xa;
-		dis_v->y_o = ya;
-		dis_v->close_d = true;
-	}
-	return (0);
-}
 
 double	distance_hrz(t_data *data, t_dis_h *dis_h, double angle, double ya)
 {
@@ -138,22 +98,16 @@ double	cal_distance(t_data *data, t_dis_h *dis_h, t_dis_v *dis_v,
 	}
 }
 
-void	start_raycasting(t_data *data)
+void	start_raycasting(t_data *data, int i, double dis)
 {
-	double	fov;
 	double	rayangle;
 	double	angle;
-	double	dis;
 	double	line_height;
-	int		i;
 	t_rays	*rays;
 
-	fov = 60 * (M_PI / 180);
-	rayangle = data->player.angle - fov / 2;
-	angle = fov / WIDTH;
-	dis = 0;
+	rayangle = data->player.angle - FOV / 2;
+	angle = FOV / WIDTH;
 	line_height = 0;
-	i = 0;
 	rays = malloc(sizeof(t_rays) * WIDTH);
 	while (i < WIDTH)
 	{
@@ -164,7 +118,7 @@ void	start_raycasting(t_data *data)
 		rays[i].dis_v.inter_type_v = 'N';
 		dis = cal_distance(data, &rays[i].dis_h, &rays[i].dis_v, rayangle);
 		dis = dis * cos(data->player.angle - rayangle);
-		line_height = (SIZE / dis) * (WIDTH / 2) / tan(fov / 2);
+		line_height = (SIZE / dis) * (WIDTH / 2) / tan(FOV / 2);
 		rays[i].rayangle = rayangle;
 		draw_3d(data, line_height, i, rays[i]);
 		rayangle += angle;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:12:37 by kadam             #+#    #+#             */
-/*   Updated: 2024/11/10 21:22:24 by kadam            ###   ########.fr       */
+/*   Updated: 2024/11/11 17:21:39 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdbool.h>
-# include <stdio.h>
 # include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
 
 /*				libft				*/
 void		free_pointer(void **ptr);
@@ -70,7 +67,7 @@ void		key_hook(t_data *data);
 void		start_key_hook(void *param);
 
 /*					raycasting					*/
-void		start_raycasting(t_data *data);
+void		start_raycasting(t_data *data, int i, double y)
 int			check_ray(t_data *data, double y, double x);
 double		cal_dis(double xp, double yp, double x, double y);
 int			check_pos(t_data *data, double py, double px, double num_pix);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:12:37 by kadam             #+#    #+#             */
-/*   Updated: 2024/11/10 21:47:14 by kadam            ###   ########.fr       */
+/*   Updated: 2024/11/11 17:19:09 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdbool.h>
-# include <stdio.h>
 # include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
 
 /*				LIBFT				*/
 int			ft_lenarray(char **array);
@@ -86,7 +83,7 @@ void		close_door(t_data *data, t_rays ray);
 /*					RAYCASTING				*/
 double		cal_distance(t_data *data, t_dis_h *dis_h, t_dis_v *dis_v,
 				double rayangle);
-void		start_raycasting(t_data *data);
+void		start_raycasting(t_data *data, int i, double dis);
 int			check_ray(t_data *data, double y, double x);
 double		cal_dis(double xp, double yp, double x, double y);
 int			check_pos(t_data *data, double py, double px, double num_pix);
@@ -94,5 +91,7 @@ void		draw_3d(t_data *data, double line_height, double i, t_rays rays);
 void		start_drawing(void *ptr);
 int			open_d(char **map, double y, double x);
 double		ft_normalize(double angle);
+int			h_close_d(t_data *data, t_dis_h *dis_h);
+int			v_close_d(t_data *data, t_dis_v *dis_v);
 
 #endif

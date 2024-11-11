@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:48:43 by kadam             #+#    #+#             */
-/*   Updated: 2024/11/10 22:07:34 by kadam            ###   ########.fr       */
+/*   Updated: 2024/11/11 17:13:01 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	start_drawing(void *ptr)
 	if (data->player.angle < 0)
 		data->player.angle += 2 * M_PI;
 	draw_f_c(data);
-	start_raycasting(data);
+	start_raycasting(data, 0, 0);
 	draw_cros(data);
 	draw_background(data);
 	draw_minimap(data);

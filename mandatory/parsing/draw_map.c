@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:48:43 by kadam             #+#    #+#             */
-/*   Updated: 2024/11/04 11:27:06 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/11 17:08:03 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ void	start_drawing(void *ptr)
 	data->image = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	draw_f_c(data);
 	data->player.angle = ft_normalize(data->player.angle);
-	start_raycasting(data);
+	start_raycasting(data, 0, 0);
 	mlx_image_to_window(data->mlx, data->image, 0, 0);
 }
