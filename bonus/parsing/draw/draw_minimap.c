@@ -80,6 +80,25 @@ static void	drawing_mini(t_data *data, t_lines *lines)
 	}
 }
 
+static void	draw_player(void *image, int x, int y)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			mlx_put_pixel(image, x + i, y + j, RED);
+			j++;
+		}
+		i++;
+	}
+}
+
 void	draw_minimap(t_data *data)
 {
 	t_lines	*lines;
@@ -96,5 +115,5 @@ void	draw_minimap(t_data *data)
 		free(lines);
 		lines = tmp;
 	}
-	draw_square(data->image, 110 + 20, 110 + 20, 4, RED);
+	draw_player(data->image, 110 + 20, 110 + 20);
 }

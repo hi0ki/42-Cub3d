@@ -12,17 +12,17 @@
 
 #include "../../include/cub3d.h"
 
-void	draw_square(void *image, int x, int y, int size, int color)
+void	draw_square(void *image, int x, int y, int color)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	while (i < size)
+	while (i < SIZE)
 	{
 		j = 0;
-		while (j < size)
+		while (j < SIZE)
 		{
 			mlx_put_pixel(image, x + i, y + j, color);
 			j++;

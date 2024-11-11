@@ -52,7 +52,7 @@ int			init_struct(t_data *data_struct, t_helper *helper, int fd,
 void		draw_minimap(t_data *data);
 void		draw_top(t_data *data, t_lines *lines);
 void		draw_bot(t_data *data, t_lines *lines);
-void		draw_square(void *image, int x, int y, int size, int color);
+void		draw_square(void *image, int x, int y, int color);
 void		helper_gun(t_data *data);
 void		draw_background(t_data *data);
 
