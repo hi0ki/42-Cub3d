@@ -17,7 +17,7 @@ BONUS_SRCS =   	gnl/get_next_line.c gnl/get_next_line_utils.c \
 				bonus/libft_utils/ft_lstadd_back_bonus.c bonus/libft_utils/ft_lstnew_bonus.c\
 				bonus/parsing/parsing1.c bonus/parsing/parsing5.c bonus/parsing/parsing2.c bonus/parsing/parsing3.c bonus/parsing/parsing0.c bonus/parsing/move_player.c bonus/parsing/move_utils.c \
 				bonus/parsing/check/check_map.c bonus/parsing/check/che_map_utils.c bonus/parsing/check/check_utils.c\
-				bonus/parsing/draw/draw_map.c  bonus/parsing/draw/draw_utils.c bonus/parsing/draw/draw_minimap.c bonus/parsing/draw/more_utils.c\
+				bonus/parsing/draw/draw_map.c bonus/parsing/draw/draw_gun.c bonus/parsing/draw/draw_utils.c bonus/parsing/draw/draw_minimap.c bonus/parsing/draw/more_utils.c\
 				bonus/raycasting/raycasting_utils.c bonus/raycasting/raycasting.c bonus/raycasting/utils.c\
 				bonus/texturing.c \
 				bonus/main.c\

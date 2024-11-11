@@ -1,27 +1,26 @@
 {
-    "files.associations": {
-        "*.c": "c",
-        "cub3d.h": "c",
-        "get_next_line.h": "c",
-        "mlx42.h": "c",
-        "complex": "c",
-        "fcntl.h": "c",
-        "math.h": "c",
-        "struct.h": "c",
-        "raycasting.h": "c",
-        "types.h": "c",
-<<<<<<< HEAD
-        "array": "c",
-        "string": "c",
-        "string_view": "c",
-        "vector": "c",
-        "ios": "c",
-        "istream": "c",
-        "locale": "c"
-=======
-        "__node_handle": "c"
->>>>>>> hiki
-    },
-    "cmake.ignoreCMakeListsMissing": true,
-    "C_Cpp.errorSquiggles": "disabled"
+        "files.associations": {
+                "*.c": "c",
+                "cub3d.h": "c",
+                "get_next_line.h": "c",
+                "mlx42.h": "c",
+                "complex": "c",
+                "fcntl.h": "c",
+                "math.h": "c",
+                "struct.h": "c",
+                "raycasting.h": "c",
+                "types.h": "c",
+                "array": "c",
+                "string": "c",
+                "string_view": "c",
+                "vector": "c",
+                "ios": "c",
+                "istream": "c",
+                "locale": "c"
+        },
+        "cmake.ignoreCMakeListsMissing": true,
+        "C_Cpp.errorSquiggles": "disabled",
+        "[c]": {
+                "editor.defaultFormatter": "keyhr.42-c-format"
+        }
 }

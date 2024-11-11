@@ -6,11 +6,7 @@
 /*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 13:20:39 by kadam             #+#    #+#             */
-<<<<<<< HEAD
 /*   Updated: 2024/11/10 21:45:50 by kadam            ###   ########.fr       */
-=======
-/*   Updated: 2024/11/11 11:13:13 by eel-ansa         ###   ########.fr       */
->>>>>>> hiki
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +54,9 @@ static int	load_textures(t_data *map, int i)
 	map->textur[1] = mlx_load_png(map->so);
 	map->textur[2] = mlx_load_png(map->we);
 	map->textur[3] = mlx_load_png(map->ea);
-<<<<<<< HEAD
-	map->textur[4] = mlx_load_png("./texturs/download.png");
+	map->textur[4] = mlx_load_png("./texturs/door.png");
 	if (!map->textur[0] || !map->textur[1] || !map->textur[2] || !map->textur[3]
 		|| !map->textur[4])
-=======
-	map->textur[4] = mlx_load_png("./texturs/door.png");
-	if (!map->textur[0] || !map->textur[1] || !map->textur[2]
-		|| !map->textur[3] || !map->textur[4])
-	
->>>>>>> hiki
 	{
 		while (i < 5)
 		{
@@ -80,7 +69,6 @@ static int	load_textures(t_data *map, int i)
 		}
 		return (ft_putstrn_fd("Error\nFailed to load textures\n", 2), 1);
 	}
-<<<<<<< HEAD
 	return (0);
 }
 
@@ -97,16 +85,6 @@ static int	load_img(t_data *map, int i)
 	map->gun[6] = mlx_load_png("./gun/shoo6.png");
 	if (!map->gun[0] || !map->gun[1] || !map->gun[2] || !map->gun[3]
 		|| !map->gun[4] || !map->gun[5] || !map->gun[6])
-=======
-	map->gun[0] = mlx_load_png("./bonus/gun/shoo0.png");
-    map->gun[1] = mlx_load_png("./bonus/gun/shoo1.png");
-    map->gun[2] = mlx_load_png("./bonus/gun/shoo2.png");
-    map->gun[3] = mlx_load_png("./bonus/gun/shoo3.png");
-    map->gun[4] = mlx_load_png("./bonus/gun/shoo4.png");
-    map->gun[5] = mlx_load_png("./bonus/gun/shoo5.png");
-    map->gun[6] = mlx_load_png("./bonus/gun/shoo6.png");
-	if (!map->gun[0] || !map->gun[1] || !map->gun[2] || !map->gun[3] || !map->gun[4] || !map->gun[5] || !map->gun[6])
->>>>>>> hiki
 	{
 		while (i < 7)
 		{

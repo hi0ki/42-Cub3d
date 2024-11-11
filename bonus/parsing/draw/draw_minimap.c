@@ -14,18 +14,11 @@
 
 static void	minimap_top(t_data *data, t_lines **lines, int len)
 {
-<<<<<<< HEAD
-	int		i;
-	t_lines	*node;
-
-	int x, y;
-=======
 	int		x;
 	int		y;
 	int		i;
 	t_lines	*node;
 
->>>>>>> hiki
 	i = 0;
 	y = data->player.py / SIZE;
 	x = data->player.px / SIZE;
@@ -49,18 +42,11 @@ static void	minimap_top(t_data *data, t_lines **lines, int len)
 
 static void	minimap_bot(t_data *data, t_lines **lines, int len)
 {
-<<<<<<< HEAD
-	int		i;
-	t_lines	*node;
-
-	int x, y;
-=======
 	int		x; 
 	int		y;
 	int		i;
 	t_lines	*node;
 
->>>>>>> hiki
 	i = 0;
 	y = data->player.py / SIZE + 1;
 	x = data->player.px / SIZE;
@@ -96,17 +82,11 @@ static void	drawing_mini(t_data *data, t_lines *lines)
 
 void	draw_minimap(t_data *data)
 {
-<<<<<<< HEAD
-	t_lines *lines = NULL;
-	t_lines *tmp = NULL;
-
-=======
 	t_lines	*lines;
 	t_lines	*tmp;
 
 	tmp = NULL;
 	lines = NULL;
->>>>>>> hiki
 	minimap_top(data, &lines, 5);
 	minimap_bot(data, &lines, 5);
 	drawing_mini(data, lines);
@@ -117,8 +97,4 @@ void	draw_minimap(t_data *data)
 		lines = tmp;
 	}
 	draw_square(data->image, 110 + 20, 110 + 20, 4, RED);
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> hiki
