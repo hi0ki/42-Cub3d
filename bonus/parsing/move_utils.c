@@ -19,8 +19,8 @@ int	checkto_open(t_data *data, int y, int x)
 
 	xa = data->player.px / SIZE;
 	ya = data->player.py / SIZE;
-	if ((x == xa + 1 || x == xa - 1 || x == xa) && 
-		(y == ya + 1 || y == ya - 1 || y == ya))
+	if ((x == xa + 1 || x == xa - 1 || x == xa) && (y == ya + 1 || y == ya - 1
+			|| y == ya))
 		return (0);
 	return (-1);
 }
@@ -43,11 +43,11 @@ void	open_door(t_data *data, t_rays ray, int xa, int ya)
 
 void	close_door(t_data *data, t_rays ray)
 {
-	if (ray.dis_h.close_d == true && 
-		!checkto_open(data, ray.dis_h.y_o, ray.dis_h.x_o))
+	if (ray.dis_h.close_d == true && !checkto_open(data, ray.dis_h.y_o,
+			ray.dis_h.x_o))
 		data->map[ray.dis_h.y_o][ray.dis_h.x_o] = 'D';
-	else if (ray.dis_v.close_d == true && 
-		!checkto_open(data, ray.dis_v.y_o, ray.dis_v.x_o))
+	else if (ray.dis_v.close_d == true && !checkto_open(data, ray.dis_v.y_o,
+			ray.dis_v.x_o))
 		data->map[ray.dis_v.y_o][ray.dis_v.x_o] = 'D';
 }
 

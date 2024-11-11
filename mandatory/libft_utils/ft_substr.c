@@ -6,7 +6,7 @@
 /*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:35:57 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/09/06 12:54:22 by kadam            ###   ########.fr       */
+/*   Updated: 2024/11/10 20:43:08 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_substr(char const *s, size_t start, size_t len)
 {
-	char *dest;
-	size_t i;
+	char	*dest;
+	size_t	i;
 
 	if (s == NULL)
 		return (NULL);

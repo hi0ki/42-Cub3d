@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 13:20:39 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/31 12:49:09 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:21:17 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static int	check_av_path(char *str, int len, int index)
+int	check_av_path(char *str, int len, int index)
 {
 	int	fd;
 
@@ -41,80 +41,25 @@ int	process_path(char **str, int i, char *name, char **path)
 		return (free_2d_array(split),
 			ft_putstrn_fd("Error\nYOU HAVE TO SET ALL THE PATHS\n", 2), 1);
 	if (check_av_path(split[1], 0, 1) == 1)
-		return (free_2d_array(split),1);
+		return (free_2d_array(split), 1);
 	free(*path);
 	*path = ft_strdup(split[1]);
 	free_2d_array(split);
 	return (0);
 }
 
-static int is_new_line(char **line, int *fd, char *av, int j)
-{
-	if (!*line || !line)
-		return (ft_putstrn_fd("Error: Failed to read file", 2), 1);
-	while (*line)
-	{
-		if (*line[0] != '\n')
-		{
-			j = 1;
-			break;
-		}
-		free(*line);
-		*line = get_next_line(*fd);
-	}
-	free(*line);
-	if (j == 0)
-		return (ft_putstrn_fd("Error: Empty line", 2), 1);
-	close(*fd);
-	*fd = open(av, O_RDONLY);
-	if (*fd == -1)
-		return (ft_putstrn_fd("Error: Failed to open file", 2), 1);
-	*line = get_next_line(*fd);
-	if (!*line)
-		return (ft_putstrn_fd("Error: Failed to read file", 2), 1);
-	return (0);
-}
-
-static int	init_struct(t_data *data_struct, t_helper *helper, int fd, char *av)
-{
-	data_struct->no = NULL;
-	data_struct->so = NULL;
-	data_struct->we = NULL;
-	data_struct->ea = NULL;
-	int i;
-
-	i = 0;
-	while (i < 4)
-		data_struct->textur[i++] = NULL;
-	i = 0;
-	while (i < 3)
-	{
-		data_struct->f[i] = -1;
-		data_struct->c[i] = -1;
-		i++;
-	}
-	helper->res = 0;
-	helper->ptr_line = NULL;
-	helper->trim_line = NULL;
-	data_struct->map = NULL;
-	i = 0;
-	while (i < 6)
-		helper->find[i++] = 0;
-	helper->line = get_next_line(fd);
-	if (is_new_line(&helper->line, &fd, av, 0))
-		return (1);
-	return (0);
-}
-
 static int	load_img(t_data *data)
 {
-    data->textur[0] = mlx_load_png(data->no);
-    data->textur[1] = mlx_load_png(data->so);
-    data->textur[2] = mlx_load_png(data->we);
-    data->textur[3] = mlx_load_png(data->ea);
-    if (!data->textur[0] || !data->textur[1] || !data->textur[2] || !data->textur[3])
-    {
-		int i = 0;
+	int	i;
+
+	data->textur[0] = mlx_load_png(data->no);
+	data->textur[1] = mlx_load_png(data->so);
+	data->textur[2] = mlx_load_png(data->we);
+	data->textur[3] = mlx_load_png(data->ea);
+	if (!data->textur[0] || !data->textur[1] || !data->textur[2]
+		|| !data->textur[3])
+	{
+		i = 0;
 		while (i < 4)
 		{
 			if (data->textur[i])
@@ -124,18 +69,15 @@ static int	load_img(t_data *data)
 			}
 			i++;
 		}
-        return (ft_putstrn_fd("Error\nUnable to load texture\n", 2), 1);
-    }
-    return (0);
+		return (ft_putstrn_fd("Error\nUnable to load texture\n", 2), 1);
+	}
+	return (0);
 }
 
 int	check_all(int ac, char **av, t_data *data_struct, int fd)
 {
 	t_helper	helper;
 
-	if (ac != 2 || (ac == 2 && av[1] && !check_av_path(av[1], ft_strlen(av[1]),
-				0)))
-		return (ft_putstrn_fd("Error\nInvalid arg\n", 2), 1);
 	if (init_struct(data_struct, &helper, fd, av[1]))
 		return (1);
 	if (read_file(fd, &helper))

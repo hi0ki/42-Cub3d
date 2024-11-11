@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:21:55 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/11/04 11:23:13 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:29:22 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-double ft_normalize(double angle)
+double	ft_normalize(double angle)
 {
 	angle = fmod(angle, 2 * M_PI);
 	if (angle < 0)

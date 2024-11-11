@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 21:48:05 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/09/04 21:18:57 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/10 20:43:19 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ static char	**ft_alloc(char *s, char *c, int c_word, char **str)
 
 char	**ft_split(char *s, char *c)
 {
-	char **str;
-	int len_w;
+	char	**str;
+	int		len_w;
 
 	if (!s)
 		return (NULL);

@@ -44,7 +44,7 @@ typedef struct s_lines
 	int				x_pos;
 	struct s_lines	*next;
 	struct s_lines	*prv;
-}t_lines;
+}					t_lines;
 
 typedef struct s_player
 {
@@ -85,7 +85,7 @@ typedef struct s_rays
 	double			rayangle;
 	t_dis_h			dis_h;
 	t_dis_v			dis_v;
-}t_rays;
+}					t_rays;
 
 typedef struct s_map
 {

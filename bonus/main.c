@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:46:15 by kadam             #+#    #+#             */
-/*   Updated: 2024/11/08 11:23:06 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:31:18 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,30 +38,33 @@ static void	player_position(t_data *data, int x, int y)
 		y++;
 	}
 }
-void free_pointer(void **ptr)
+
+void	free_pointer(void **ptr)
 {
-    if (*ptr)
-    {
-        free(*ptr);
-        *ptr = NULL;
-    }
+	if (*ptr)
+	{
+		free(*ptr);
+		*ptr = NULL;
+	}
 }
 
-void free_all(t_data *data_struct, int i)
+void	free_all(t_data *data_struct, int i)
 {
-    free_pointer((void**)&data_struct->no);
-    free_pointer((void**)&data_struct->so);
-    free_pointer((void**)&data_struct->we);
-    free_pointer((void**)&data_struct->ea);
-    if (i == 0)
-    {
-        int j = 0;
-        while (j < 5)
-        {
-            if (data_struct->textur[j])
-                mlx_delete_texture(data_struct->textur[j]);
-            j++;
-        }
+	int	j;
+
+	free_pointer((void **)&data_struct->no);
+	free_pointer((void **)&data_struct->so);
+	free_pointer((void **)&data_struct->we);
+	free_pointer((void **)&data_struct->ea);
+	if (i == 0)
+	{
+		j = 0;
+		while (j < 5)
+		{
+			if (data_struct->textur[j])
+				mlx_delete_texture(data_struct->textur[j]);
+			j++;
+		}
 		j = 0;
 		while (j < 7)
 		{
@@ -69,17 +72,13 @@ void free_all(t_data *data_struct, int i)
 				mlx_delete_texture(data_struct->gun[j]);
 			j++;
 		}
-        if (data_struct->map)
-            free_2d_array(data_struct->map);
-    }
+		if (data_struct->map)
+			free_2d_array(data_struct->map);
+	}
 }
-void leaks()
-{
-	system("leaks cub3d");
-}
+
 int	main(int ac, char **av)
 {
-	atexit(leaks);
 	t_data	map_struct;
 	int		fd;
 
@@ -100,7 +99,7 @@ int	main(int ac, char **av)
 	mlx_set_cursor_mode(map_struct.mlx, MLX_MOUSE_HIDDEN);
 	mlx_loop_hook(map_struct.mlx, &mouse_hook, &map_struct);
 	mlx_loop_hook(map_struct.mlx, &start_drawing, &map_struct);
-    mlx_loop_hook(map_struct.mlx, &start_key_hook, &map_struct);
+	mlx_loop_hook(map_struct.mlx, &start_key_hook, &map_struct);
 	mlx_loop(map_struct.mlx);
 	free_all(&map_struct, 0);
 	return (0);

@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:50:58 by kadam             #+#    #+#             */
-/*   Updated: 2024/11/05 13:43:03 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:00:50 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static void	handle_movement(t_data *data, double *new_px,
-		double *new_py)
+static void	handle_movement(t_data *data, double *new_px, double *new_py)
 {
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
 	{
@@ -37,7 +36,7 @@ static void	handle_movement(t_data *data, double *new_px,
 	}
 }
 
-void key_hook(t_data *data)
+void	key_hook(t_data *data)
 {
 	double	new_px;
 	double	new_py;
@@ -61,8 +60,10 @@ void key_hook(t_data *data)
 	}
 }
 
-void start_key_hook(void *param)
+void	start_key_hook(void *param)
 {
-    t_data *data = (t_data *)param;
-    key_hook(data);
+	t_data	*data;
+
+	data = (t_data *)param;
+	key_hook(data);
 }

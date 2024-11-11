@@ -36,7 +36,6 @@ typedef struct s_helper
 	char			*trim_line;
 }					t_helper;
 
-
 typedef struct s_player
 {
 	int				x;
@@ -65,8 +64,8 @@ typedef struct s_rays
 {
 	t_dis_h			dis_h;
 	t_dis_v			dis_v;
-	double 			rayangle;
-}t_rays;
+	double			rayangle;
+}					t_rays;
 
 typedef struct s_map
 {

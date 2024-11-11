@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 15:34:48 by kadam             #+#    #+#             */
-/*   Updated: 2024/10/31 12:49:09 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:01:48 by kadam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static int	update_find(char c, int *find, int x)
 		while (x < 6)
 		{
 			if (find[x] != 1)
-				return (ft_putstrn_fd("Error\nYou have to set all the paths and colors\n",2),1);
+				return (ft_putstrn_fd("Error\nYpath or color is invalid", 2),
+					1);
 			x++;
 		}
 		return (0);
@@ -88,7 +89,7 @@ static int	read_path_color(t_data *data_struct, char **str, int i)
 		if (process_path_wrapper(str, i, data_struct))
 			return (1);
 		else if (str[i][0] != 'N' && str[i][0] != 'S' && str[i][0] != 'W'
-				&& str[i][0] != 'E')
+			&& str[i][0] != 'E')
 		{
 			if (str[i][0] == 'F')
 			{

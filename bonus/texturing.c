@@ -17,9 +17,9 @@ static int	color_pixel(int *arr)
 	return ((arr[0] << 24) | (arr[1] << 16) | (arr[2] << 8) | 0xFF);
 }
 
-static uint32_t colorr(uint8_t *arr)
+static uint32_t	colorr(uint8_t *arr)
 {
-	return ((arr[0]<< 24) | (arr[ 1] << 16) | (arr[ 2] << 8) | arr[3]);
+	return ((arr[0] << 24) | (arr[1] << 16) | (arr[2] << 8) | arr[3]);
 }
 
 void	draw_f_c(t_data *data)
@@ -47,8 +47,8 @@ void	draw_f_c(t_data *data)
 
 int	tex_index(t_dis_h dis_h, t_dis_v dis_v, double rayangle)
 {
-	if(dis_v.open_d || dis_h.open_d)
-		return 4;
+	if (dis_v.open_d || dis_h.open_d)
+		return (4);
 	else if (dis_v.inter_type_v == 'V')
 	{
 		if (rayangle > M_PI_2 && rayangle < 3 * M_PI_2)
@@ -70,7 +70,7 @@ uint32_t	get_color(t_data *data, t_rays rays, double tex_y,
 		int texture_index)
 {
 	double	tex_x;
-	int	index;
+	int		index;
 
 	tex_x = 0;
 	if (rays.dis_h.inter_type_h == 'H')

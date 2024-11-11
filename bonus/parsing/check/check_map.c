@@ -53,6 +53,6 @@ void	check_map(t_data *data)
 		}
 	}
 	free_2d_array(cpy_arr);
-	if (check_door(data)) 
+	if (check_door(data))
 		put_err("Error: Invalid map.11", data);
 }
