@@ -27,6 +27,7 @@ static int	is_new_line(char **line, int *fd, char *av, int j)
 		*line = get_next_line(*fd);
 	}
 	free(*line);
+	*line = NULL;
 	if (j == 0)
 		return (ft_putstrn_fd("Error: Empty line", 2), 1);
 	close(*fd);

@@ -35,17 +35,29 @@ int	check_av_path(char *str, int len, int index)
 int	process_path(char **str, int i, char *name, char **path)
 {
 	char	**split;
+	char	*joined_path;
+	int		j;
+	char	*temp;
 
 	split = ft_split(str[i], " \t\v\f\r");
-	if (ft_lenarray(split) != 2 || (split[0] && ft_strcmp(split[0], name) != 0))
+	if (split[0] && ft_strcmp(split[0], name) != 0)
 		return (free_2d_array(split),
-			ft_putstrn_fd("Error\nYOU HAVE TO SET ALL THE PATHS\n", 2), 1);
-	if (check_av_path(split[1], 0, 1) == 1)
-		return (free_2d_array(split), 1);
+			ft_putstrn_fd("Error\nYOU HAVE TO SET ALL THE PATHS", 2),
+			1);
+	joined_path = ft_strdup(split[1]);
+	j = 2;
+	while (split[j] != NULL)
+	{
+		temp = ft_strjoin(joined_path, " ");
+		free(joined_path);
+		joined_path = ft_strjoin(temp, split[j]);
+		free(temp);
+		j++;
+	}
+	if (check_av_path(joined_path, 0, 1) == 1)
+		return (free(joined_path), free_2d_array(split), 1);
 	free(*path);
-	*path = ft_strdup(split[1]);
-	free_2d_array(split);
-	return (0);
+	return (*path = joined_path, free_2d_array(split), 0);
 }
 
 static int	load_img(t_data *data)

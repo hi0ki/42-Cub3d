@@ -20,9 +20,7 @@ int	read_file(int fd, t_helper *helper)
 		if (!ft_strcmp(helper->trim_line, "\n"))
 		{
 			free(helper->trim_line);
-			free(helper->line);
-			helper->line = get_next_line(fd);
-			continue ;
+			helper->trim_line = NULL;
 		}
 		else
 		{

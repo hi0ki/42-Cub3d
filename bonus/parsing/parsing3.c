@@ -12,6 +12,26 @@
 
 #include "../include/cub3d.h"
 
+static int	check(char **split, int i, int j)
+{
+	if (!split)
+		return (1);
+	while (split[i])
+	{
+		j = 0;
+		while (split[i][j])
+		{
+			if (split[i][0] >= '0' && split[i][0] <= '9'
+				&& (split[i + 1] && split[i + 1][0] >= '0'
+					&& split[i + 1][0] <= '9'))
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
 static char	*process_split(char *str, char *name)
 {
 	char	**split;
@@ -21,6 +41,9 @@ static char	*process_split(char *str, char *name)
 
 	split = ft_split(str, "  \t\v\f\r");
 	if (ft_lenarray(split) < 2 || (split[0] && ft_strcmp(split[0], name) != 0))
+		return (free_2d_array(split), ft_putstrn_fd("Error\nColor is invalid",
+				2), NULL);
+	if (check(split, 0, 0))
 		return (free_2d_array(split), ft_putstrn_fd("Error\nColor is invalid",
 				2), NULL);
 	tmp = NULL;
