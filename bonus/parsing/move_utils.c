@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 13:44:52 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/11/11 12:14:29 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:55:28 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ void	mouse_hook(void *param)
 			new_y = 0;
 		mlx_set_mouse_pos(data->mlx, new_x, new_y);
 	}
-	if (new_x - 3 > old_x && !check_to_rot(new_x, new_y))
+	if (new_x > old_x && !check_to_rot(new_x, new_y))
 		data->player.angle += ROTATION_SPEED;
-	if (new_x + 3 < old_x && !check_to_rot(new_x, new_y))
+	if (new_x < old_x && !check_to_rot(new_x, new_y))
 		data->player.angle -= ROTATION_SPEED;
 	old_x = new_x;
 }

@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:54:47 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/11/11 11:54:00 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/12 16:02:51 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ int	floodfill(char **data, int row, int col)
 	if (data[row][col] != '1')
 	{
 		if (valid_path(data, row, col) == -1)
-		{
-			printf("wach hna\n");
 			return (-1);
-		}
 	}
 	if (data[row][col] != '1')
 		data[row][col] = '1';
