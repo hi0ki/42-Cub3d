@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:54:47 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/11/12 22:22:50 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/12 22:24:55 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	floodfill(char **data, int row, int col)
 		return (-1);
 	return (0);
 }
+
 static int	check_player_pos(t_data *data)
 {
 	int	x;
