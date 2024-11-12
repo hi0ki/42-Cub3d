@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:46:15 by kadam             #+#    #+#             */
-/*   Updated: 2024/11/12 15:52:35 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/12 22:15:31 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static void	player_position(t_data *data, int x, int y)
 					data->player.angle = 0;
 				data->player.px = (x * SIZE) + SIZE / 2;
 				data->player.py = (y * SIZE) + SIZE / 2;
+				data->player.x = x;
+				data->player.y = y;
 				break ;
 			}
 			x++;
@@ -85,8 +87,8 @@ int	main(int ac, char **av)
 		return (close(fd), free_all(&map_struct, 0), 1);
 	close(fd);
 	free_all(&map_struct, 1);
-	check_map(&map_struct);
 	player_position(&map_struct, 0, 0);
+	check_map(&map_struct);
 	map_struct.mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", 0);
 	mlx_loop_hook(map_struct.mlx, &start_drawing, &map_struct);
 	mlx_loop_hook(map_struct.mlx, &start_key_hook, &map_struct);
