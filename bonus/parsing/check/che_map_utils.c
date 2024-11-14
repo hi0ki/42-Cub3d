@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 17:57:59 by eel-ansa          #+#    #+#             */
-/*   Updated: 2024/11/11 11:53:53 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/14 16:27:48 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	check_door(t_data *data)
 int	valid_path(char **map, int y, int x)
 {
 	if (!ft_strchr("1 ", map[y][x]) && (y == 0 || y == ft_lenarray(map) - 1))
+		return (-1);
+	if (!ft_strchr("1 ", map[y][x]) && (x == 0 || x == _strlen(map[y]) - 1))
 		return (-1);
 	if (!map[y][x + 1] || !ft_strchr("1WESN0D", map[y][x + 1]))
 		return (-1);
