@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 16:23:08 by kadam             #+#    #+#             */
-/*   Updated: 2024/11/15 20:51:22 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/15 21:03:10 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ static int	check(char **split, int i, int j)
 		j = 0;
 		while (split[i][j])
 		{
-			if (split[i][0] >= '0' && split[i][0] <= '9' && (split[i + 1]
-					&& split[i + 1][0] >= '0' && split[i + 1][0] <= '9'))
+			if ((split[i][0] >= '0' && split[i][0] <= '9') && (split[i + 1]
+				&& ((split[i + 1][0] >= '0' && split[i + 1][0] <= '9') 
+				|| split[i + 1][0] == ',')))
 				return (1);
 			j++;
 		}
