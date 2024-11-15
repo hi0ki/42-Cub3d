@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 13:20:39 by kadam             #+#    #+#             */
-/*   Updated: 2024/11/10 21:45:50 by kadam            ###   ########.fr       */
+/*   Updated: 2024/11/15 20:09:30 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	check_av_path(char *str, int len, int index)
 	{
 		fd = open(str, O_RDONLY);
 		if (fd == -1)
-			return (ft_putstrn_fd("Error\nInvalid path\n", 2), 1);
+			return (ft_putstrn_fd("Error: Invalid path\n", 2), 1);
 		close(fd);
 	}
 	return (0);
@@ -42,7 +42,7 @@ int	process_path(char **str, int i, char *name, char **path)
 	split = ft_split(str[i], " \t\v\f\r");
 	if (split[0] && ft_strcmp(split[0], name) != 0)
 		return (free_2d_array(split),
-			ft_putstrn_fd("Error\nYOU HAVE TO SET ALL THE PATHS", 2),
+			ft_putstrn_fd("Error: YOU HAVE TO SET ALL THE PATHS", 2),
 			1);
 	joined_path = ft_strdup(split[1]);
 	j = 2;
@@ -79,7 +79,7 @@ static int	load_textures(t_data *map, int i)
 			}
 			i++;
 		}
-		return (ft_putstrn_fd("Error\nFailed to load textures\n", 2), 1);
+		return (ft_putstrn_fd("Error: Failed to load textures\n", 2), 1);
 	}
 	return (0);
 }
@@ -107,7 +107,7 @@ static int	load_img(t_data *map, int i)
 			}
 			i++;
 		}
-		return (ft_putstrn_fd("Error\nFailed to load gun textures\n", 2), 1);
+		return (ft_putstrn_fd("Error: Failed to load gun textures\n", 2), 1);
 	}
 	return (0);
 }
@@ -128,11 +128,11 @@ int	check_all(int ac, t_data *map_struct, int fd)
 	{
 		if (map_struct->f[ac] < 0 || map_struct->f[ac] > 255
 			|| map_struct->c[ac] < 0 || map_struct->c[ac] > 255)
-			return (ft_putstrn_fd("Error\nInvalid color\n", 2), 1);
+			return (ft_putstrn_fd("Error: Invalid color\n", 2), 1);
 		ac++;
 	}
 	if (map_struct->map == NULL)
-		return (ft_putstrn_fd("Error\n: The map is empty", 2), 1);
+		return (ft_putstrn_fd("Error: The map is empty", 2), 1);
 	if (load_img(map_struct, 0))
 		return (1);
 	return (0);

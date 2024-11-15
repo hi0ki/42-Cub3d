@@ -6,7 +6,7 @@
 /*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:12:37 by kadam             #+#    #+#             */
-/*   Updated: 2024/11/11 17:23:17 by eel-ansa         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:51:08 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,5 @@ int			check_pos(t_data *data, double py, double px, double num_pix);
 void		draw_3d(t_data *data, double line_height, double i, t_rays rays);
 void		start_drawing(void *ptr);
 double		ft_normalize(double angle);
+
 #endif

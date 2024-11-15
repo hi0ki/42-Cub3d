@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 16:23:08 by kadam             #+#    #+#             */
-/*   Updated: 2024/11/10 21:46:31 by kadam            ###   ########.fr       */
+/*   Updated: 2024/11/15 20:19:15 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static int	check(char **split, int i, int j)
 		j = 0;
 		while (split[i][j])
 		{
-			if (split[i][0] >= '0' && split[i][0] <= '9'
-				&& (split[i + 1] && split[i + 1][0] >= '0'
-					&& split[i + 1][0] <= '9'))
+			if ((split[i][0] >= '0' && split[i][0] <= '9') && (split[i + 1]
+				&& ((split[i + 1][0] >= '0' && split[i + 1][0] <= '9') 
+				|| split[i + 1][0] == ',')))
 				return (1);
 			j++;
 		}

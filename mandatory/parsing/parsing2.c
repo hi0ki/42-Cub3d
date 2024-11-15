@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadam <kadam@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: eel-ansa <eel-ansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 15:34:48 by kadam             #+#    #+#             */
-/*   Updated: 2024/11/10 21:01:48 by kadam            ###   ########.fr       */
+/*   Updated: 2024/11/14 17:54:40 by eel-ansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	update_find(char c, int *find, int x)
 		while (x < 6)
 		{
 			if (find[x] != 1)
-				return (ft_putstrn_fd("Error\nYpath or color is invalid", 2),
+				return (ft_putstrn_fd("Error: path or color is invalid", 2),
 					1);
 			x++;
 		}
