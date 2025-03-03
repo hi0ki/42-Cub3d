@@ -4,16 +4,15 @@
 Cub3D is a first-person 3D maze renderer inspired by the iconic Wolfenstein 3D game. This project implements raycasting techniques to create a 3D perspective in a 2D maze. Developed as part of the 42 school curriculum, it focuses on graphics programming, optimization, and game development basics.
 
 ## Skills & Concepts
+- Game Development
 - Raycasting Algorithms
 - Graphics Rendering
 - Event Handling
 - File Parsing
 - Memory Management
-- Math for Graphics (vectors, matrices)
 - Optimization Techniques
-- Game Development
 
-## Features
+##  Game Elements
 - Textured walls with different textures for each direction (North, South, East, West)
 - Player movement (forward, backward, strafe left/right)
 - Camera rotation (left/right)
